@@ -11,10 +11,11 @@ st.title("🔥 SeekLiyab Fire Detection System")
 st.write("Enter sensor readings below.")
 
 # INPUTS
-temperature = st.number_input("Temperature")
-smoke = st.number_input("Smoke")
-air_quality = st.number_input("Air Quality")
-carbon_monoxide = st.number_input("Carbon Monoxide")
+temperature = st.number_input("Temperature", format="%.2f")
+
+smoke = int(st.number_input("Smoke", step=1, format="%.0f"))
+air_quality = int(st.number_input("Air Quality", step=1, format="%.0f"))
+carbon_monoxide = int(st.number_input("Carbon Monoxide", step=1, format="%.0f"))
 
 # PREDICT BUTTON
 if st.button("Predict"):
