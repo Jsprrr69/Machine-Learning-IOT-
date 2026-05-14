@@ -45,7 +45,7 @@ df = pd.read_csv("testingset.csv")
 X = df[[
     'temperature',
     'air_quality',
-    'carbon_monoxide'
+    'carbon_monoxide',
     'smoke',
     
  
