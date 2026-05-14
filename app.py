@@ -23,8 +23,8 @@ if st.button("Predict"):
     input_data = pd.DataFrame([{
         'temperature': temperature,
         'air_quality': air_quality,
-        'carbon_monoxide': carbon_monoxide
-            'smoke': smoke,
+        'carbon_monoxide': carbon_monoxide,
+        'smoke': smoke,
     }])
 
     prediction = model.predict(input_data)[0]
