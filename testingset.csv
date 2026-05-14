@@ -1,4 +1,5 @@
-﻿67.19,1984,1039,2497,Fire
+﻿temperature,air_quality,carbon_monoxide,smoke,status
+67.19,1984,1039,2497,Fire
 66.81,1957,1023,2545,Fire
 66.31,1922,1007,2537,Fire
 65.88,1904,998,2512,Fire
