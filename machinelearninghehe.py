@@ -2,7 +2,7 @@
 # SEEKLIYAB FIRE DETECTION TRAINING
 # Random Forest Classifier
 # ================================
-
+pip install streamlit pandas scikit-learn joblib
 import pandas as pd
 import joblib
 
