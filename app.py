@@ -76,7 +76,32 @@ df_metrics = pd.DataFrame({
     "F1-Score": f1
 })
 
-st.metric("Overall Accuracy", f"{accuracy:.4f}")
+st.subheader("🎯 Model Accuracy")
+
+fig_acc = go.Figure(
+    go.Indicator(
+        mode="gauge+number",
+        value=accuracy * 100,
+        title={"text": "Accuracy (%)"},
+        gauge={
+            "axis": {"range": [0, 100]},
+            "bar": {"color": "red"},
+            "steps": [
+                {"range": [0, 50], "color": "#ffcccc"},
+                {"range": [50, 75], "color": "#ff6666"},
+                {"range": [75, 90], "color": "#ff1a1a"},
+                {"range": [90, 100], "color": "#b30000"},
+            ],
+            "threshold": {
+                "line": {"color": "black", "width": 3},
+                "thickness": 0.75,
+                "value": accuracy * 100
+            }
+        }
+    )
+)
+
+st.plotly_chart(fig_acc, use_container_width=True)
 st.dataframe(df_metrics)
 
 # =========================
