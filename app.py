@@ -91,7 +91,7 @@ fig = go.Figure(
         z=cm,
         x=classes,
         y=classes,
-        colorscale="Blues",
+        colorscale="Reds",
         text=cm,
         texttemplate="%{text}"
     )
