@@ -80,7 +80,8 @@ st.metric("Overall Accuracy", f"{accuracy:.4f}")
 st.dataframe(df_metrics)
 
 # =========================
-# CONFUSION MATRIX
+# =========================
+# CONFUSION MATRIX (RED)
 # =========================
 st.subheader("📌 Confusion Matrix")
 
@@ -91,7 +92,7 @@ fig = go.Figure(
         z=cm,
         x=classes,
         y=classes,
-        colorscale="Blues",
+        colorscale="Reds",   # 🔥 CHANGED HERE
         text=cm,
         texttemplate="%{text}"
     )
@@ -106,7 +107,7 @@ fig.update_layout(
 st.plotly_chart(fig, use_container_width=True)
 
 # =========================
-# Z-SCORE ANALYSIS
+# Z-SCORE ANALYSIS (RED LINE)
 # =========================
 st.subheader("📉 Z-Score Analysis")
 
@@ -123,6 +124,29 @@ df_z = pd.DataFrame({
     "Z-Score": z_scores
 })
 
+fig_z = px.line(
+    df_z,
+    x="Index",
+    y="Z-Score",
+    title="Prediction Error Z-Score",
+    color_discrete_sequence=["red"]  # 🔥 CHANGED HERE
+)
+
+st.plotly_chart(fig_z, use_container_width=True)
+
+# =========================
+# METRICS TABLE (OPTIONAL RED STYLE)
+# =========================
+fig_metrics = px.bar(
+    df_metrics,
+    x="Class",
+    y=["Precision", "Recall", "F1-Score"],
+    barmode="group",
+    title="Class-wise Metrics",
+    color_discrete_sequence=["red", "darkred", "firebrick"]
+)
+
+st.plotly_chart(fig_metrics, use_container_width=True)
 fig_z = px.line(df_z, x="Index", y="Z-Score", title="Prediction Error Z-Score")
 
 st.plotly_chart(fig_z, use_container_width=True)
