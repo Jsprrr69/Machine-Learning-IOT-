@@ -80,8 +80,7 @@ st.metric("Overall Accuracy", f"{accuracy:.4f}")
 st.dataframe(df_metrics)
 
 # =========================
-# =========================
-# CONFUSION MATRIX (RED)
+# CONFUSION MATRIX
 # =========================
 st.subheader("📌 Confusion Matrix")
 
@@ -147,6 +146,3 @@ fig_metrics = px.bar(
 )
 
 st.plotly_chart(fig_metrics, use_container_width=True)
-fig_z = px.line(df_z, x="Index", y="Z-Score", title="Prediction Error Z-Score")
-
-st.plotly_chart(fig_z, use_container_width=True)
