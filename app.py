@@ -166,3 +166,50 @@ fig_metrics = px.bar(
 )
 
 st.plotly_chart(fig_metrics, use_container_width=True)
+
+# =========================
+# F1 SCORE BAR GRAPH
+# =========================
+st.subheader("📊 F1-Score (Per Class)")
+
+df_f1 = pd.DataFrame({
+    "Class": classes,
+    "F1-Score": f1
+})
+
+fig_f1 = px.bar(
+    df_f1,
+    x="Class",
+    y="F1-Score",
+    text_auto=".3f",
+    title="F1-Score per Class",
+    color_discrete_sequence=["darkred"]
+)
+
+st.plotly_chart(fig_f1, use_container_width=True)
+
+# =========================
+# SENSOR CORRELATION MATRIX
+# =========================
+st.subheader("🔥 Sensor Correlation Matrix")
+
+sensor_features = ['temperature', 'air_quality', 'carbon_monoxide', 'smoke']
+
+corr = dataset[sensor_features].corr()
+
+fig_corr = go.Figure(
+    data=go.Heatmap(
+        z=corr.values,
+        x=sensor_features,
+        y=sensor_features,
+        colorscale="Reds",
+        zmin=-1,
+        zmax=1,
+        text=np.round(corr.values, 2),
+        texttemplate="%{text}"
+    )
+)
+
+fig_corr.update_layout(title="Sensor Correlation Matrix")
+
+st.plotly_chart(fig_corr, use_container_width=True)
