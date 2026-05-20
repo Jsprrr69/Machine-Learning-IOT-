@@ -2,13 +2,13 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import joblib
+import os
 
 import plotly.express as px
 import plotly.graph_objects as go
 
 from sklearn.metrics import (
     confusion_matrix,
-    classification_report,
     precision_recall_fscore_support,
     accuracy_score
 )
@@ -21,27 +21,45 @@ from scipy.stats import zscore
 model = joblib.load("fire_detection_model.pkl")
 
 # =========================
-# LOAD DATASET
+# TITLE
 # =========================
 st.title("🔥 SeekLiyab Fire Detection Model Dashboard")
 
-try:
-    dataset = pd.read_csv("fire_dataset.csv")
+# =========================
+# DATASET HANDLING (FIXED)
+# =========================
+DATA_PATH = "fire_dataset.csv"
 
-    X = dataset[['temperature', 'air_quality',
-                 'carbon_monoxide', 'smoke']]
-    y = dataset['label']
+dataset = None
 
-    y_pred = model.predict(X)
+if os.path.exists(DATA_PATH):
+    dataset = pd.read_csv(DATA_PATH)
+    st.success("Dataset loaded successfully!")
+else:
+    st.warning("fire_dataset.csv not found. Please upload your dataset.")
 
-except Exception as e:
-    st.error("Dataset not found or invalid format.")
+    uploaded_file = st.file_uploader("Upload fire_dataset.csv", type=["csv"])
+
+    if uploaded_file is not None:
+        dataset = pd.read_csv(uploaded_file)
+        st.success("Dataset uploaded successfully!")
+
+# STOP if no dataset
+if dataset is None:
     st.stop()
 
 # =========================
-# BASIC METRICS
+# FEATURES / LABEL
 # =========================
-st.header("📊 Overall Performance")
+X = dataset[['temperature', 'air_quality', 'carbon_monoxide', 'smoke']]
+y = dataset['label']
+
+y_pred = model.predict(X)
+
+# =========================
+# METRICS
+# =========================
+st.header("📊 Model Performance")
 
 accuracy = accuracy_score(y, y_pred)
 
@@ -49,17 +67,16 @@ precision, recall, f1, _ = precision_recall_fscore_support(
     y, y_pred, average=None, labels=np.unique(y)
 )
 
-class_names = np.unique(y)
+classes = np.unique(y)
 
 df_metrics = pd.DataFrame({
-    "Class": class_names,
+    "Class": classes,
     "Precision": precision,
     "Recall": recall,
     "F1-Score": f1
 })
 
 st.metric("Overall Accuracy", f"{accuracy:.4f}")
-
 st.dataframe(df_metrics)
 
 # =========================
@@ -67,72 +84,45 @@ st.dataframe(df_metrics)
 # =========================
 st.subheader("📌 Confusion Matrix")
 
-cm = confusion_matrix(y, y_pred, labels=class_names)
+cm = confusion_matrix(y, y_pred, labels=classes)
 
-cm_percent = cm / cm.sum(axis=1, keepdims=True)
-
-fig_cm = go.Figure(
+fig = go.Figure(
     data=go.Heatmap(
         z=cm,
-        x=class_names,
-        y=class_names,
+        x=classes,
+        y=classes,
         colorscale="Blues",
-        text=[
-            [
-                f"{cm[i][j]} ({cm_percent[i][j]*100:.1f}%)"
-                for j in range(len(class_names))
-            ]
-            for i in range(len(class_names))
-        ],
+        text=cm,
         texttemplate="%{text}"
     )
 )
 
-fig_cm.update_layout(
+fig.update_layout(
     title="Confusion Matrix",
     xaxis_title="Predicted",
     yaxis_title="Actual"
 )
 
-st.plotly_chart(fig_cm, use_container_width=True)
+st.plotly_chart(fig, use_container_width=True)
 
 # =========================
-# CLASS-WISE GRAPHS
+# Z-SCORE ANALYSIS
 # =========================
-st.subheader("📊 Class-wise Performance")
+st.subheader("📉 Z-Score Analysis")
 
-fig_p = px.bar(df_metrics, x="Class", y="Precision", title="Precision by Class", text_auto=True)
-fig_r = px.bar(df_metrics, x="Class", y="Recall", title="Recall by Class", text_auto=True)
-fig_f = px.bar(df_metrics, x="Class", y="F1-Score", title="F1-Score by Class", text_auto=True)
+label_map = {label: i for i, label in enumerate(classes)}
 
-st.plotly_chart(fig_p, use_container_width=True)
-st.plotly_chart(fig_r, use_container_width=True)
-st.plotly_chart(fig_f, use_container_width=True)
-
-# =========================
-# Z-SCORE ANALYSIS (MODEL BEHAVIOR)
-# =========================
-st.subheader("📉 Z-Score Analysis (Prediction Distribution)")
-
-# Encode predictions into numeric values
-label_map = {label: idx for idx, label in enumerate(class_names)}
 y_encoded = np.array([label_map[i] for i in y])
 y_pred_encoded = np.array([label_map[i] for i in y_pred])
 
 errors = y_pred_encoded - y_encoded
-
 z_scores = zscore(errors)
 
 df_z = pd.DataFrame({
-    "Sample": np.arange(len(z_scores)),
+    "Index": np.arange(len(z_scores)),
     "Z-Score": z_scores
 })
 
-fig_z = px.line(df_z, x="Sample", y="Z-Score",
-                title="Prediction Error Z-Score Distribution")
+fig_z = px.line(df_z, x="Index", y="Z-Score", title="Prediction Error Z-Score")
 
 st.plotly_chart(fig_z, use_container_width=True)
-
-st.write("### Interpretation")
-st.write("- Values near 0 → normal predictions")
-st.write("- High positive/negative spikes → misclassified samples")
