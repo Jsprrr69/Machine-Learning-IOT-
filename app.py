@@ -23,7 +23,7 @@ model = joblib.load("fire_detection_model.pkl")
 # =========================
 # TITLE
 # =========================
-st.title("🔥 SeekLiyab Fire Detection Model Dashboard")
+st.title("🔥 IOT BASED FIRE DETECTION AND CLASSIFICATION")
 
 # =========================
 # DATASET HANDLING
