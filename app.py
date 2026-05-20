@@ -1,25 +1,30 @@
 import streamlit as st
 import pandas as pd
 import joblib
-import matplotlib.pyplot as plt
+import numpy as np
+import plotly.express as px
+import plotly.graph_objects as go
+
 from sklearn.metrics import (
     accuracy_score,
     confusion_matrix,
+    classification_report,
+    precision_recall_fscore_support,
     precision_score,
     recall_score,
     f1_score
 )
-from scipy.stats import zscore, mode
-import numpy as np
 
-# ==============================
+from scipy.stats import zscore, mode
+
+# ==========================================
 # LOAD MODEL
-# ==============================
+# ==========================================
 model = joblib.load("fire_detection_model.pkl")
 
-# ==============================
+# ==========================================
 # LOAD DATASET
-# ==============================
+# ==========================================
 try:
     dataset = pd.read_csv("fire_dataset.csv")
 
@@ -35,16 +40,16 @@ try:
 except:
     dataset = None
 
-# ==============================
+# ==========================================
 # TITLE
-# ==============================
+# ==========================================
 st.title("🔥 SeekLiyab Fire Detection System")
 
 st.write("Enter sensor readings below.")
 
-# ==============================
-# INPUTS
-# ==============================
+# ==========================================
+# USER INPUTS
+# ==========================================
 temperature = st.number_input(
     "Temperature",
     format="%.2f"
@@ -74,9 +79,9 @@ carbon_monoxide = int(
     )
 )
 
-# ==============================
+# ==========================================
 # PREDICT BUTTON
-# ==============================
+# ==========================================
 if st.button("Predict"):
 
     input_data = pd.DataFrame([{
@@ -88,9 +93,9 @@ if st.button("Predict"):
 
     prediction = model.predict(input_data)[0]
 
-    # ==============================
-    # RESULT
-    # ==============================
+    # ==========================================
+    # DISPLAY RESULT
+    # ==========================================
     st.subheader("Prediction Result")
 
     if prediction == "Fire":
@@ -102,9 +107,9 @@ if st.button("Predict"):
     else:
         st.success("✅ NON-FIRE")
 
-    # ==============================
-    # SENSOR BAR GRAPH
-    # ==============================
+    # ==========================================
+    # SENSOR GRAPH
+    # ==========================================
     st.subheader("📊 Sensor Readings")
 
     sensors = [
@@ -114,81 +119,81 @@ if st.button("Predict"):
         "Smoke"
     ]
 
-    readings = [
+    values = [
         temperature,
         air_quality,
         carbon_monoxide,
         smoke
     ]
 
-    fig1, ax1 = plt.subplots()
+    sensor_df = pd.DataFrame({
+        "Sensor": sensors,
+        "Value": values
+    })
 
-    ax1.bar(sensors, readings)
+    fig_sensor = px.bar(
+        sensor_df,
+        x="Sensor",
+        y="Value",
+        title="Sensor Readings"
+    )
 
-    ax1.set_ylabel("Values")
-    ax1.set_title("Sensor Values")
+    st.plotly_chart(fig_sensor, use_container_width=True)
 
-    st.pyplot(fig1)
+    # ==========================================
+    # Z-SCORE GRAPH
+    # ==========================================
+    st.subheader("📈 Z-Score Analysis")
 
-    # ==============================
-    # Z-SCORE BAR GRAPH
-    # ==============================
-    st.subheader("📈 Z-Score Graph")
+    z_scores = zscore(values)
 
-    z_scores = zscore(readings)
+    z_df = pd.DataFrame({
+        "Sensor": sensors,
+        "Z-Score": z_scores
+    })
 
-    fig2, ax2 = plt.subplots()
+    fig_z = px.bar(
+        z_df,
+        x="Sensor",
+        y="Z-Score",
+        title="Z-Score per Sensor"
+    )
 
-    ax2.bar(sensors, z_scores)
+    st.plotly_chart(fig_z, use_container_width=True)
 
-    ax2.set_ylabel("Z-Score")
-    ax2.set_title("Z-Score Analysis")
-
-    st.pyplot(fig2)
-
-    # ==============================
-    # MEAN MEDIAN MODE BAR GRAPH
-    # ==============================
+    # ==========================================
+    # MEAN MEDIAN MODE GRAPH
+    # ==========================================
     st.subheader("📉 Statistical Analysis")
 
-    mean_value = np.mean(readings)
-    median_value = np.median(readings)
-    mode_value = mode(
-        readings,
-        keepdims=True
-    ).mode[0]
+    mean_value = np.mean(values)
+    median_value = np.median(values)
+    mode_value = mode(values, keepdims=True).mode[0]
 
-    stats_names = [
-        "Mean",
-        "Median",
-        "Mode"
-    ]
+    stats_df = pd.DataFrame({
+        "Statistic": ["Mean", "Median", "Mode"],
+        "Value": [mean_value, median_value, mode_value]
+    })
 
-    stats_values = [
-        mean_value,
-        median_value,
-        mode_value
-    ]
+    fig_stats = px.bar(
+        stats_df,
+        x="Statistic",
+        y="Value",
+        title="Mean / Median / Mode"
+    )
 
-    fig3, ax3 = plt.subplots()
+    st.plotly_chart(fig_stats, use_container_width=True)
 
-    ax3.bar(stats_names, stats_values)
-
-    ax3.set_ylabel("Value")
-    ax3.set_title("Mean / Median / Mode")
-
-    st.pyplot(fig3)
-
-# ==============================
+# ==========================================
 # MODEL ANALYTICS
-# ==============================
+# ==========================================
 if dataset is not None:
 
     st.header("🧠 Model Analytics")
 
-    # ==============================
-    # METRICS
-    # ==============================
+    # ==========================================
+    # OVERALL METRICS
+    # ==========================================
     accuracy = accuracy_score(y, y_pred)
     precision = precision_score(
         y,
@@ -208,67 +213,107 @@ if dataset is not None:
         average='weighted'
     )
 
-    # ==============================
-    # ACCURACY BAR GRAPH
-    # ==============================
-    st.subheader("📊 Accuracy Metrics")
+    overall_df = pd.DataFrame({
+        "Metric": [
+            "Accuracy",
+            "Precision",
+            "Recall",
+            "F1 Score"
+        ],
+        "Value": [
+            accuracy,
+            precision,
+            recall,
+            f1
+        ]
+    })
 
-    metric_names = [
-        "Accuracy",
-        "Precision",
-        "Recall",
-        "F1 Score"
-    ]
+    st.subheader("📊 Overall Performance Metrics")
 
-    metric_values = [
-        accuracy,
-        precision,
-        recall,
-        f1
-    ]
+    fig_metrics = px.bar(
+        overall_df,
+        x="Metric",
+        y="Value",
+        title="Overall Model Performance"
+    )
 
-    fig4, ax4 = plt.subplots()
+    st.plotly_chart(fig_metrics, use_container_width=True)
 
-    ax4.bar(metric_names, metric_values)
+    # ==========================================
+    # CLASS-WISE PERFORMANCE METRICS
+    # ==========================================
+    st.subheader(
+        "📋 Class-Wise Precision, Recall, and F1-Score"
+    )
 
-    ax4.set_ylabel("Score")
-    ax4.set_title("Model Performance")
+    precision_cls, recall_cls, f1_cls, support = \
+        precision_recall_fscore_support(
+            y,
+            y_pred
+        )
 
-    st.pyplot(fig4)
+    class_labels = np.unique(y)
 
-    # ==============================
-    # CONFUSION MATRIX VALUES
-    # ==============================
+    class_metrics_df = pd.DataFrame({
+        "Class": class_labels,
+        "Precision": precision_cls,
+        "Recall": recall_cls,
+        "F1-Score": f1_cls,
+        "Support": support
+    })
+
+    st.dataframe(class_metrics_df)
+
+    # ==========================================
+    # CLASS-WISE GRAPH
+    # ==========================================
+    melted_df = class_metrics_df.melt(
+        id_vars="Class",
+        value_vars=[
+            "Precision",
+            "Recall",
+            "F1-Score"
+        ],
+        var_name="Metric",
+        value_name="Score"
+    )
+
+    fig_class = px.bar(
+        melted_df,
+        x="Class",
+        y="Score",
+        color="Metric",
+        barmode="group",
+        title="Class-Wise Performance Metrics"
+    )
+
+    st.plotly_chart(fig_class, use_container_width=True)
+
+    # ==========================================
+    # CONFUSION MATRIX
+    # ==========================================
+    st.subheader("📌 Confusion Matrix")
+
     cm = confusion_matrix(y, y_pred)
 
-    if cm.shape == (2, 2):
+    fig_cm = go.Figure(
+        data=go.Heatmap(
+            z=cm,
+            x=class_labels,
+            y=class_labels,
+            text=cm,
+            texttemplate="%{text}",
+            colorscale="Blues"
+        )
+    )
 
-        tn, fp, fn, tp = cm.ravel()
+    fig_cm.update_layout(
+        title="Confusion Matrix",
+        xaxis_title="Predicted Label",
+        yaxis_title="True Label"
+    )
 
-        st.subheader("⚠️ Error Analysis")
-
-        error_names = [
-            "True Positive",
-            "True Negative",
-            "False Positive",
-            "False Negative"
-        ]
-
-        error_values = [
-            tp,
-            tn,
-            fp,
-            fn
-        ]
-
-        fig5, ax5 = plt.subplots()
-
-        ax5.bar(error_names, error_values)
-
-        ax5.set_ylabel("Count")
-        ax5.set_title("Confusion Matrix Analysis")
-
-        st.pyplot(fig5)
+    st.plotly_chart(fig_cm, use_container_width=True)
 
 else:
     st.warning(
