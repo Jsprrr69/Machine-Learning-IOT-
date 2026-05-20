@@ -38,7 +38,7 @@ except:
 # ==============================
 # TITLE
 # ==============================
-st.title("🔥 SeekLiyab Fire Detection System")
+st.title("🔥 IOT BASED FIRE DETECTION AND CLASSIFICATION")
 
 st.write("Enter sensor readings below.")
 
