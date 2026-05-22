@@ -31,16 +31,36 @@ APP BACKGROUND
     #000000 100%);
 
     overflow-x: hidden;
+
+    position: relative;
 }
 
 /* =====================================================
-ANIMATED FIRE WAVES
+FIRE GLOW LAYER
 ===================================================== */
-.stApp::before {
-
-    content: "";
+.fire-bg {
 
     position: fixed;
+
+    bottom: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100%;
+
+    pointer-events: none;
+
+    z-index: 1;
+
+    overflow: hidden;
+}
+
+/* =====================================================
+FIRST FIRE WAVE
+===================================================== */
+.fire-wave1 {
+
+    position: absolute;
 
     bottom: -120px;
     left: -10%;
@@ -54,7 +74,7 @@ ANIMATED FIRE WAVES
         rgba(255,220,120,0.95) 0%,
         rgba(255,140,0,0.85) 20%,
         rgba(255,60,0,0.55) 45%,
-        rgba(255,0,0,0.15) 70%,
+        rgba(255,0,0,0.12) 70%,
         transparent 85%
     );
 
@@ -62,17 +82,14 @@ ANIMATED FIRE WAVES
 
     animation:
         fireWave1 7s ease-in-out infinite;
-
-    z-index: -2;
-
-    pointer-events: none;
 }
 
-.stApp::after {
+/* =====================================================
+SECOND FIRE WAVE
+===================================================== */
+.fire-wave2 {
 
-    content: "";
-
-    position: fixed;
+    position: absolute;
 
     bottom: -160px;
     left: -15%;
@@ -92,14 +109,10 @@ ANIMATED FIRE WAVES
 
     animation:
         fireWave2 10s ease-in-out infinite;
-
-    z-index: -3;
-
-    pointer-events: none;
 }
 
 /* =====================================================
-FIRE ANIMATION
+ANIMATION
 ===================================================== */
 @keyframes fireWave1 {
 
@@ -161,7 +174,7 @@ FIRE ANIMATION
 }
 
 /* =====================================================
-MAIN CONTENT LAYER
+CONTENT ABOVE FIRE
 ===================================================== */
 .main .block-container {
 
@@ -189,10 +202,6 @@ TITLE
         0 0 40px orange;
 
     margin-bottom: 10px;
-
-    position: relative;
-
-    z-index: 20;
 }
 
 .subtitle {
@@ -204,10 +213,6 @@ TITLE
     font-size: 20px;
 
     margin-bottom: 30px;
-
-    position: relative;
-
-    z-index: 20;
 }
 
 /* =====================================================
@@ -232,7 +237,7 @@ METRIC BOXES
 
     position: relative;
 
-    z-index: 20;
+    z-index: 15;
 }
 
 .metric-title {
@@ -278,7 +283,7 @@ STATUS BOX
 
     position: relative;
 
-    z-index: 20;
+    z-index: 15;
 }
 
 .status-text {
@@ -293,7 +298,7 @@ TABLE FIX
 ===================================================== */
 [data-testid="stDataFrame"] {
 
-    background-color: rgba(0,0,0,0.85);
+    background-color: rgba(0,0,0,0.88);
 
     border-radius: 15px;
 
@@ -301,35 +306,35 @@ TABLE FIX
 
     padding: 10px;
 
-    backdrop-filter: blur(6px);
+    backdrop-filter: blur(10px);
 
     position: relative;
 
-    z-index: 50 !important;
+    z-index: 999 !important;
 }
 
 /* TABLE INNER ELEMENTS */
-[data-testid="stDataFrame"] div {
+[data-testid="stDataFrame"] * {
 
     position: relative;
 
-    z-index: 50 !important;
+    z-index: 999 !important;
 }
 
 /* =====================================================
-PLOTLY CHART FIX
+CHART FIX
 ===================================================== */
 .js-plotly-plot {
 
     position: relative;
 
-    z-index: 30;
+    z-index: 20;
 }
 
 /* =====================================================
 HEADERS
 ===================================================== */
-h1, h2, h3, h4 {
+h1, h2, h3 {
 
     color: white !important;
 
@@ -339,6 +344,15 @@ h1, h2, h3, h4 {
 }
 
 </style>
+
+<!-- FIRE BACKGROUND -->
+<div class="fire-bg">
+
+    <div class="fire-wave1"></div>
+
+    <div class="fire-wave2"></div>
+
+</div>
 
 <div class="main-title">
 🔥 LIVE SENSOR READINGS
