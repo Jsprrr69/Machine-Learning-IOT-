@@ -281,72 +281,83 @@ STATUS BOX
 }
 
 /* =====================================================
-RED TABLE DESIGN
+RED TABLE DESIGN FIX
 ===================================================== */
+
+/* OUTER TABLE CONTAINER */
 [data-testid="stDataFrame"] {
 
     background:
     linear-gradient(
         180deg,
-        rgba(40,0,0,0.95) 0%,
-        rgba(20,0,0,0.95) 100%
-    );
+        rgba(45,0,0,0.96) 0%,
+        rgba(15,0,0,0.96) 100%
+    ) !important;
+
+    border: 2px solid rgba(255,80,0,0.8);
 
     border-radius: 15px;
 
-    border: 2px solid rgba(255,70,0,0.75);
-
     box-shadow:
-        0 0 20px rgba(255,50,0,0.25);
+        0 0 25px rgba(255,60,0,0.25);
 
-    padding: 10px;
-
-    backdrop-filter: blur(12px);
+    overflow: hidden;
 
     position: relative;
 
     z-index: 999 !important;
 }
 
-/* TABLE CELLS */
-[data-testid="stDataFrame"] td {
+/* MAIN GRID AREA */
+[data-testid="stDataFrame"] [role="grid"] {
 
-    background-color: rgba(25,0,0,0.92) !important;
+    background-color:
+    rgba(25,0,0,0.95) !important;
 
-    color: #ffffff !important;
-
-    border-color: rgba(255,80,0,0.15) !important;
+    color: white !important;
 }
 
-/* HEADER */
-[data-testid="stDataFrame"] th {
+/* COLUMN HEADERS */
+[data-testid="stDataFrame"] [role="columnheader"] {
 
     background:
     linear-gradient(
         180deg,
-        rgba(120,0,0,0.95) 0%,
-        rgba(70,0,0,0.95) 100%
+        rgba(120,0,0,1) 0%,
+        rgba(70,0,0,1) 100%
     ) !important;
 
-    color: #ffffff !important;
+    color: white !important;
 
     font-weight: bold !important;
 
-    border-bottom:
-    2px solid rgba(255,120,0,0.7) !important;
+    border-color:
+    rgba(255,120,0,0.35) !important;
 }
 
-/* ROW HOVER */
-[data-testid="stDataFrame"] tr:hover td {
+/* TABLE CELLS */
+[data-testid="stDataFrame"] [role="gridcell"] {
 
     background-color:
-    rgba(255,60,0,0.18) !important;
+    rgba(30,0,0,0.92) !important;
+
+    color: white !important;
+
+    border-color:
+    rgba(255,80,0,0.15) !important;
 }
 
-/* TABLE CONTENT */
-[data-testid="stDataFrame"] * {
+/* ROW HOVER EFFECT */
+[data-testid="stDataFrame"] [role="row"]:hover [role="gridcell"] {
 
-    z-index: 999 !important;
+    background-color:
+    rgba(255,60,0,0.20) !important;
+}
+
+/* SCROLL AREA */
+[data-testid="stDataFrame"] div {
+
+    color: white !important;
 }
 
 /* =====================================================
