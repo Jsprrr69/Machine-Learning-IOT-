@@ -9,12 +9,12 @@ import plotly.graph_objects as go
 # PAGE CONFIG
 # =====================================================
 st.set_page_config(
-    page_title="Fire Detection Dashboard",
+    page_title="🔥 Fire Detection Dashboard",
     layout="wide"
 )
 
 # =====================================================
-# CUSTOM CSS
+# CUSTOM UI DESIGN
 # =====================================================
 st.markdown("""
 <style>
@@ -27,64 +27,168 @@ BACKGROUND
     linear-gradient(
         180deg,
         #000000 0%,
-        #1a0000 30%,
-        #3b0000 60%,
+        #120000 30%,
+        #220000 65%,
         #000000 100%
     );
     overflow: hidden;
 }
 
 /* =====================================================
-ANIMATED FIRE BACKGROUND
+MINIMALIST WAVY FIRE BACKGROUND
 ===================================================== */
-.fire-container {
+.fire-wrapper {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 300px;
+    height: 260px;
     z-index: -1;
     opacity: 0.35;
     overflow: hidden;
 }
 
-.fire {
+/* FIRE LAYERS */
+.fire-wave {
     position: absolute;
-    bottom: -20px;
+    bottom: -40px;
     width: 200%;
-    height: 300px;
+    height: 240px;
+
     background:
         radial-gradient(circle at 50% 100%,
-        rgba(255,140,0,0.9) 0%,
-        rgba(255,69,0,0.8) 20%,
-        rgba(255,0,0,0.5) 40%,
+        rgba(255,140,0,0.95) 0%,
+        rgba(255,69,0,0.75) 25%,
+        rgba(255,0,0,0.45) 45%,
         transparent 70%);
 
-    animation: firemove 4s infinite alternate ease-in-out;
-    filter: blur(20px);
+    border-radius: 45%;
+
+    filter: blur(35px);
+
+    animation: waveFire 6s ease-in-out infinite;
 }
 
-.fire2 {
-    animation-delay: 1s;
-    opacity: 0.6;
-}
-
-.fire3 {
+/* SECOND FIRE */
+.fire-wave2 {
     animation-delay: 2s;
-    opacity: 0.4;
+    opacity: 0.5;
+    height: 280px;
 }
 
-@keyframes firemove {
+/* THIRD FIRE */
+.fire-wave3 {
+    animation-delay: 4s;
+    opacity: 0.3;
+    height: 220px;
+}
+
+/* WAVE ANIMATION */
+@keyframes waveFire {
+
     0% {
-        transform: translateX(-5%) scaleY(1);
+        transform:
+            translateX(-10%)
+            translateY(0px)
+            scaleY(1);
+    }
+
+    25% {
+        transform:
+            translateX(-5%)
+            translateY(-15px)
+            scaleY(1.08);
     }
 
     50% {
-        transform: translateX(0%) scaleY(1.2);
+        transform:
+            translateX(0%)
+            translateY(-25px)
+            scaleY(1.15);
+    }
+
+    75% {
+        transform:
+            translateX(5%)
+            translateY(-10px)
+            scaleY(1.05);
     }
 
     100% {
-        transform: translateX(5%) scaleY(1);
+        transform:
+            translateX(10%)
+            translateY(0px)
+            scaleY(1);
+    }
+}
+
+/* =====================================================
+GLOWING EMBERS
+===================================================== */
+.embers {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.embers span {
+    position: absolute;
+    bottom: -20px;
+    width: 4px;
+    height: 4px;
+    background: orange;
+    border-radius: 50%;
+    box-shadow: 0 0 10px orange;
+    animation: emberFloat linear infinite;
+}
+
+.embers span:nth-child(1) {
+    left: 10%;
+    animation-duration: 7s;
+}
+
+.embers span:nth-child(2) {
+    left: 25%;
+    animation-duration: 9s;
+}
+
+.embers span:nth-child(3) {
+    left: 40%;
+    animation-duration: 6s;
+}
+
+.embers span:nth-child(4) {
+    left: 55%;
+    animation-duration: 10s;
+}
+
+.embers span:nth-child(5) {
+    left: 70%;
+    animation-duration: 8s;
+}
+
+.embers span:nth-child(6) {
+    left: 85%;
+    animation-duration: 11s;
+}
+
+@keyframes emberFloat {
+
+    0% {
+        transform: translateY(0px) scale(1);
+        opacity: 0;
+    }
+
+    20% {
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(-100vh) scale(0);
+        opacity: 0;
     }
 }
 
@@ -93,14 +197,13 @@ TITLE
 ===================================================== */
 .main-title {
     text-align: center;
-    font-size: 60px;
+    font-size: 58px;
     font-weight: bold;
     color: white;
     text-shadow:
         0 0 10px red,
         0 0 20px red,
         0 0 40px orange;
-    margin-top: 10px;
 }
 
 .subtitle {
@@ -111,26 +214,26 @@ TITLE
 }
 
 /* =====================================================
-METRIC CARDS
+METRIC BOXES
 ===================================================== */
 .metric-box {
-    background: rgba(0,0,0,0.7);
-    border: 2px solid rgba(255,0,0,0.6);
-    border-radius: 20px;
+    background: rgba(0,0,0,0.65);
+    border: 1px solid rgba(255,0,0,0.6);
+    border-radius: 18px;
     padding: 20px;
     text-align: center;
-    box-shadow: 0px 0px 20px rgba(255,0,0,0.4);
+    box-shadow: 0px 0px 15px rgba(255,0,0,0.3);
 }
 
 .metric-title {
-    color: #ffffff;
-    font-size: 20px;
+    color: white;
+    font-size: 18px;
     font-weight: bold;
 }
 
 .metric-value {
     color: #ff4b4b;
-    font-size: 42px;
+    font-size: 38px;
     font-weight: bold;
 }
 
@@ -138,48 +241,23 @@ METRIC CARDS
 STATUS BOX
 ===================================================== */
 .status-box {
-    background: rgba(0,0,0,0.8);
+    background: rgba(0,0,0,0.75);
     border-radius: 20px;
-    padding: 25px;
+    padding: 20px;
     text-align: center;
     margin-top: 20px;
     margin-bottom: 20px;
     border: 2px solid red;
-    box-shadow: 0px 0px 30px red;
+    box-shadow: 0px 0px 20px red;
 }
 
 .status-text {
     font-size: 38px;
     font-weight: bold;
-    color: #ff4b4b;
 }
 
 /* =====================================================
 TABLE
-===================================================== */
-table {
-    color: white !important;
-}
-
-thead tr th {
-    background: linear-gradient(180deg,#ff1a1a,#990000) !important;
-    color: white !important;
-    font-size: 18px !important;
-    text-align: center !important;
-}
-
-tbody tr {
-    background-color: rgba(0,0,0,0.7) !important;
-}
-
-tbody td {
-    color: white !important;
-    text-align: center !important;
-    font-size: 16px !important;
-}
-
-/* =====================================================
-DATAFRAME
 ===================================================== */
 [data-testid="stDataFrame"] {
     background-color: rgba(0,0,0,0.65);
@@ -189,7 +267,7 @@ DATAFRAME
 }
 
 /* =====================================================
-PLOTLY CHARTS
+PLOTLY CHART
 ===================================================== */
 .js-plotly-plot {
     border-radius: 20px;
@@ -198,10 +276,23 @@ PLOTLY CHARTS
 
 </style>
 
-<div class="fire-container">
-    <div class="fire"></div>
-    <div class="fire fire2"></div>
-    <div class="fire fire3"></div>
+<!-- =====================================================
+MINIMALIST FIRE HTML
+===================================================== -->
+
+<div class="fire-wrapper">
+    <div class="fire-wave"></div>
+    <div class="fire-wave fire-wave2"></div>
+    <div class="fire-wave fire-wave3"></div>
+</div>
+
+<div class="embers">
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
+    <span></span>
 </div>
 
 <div class="main-title">
@@ -293,7 +384,7 @@ df = st.session_state.sensor_data
 latest = df.iloc[0]
 
 # =====================================================
-# METRIC CARDS
+# METRICS
 # =====================================================
 col1, col2, col3, col4 = st.columns(4)
 
