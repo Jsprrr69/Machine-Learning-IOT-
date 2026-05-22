@@ -14,13 +14,13 @@ st.set_page_config(
 )
 
 # =====================================================
-# FIRE BACKGROUND CSS
+# CUSTOM CSS
 # =====================================================
 st.markdown("""
 <style>
 
 /* =====================================================
-APP BACKGROUND
+BACKGROUND
 ===================================================== */
 .stApp {
 
@@ -34,7 +34,7 @@ APP BACKGROUND
 }
 
 /* =====================================================
-FIRE LAYER
+FIRE ANIMATION
 ===================================================== */
 .stApp::before {
 
@@ -99,7 +99,7 @@ FIRE LAYER
 }
 
 /* =====================================================
-ANIMATION
+FIRE KEYFRAMES
 ===================================================== */
 @keyframes fireWave1 {
 
@@ -207,7 +207,7 @@ METRIC BOXES
 ===================================================== */
 .metric-box {
 
-    background: rgba(0,0,0,0.72);
+    background: rgba(0,0,0,0.75);
 
     border: 1px solid rgba(255,80,0,0.5);
 
@@ -250,7 +250,7 @@ STATUS BOX
 ===================================================== */
 .status-box {
 
-    background: rgba(0,0,0,0.75);
+    background: rgba(0,0,0,0.78);
 
     border-radius: 20px;
 
@@ -281,29 +281,66 @@ STATUS BOX
 }
 
 /* =====================================================
-TABLE FIX
+CUSTOM STREAMLIT TABLE
 ===================================================== */
+
+/* MAIN TABLE */
 [data-testid="stDataFrame"] {
 
-    background-color: rgba(0,0,0,0.88);
+    background-color: rgba(15,15,15,0.96);
+
+    border: 2px solid #ff4500;
 
     border-radius: 15px;
 
-    border: 2px solid rgba(255,80,0,0.7);
+    padding: 8px;
 
-    padding: 10px;
-
-    backdrop-filter: blur(12px);
+    box-shadow:
+        0px 0px 20px rgba(255,80,0,0.35);
 
     position: relative;
 
     z-index: 999 !important;
 }
 
-/* TABLE CONTENT */
-[data-testid="stDataFrame"] * {
+/* TABLE CELLS */
+[data-testid="stDataFrame"] div {
 
-    z-index: 999 !important;
+    color: white !important;
+}
+
+/* HEADER */
+[data-testid="stDataFrame"] thead tr th {
+
+    background-color: #8b0000 !important;
+
+    color: white !important;
+
+    font-size: 15px !important;
+
+    font-weight: bold !important;
+
+    border-bottom: 2px solid orange !important;
+}
+
+/* ROWS */
+[data-testid="stDataFrame"] tbody tr {
+
+    background-color: rgba(20,20,20,0.95) !important;
+}
+
+/* HOVER EFFECT */
+[data-testid="stDataFrame"] tbody tr:hover {
+
+    background-color: rgba(255,80,0,0.25) !important;
+}
+
+/* TABLE TEXT */
+[data-testid="stDataFrame"] td {
+
+    color: #ffffff !important;
+
+    font-size: 14px !important;
 }
 
 /* =====================================================
@@ -337,7 +374,7 @@ Fire Detection and Monitoring System
 """, unsafe_allow_html=True)
 
 # =====================================================
-# MOCK DATA
+# MOCK SENSOR DATA
 # =====================================================
 if "sensor_data" not in st.session_state:
 
@@ -374,7 +411,7 @@ if "sensor_data" not in st.session_state:
     st.session_state.sensor_data = pd.DataFrame(rows)
 
 # =====================================================
-# NEW DATA
+# NEW RANDOM DATA
 # =====================================================
 new_temp = random.randint(30, 70)
 new_air = random.randint(500, 2600)
