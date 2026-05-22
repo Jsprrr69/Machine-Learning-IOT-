@@ -14,40 +14,47 @@ st.set_page_config(
 )
 
 # =====================================================
-# FIRE UI DESIGN
+# UI DESIGN
 # =====================================================
 st.markdown("""
 <style>
 
 /* =====================================================
-BACKGROUND
+MAIN APP BACKGROUND
 ===================================================== */
 .stApp {
 
     background:
-    linear-gradient(
-        180deg,
-        #000000 0%,
-        #120000 30%,
-        #220000 60%,
-        #000000 100%
-    );
+    radial-gradient(circle at top,
+    #2b0000 0%,
+    #120000 35%,
+    #050505 75%,
+    #000000 100%);
 
     overflow-x: hidden;
 }
 
 /* =====================================================
-LIVE FIRE ANIMATION
+KEEP CONTENT ABOVE ANIMATION
 ===================================================== */
-.fire-container {
+.main .block-container {
+
+    position: relative;
+    z-index: 10;
+}
+
+/* =====================================================
+FIRE BACKGROUND LAYER
+===================================================== */
+.fire-bg {
 
     position: fixed;
 
-    bottom: 0;
+    top: 0;
     left: 0;
 
     width: 100%;
-    height: 55vh;
+    height: 100%;
 
     overflow: hidden;
 
@@ -57,190 +64,248 @@ LIVE FIRE ANIMATION
 }
 
 /* =====================================================
-FIRE LAYER 1
+MAIN FIRE WAVES
 ===================================================== */
-.fire {
+.fire-wave1,
+.fire-wave2,
+.fire-wave3 {
 
     position: absolute;
 
-    bottom: -120px;
-    left: -10%;
+    bottom: -250px;
 
-    width: 120%;
-    height: 450px;
-
-    border-radius: 45%;
-
-    background:
-    radial-gradient(
-        ellipse at center,
-        rgba(255,240,180,0.95) 0%,
-        rgba(255,180,0,0.90) 15%,
-        rgba(255,100,0,0.75) 35%,
-        rgba(255,40,0,0.45) 55%,
-        rgba(255,0,0,0.15) 70%,
-        transparent 85%
-    );
-
-    filter: blur(60px);
-
-    mix-blend-mode: screen;
-
-    animation:
-        fireMove1 7s ease-in-out infinite;
-}
-
-/* =====================================================
-FIRE LAYER 2
-===================================================== */
-.fire2 {
-
-    position: absolute;
-
-    bottom: -150px;
-    left: -15%;
-
-    width: 130%;
-    height: 520px;
+    width: 140%;
+    height: 700px;
 
     border-radius: 40%;
 
-    background:
-    radial-gradient(
-        ellipse at center,
-        rgba(255,180,0,0.75) 0%,
-        rgba(255,80,0,0.45) 40%,
-        rgba(255,0,0,0.12) 65%,
-        transparent 85%
-    );
+    filter: blur(70px);
 
-    filter: blur(90px);
-
-    animation:
-        fireMove2 10s ease-in-out infinite;
+    opacity: 0.55;
 }
 
 /* =====================================================
-FIRE LAYER 3
+WAVE 1
 ===================================================== */
-.fire3 {
+.fire-wave1 {
+
+    left: -20%;
+
+    background:
+    radial-gradient(circle,
+    rgba(255,220,120,0.95) 0%,
+    rgba(255,140,0,0.😎 20%,
+    rgba(255,70,0,0.55) 45%,
+    rgba(255,0,0,0.12) 75%,
+    transparent 90%);
+
+    animation:
+    waveMove1 8s ease-in-out infinite;
+}
+
+/* =====================================================
+WAVE 2
+===================================================== */
+.fire-wave2 {
+
+    left: -10%;
+
+    background:
+    radial-gradient(circle,
+    rgba(255,180,0,0.😎 0%,
+    rgba(255,80,0,0.5) 40%,
+    rgba(255,0,0,0.15) 70%,
+    transparent 85%);
+
+    animation:
+    waveMove2 11s ease-in-out infinite;
+}
+
+/* =====================================================
+WAVE 3
+===================================================== */
+.fire-wave3 {
+
+    left: -15%;
+
+    background:
+    radial-gradient(circle,
+    rgba(255,255,255,0.2) 0%,
+    rgba(255,160,0,0.3) 20%,
+    rgba(255,60,0,0.2) 50%,
+    transparent 80%);
+
+    animation:
+    waveMove3 14s ease-in-out infinite;
+}
+
+/* =====================================================
+FIRE PARTICLES / EMBERS
+===================================================== */
+.fire-particle {
 
     position: absolute;
 
-    bottom: -80px;
-    left: -5%;
+    bottom: -20px;
 
-    width: 110%;
-    height: 350px;
+    width: 8px;
+    height: 8px;
+
+    background: orange;
 
     border-radius: 50%;
 
-    background:
-    radial-gradient(
-        ellipse at center,
-        rgba(255,255,255,0.35) 0%,
-        rgba(255,220,120,0.45) 15%,
-        rgba(255,140,0,0.25) 35%,
-        transparent 70%
-    );
+    box-shadow:
+    0 0 10px orange,
+    0 0 20px red;
 
-    filter: blur(45px);
+    opacity: 0.7;
 
     animation:
-        fireMove3 5s ease-in-out infinite;
+    emberFloat linear infinite;
 }
 
 /* =====================================================
-FIRE ANIMATION
+EMBER POSITIONS
 ===================================================== */
-@keyframes fireMove1 {
-
-    0% {
-        transform:
-            translateX(-3%)
-            translateY(0px)
-            scaleY(1);
-    }
-
-    25% {
-        transform:
-            translateX(0%)
-            translateY(-40px)
-            scaleY(1.15);
-    }
-
-    50% {
-        transform:
-            translateX(3%)
-            translateY(-90px)
-            scaleY(1.45);
-    }
-
-    75% {
-        transform:
-            translateX(0%)
-            translateY(-35px)
-            scaleY(1.15);
-    }
-
-    100% {
-        transform:
-            translateX(-3%)
-            translateY(0px)
-            scaleY(1);
-    }
+.fire-particle:nth-child(1) {
+    left: 10%;
+    animation-duration: 8s;
+    animation-delay: 0s;
 }
 
-@keyframes fireMove2 {
-
-    0% {
-        transform:
-            translateX(0%)
-            scale(1);
-    }
-
-    50% {
-        transform:
-            translateX(-2%)
-            scale(1.08);
-    }
-
-    100% {
-        transform:
-            translateX(0%)
-            scale(1);
-    }
+.fire-particle:nth-child(2) {
+    left: 25%;
+    animation-duration: 10s;
+    animation-delay: 2s;
 }
 
-@keyframes fireMove3 {
+.fire-particle:nth-child(3) {
+    left: 40%;
+    animation-duration: 7s;
+    animation-delay: 1s;
+}
 
-    0% {
-        transform:
-            translateY(0px)
-            scale(1);
-    }
+.fire-particle:nth-child(4) {
+    left: 55%;
+    animation-duration: 9s;
+    animation-delay: 3s;
+}
 
-    50% {
-        transform:
-            translateY(-30px)
-            scale(1.1);
-    }
+.fire-particle:nth-child(5) {
+    left: 70%;
+    animation-duration: 12s;
+    animation-delay: 2s;
+}
 
-    100% {
-        transform:
-            translateY(0px)
-            scale(1);
-    }
+.fire-particle:nth-child(6) {
+    left: 85%;
+    animation-duration: 8s;
+    animation-delay: 4s;
 }
 
 /* =====================================================
-CONTENT ABOVE FIRE
+ANIMATIONS
 ===================================================== */
-.main .block-container {
+@keyframes waveMove1 {
 
-    position: relative;
+    0% {
+        transform:
+        translateX(0%)
+        translateY(0px)
+        scaleY(1);
+    }
 
-    z-index: 5;
+    50% {
+        transform:
+        translateX(-3%)
+        translateY(-80px)
+        scaleY(1.2);
+    }
+
+    100% {
+        transform:
+        translateX(0%)
+        translateY(0px)
+        scaleY(1);
+    }
+}
+
+@keyframes waveMove2 {
+
+    0% {
+        transform:
+        translateX(0%)
+        scale(1);
+    }
+
+    50% {
+        transform:
+        translateX(2%)
+        scale(1.08);
+    }
+
+    100% {
+        transform:
+        translateX(0%)
+        scale(1);
+    }
+}
+
+@keyframes waveMove3 {
+
+    0% {
+        transform:
+        translateX(0%)
+        translateY(0px);
+    }
+
+    50% {
+        transform:
+        translateX(-2%)
+        translateY(-40px);
+    }
+
+    100% {
+        transform:
+        translateX(0%)
+        translateY(0px);
+    }
+}
+
+@keyframes emberFloat {
+
+    0% {
+
+        transform:
+        translateY(0px)
+        translateX(0px)
+        scale(1);
+
+        opacity: 0;
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    50% {
+
+        transform:
+        translateY(-400px)
+        translateX(20px)
+        scale(1.5);
+    }
+
+    100% {
+
+        transform:
+        translateY(-850px)
+        translateX(-20px)
+        scale(0.5);
+
+        opacity: 0;
+    }
 }
 
 /* =====================================================
@@ -250,17 +315,16 @@ TITLE
 
     text-align: center;
 
-    font-size: 70px;
+    font-size: 60px;
 
     font-weight: bold;
 
     color: white;
 
     text-shadow:
-        0 0 10px red,
-        0 0 20px red,
-        0 0 40px orange,
-        0 0 80px orange;
+    0 0 10px red,
+    0 0 20px red,
+    0 0 40px orange;
 
     margin-bottom: 10px;
 }
@@ -292,9 +356,9 @@ METRIC BOXES
     text-align: center;
 
     box-shadow:
-        0px 0px 20px rgba(255,0,0,0.3);
+    0px 0px 20px rgba(255,0,0,0.3);
 
-    backdrop-filter: blur(6px);
+    backdrop-filter: blur(8px);
 }
 
 .metric-title {
@@ -310,7 +374,7 @@ METRIC BOXES
 
     color: #ff7b42;
 
-    font-size: 42px;
+    font-size: 38px;
 
     font-weight: bold;
 }
@@ -334,14 +398,14 @@ STATUS BOX
     border: 2px solid red;
 
     box-shadow:
-        0px 0px 25px red;
+    0px 0px 25px red;
 
-    backdrop-filter: blur(5px);
+    backdrop-filter: blur(8px);
 }
 
 .status-text {
 
-    font-size: 42px;
+    font-size: 38px;
 
     font-weight: bold;
 }
@@ -351,7 +415,7 @@ TABLE
 ===================================================== */
 [data-testid="stDataFrame"] {
 
-    background-color: rgba(0,0,0,0.72);
+    background-color: rgba(0,0,0,0.78);
 
     border-radius: 15px;
 
@@ -359,18 +423,37 @@ TABLE
 
     padding: 10px;
 
-    backdrop-filter: blur(6px);
+    backdrop-filter: blur(10px);
+
+    position: relative;
+
+    z-index: 20;
+}
+
+/* =====================================================
+PLOTLY CHART
+===================================================== */
+.js-plotly-plot {
+
+    position: relative;
+
+    z-index: 20;
 }
 
 </style>
 
-<div class="fire-container">
+<div class="fire-bg">
 
-    <div class="fire"></div>
+    <div class="fire-wave1"></div>
+    <div class="fire-wave2"></div>
+    <div class="fire-wave3"></div>
 
-    <div class="fire2"></div>
-
-    <div class="fire3"></div>
+    <div class="fire-particle"></div>
+    <div class="fire-particle"></div>
+    <div class="fire-particle"></div>
+    <div class="fire-particle"></div>
+    <div class="fire-particle"></div>
+    <div class="fire-particle"></div>
 
 </div>
 
@@ -422,7 +505,7 @@ if "sensor_data" not in st.session_state:
     st.session_state.sensor_data = pd.DataFrame(rows)
 
 # =====================================================
-# LIVE MOCK UPDATE
+# NEW DATA
 # =====================================================
 new_temp = random.randint(30, 70)
 new_air = random.randint(500, 2600)
@@ -483,7 +566,7 @@ for col, metric in zip([col1, col2, col3, col4], metrics):
         ''', unsafe_allow_html=True)
 
 # =====================================================
-# STATUS DISPLAY
+# STATUS
 # =====================================================
 status = latest["Condition"]
 
