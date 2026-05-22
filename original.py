@@ -37,7 +37,7 @@ st.set_page_config(
 
 SUPABASE_URL = "https://cofxcqxbiminjabrptrp.supabase.co"
 
-SUPABASE_KEY = "YOUR_SUPABASE_KEY"
+SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNvZnhjcXhiaW1pbmphYnJwdHJwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY1ODEyMDAsImV4cCI6MjA5MjE1NzIwMH0.6FDwnj_AiaOPVoYNiRA43RKDn3cqLYK00rTHuSaNh3c"
 
 # =====================================================
 # CONNECT TO SUPABASE
@@ -424,7 +424,7 @@ if len(response.data) == 0:
     st.stop()
 
 # =====================================================
-# DATAFRAME
+# CONVERT TO DATAFRAME
 # =====================================================
 
 df = pd.DataFrame(response.data)
@@ -432,7 +432,7 @@ df = pd.DataFrame(response.data)
 latest = df.iloc[0]
 
 # =====================================================
-# SENSOR VALUES
+# GET SENSOR VALUES
 # =====================================================
 
 temperature = latest["temperature_reading"]
@@ -448,12 +448,10 @@ smoke = latest["smoke_reading"]
 # =====================================================
 
 X = np.array([[
-
     temperature,
     air_quality,
     carbon_monoxide,
     smoke
-
 ]])
 
 # =====================================================
@@ -463,23 +461,21 @@ X = np.array([[
 prediction = model.predict(X)[0]
 
 # =====================================================
-# PROBABILITY
+# PREDICTION PROBABILITY
 # =====================================================
 
 try:
 
     probabilities = model.predict_proba(X)[0]
 
-    fire_probability = float(
-        np.max(probabilities)
-    )
+    fire_probability = float(np.max(probabilities))
 
 except:
 
     fire_probability = 0.0
 
 # =====================================================
-# CONDITION MAPPING
+# MACHINE LEARNING CONDITION MAPPING
 # =====================================================
 
 condition = str(prediction).upper()
@@ -574,7 +570,7 @@ supabase.table(
 }).execute()
 
 # =====================================================
-# SEND COMMANDS TO ESP32
+# SEND CONTROL COMMANDS TO ESP32
 # =====================================================
 
 supabase.table(
