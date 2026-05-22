@@ -98,9 +98,11 @@ temperature = latest["temperature_reading"]
 
 air_quality = latest["air_quality_reading"]
 
+carbon_monoxide = latest["carbon_monoxide_reading"]
+
 smoke = latest["smoke_reading"]
 
-carbon_monoxide = latest["carbon_monoxide_reading"]
+
 
 # =====================================================
 # PREPARE ML INPUT
@@ -109,8 +111,9 @@ carbon_monoxide = latest["carbon_monoxide_reading"]
 X = np.array([[
     temperature,
     air_quality,
-    smoke,
-    carbon_monoxide
+    carbon_monoxide,
+    smoke
+   
 ]])
 
 # =====================================================
@@ -235,11 +238,11 @@ supabase.table(
     "air_quality_reading":
     int(air_quality),
 
-    "smoke_reading":
-    int(smoke),
-
     "carbon_monoxide_reading":
     int(carbon_monoxide),
+    
+    "smoke_reading":
+    int(smoke),
 
     "predicted_condition":
     condition,
@@ -295,9 +298,9 @@ print("Temperature:", temperature)
 
 print("Air Quality:", air_quality)
 
-print("Smoke:", smoke)
-
 print("Carbon Monoxide:", carbon_monoxide)
+
+print("Smoke:", smoke)
 
 print("Prediction:", prediction)
 
