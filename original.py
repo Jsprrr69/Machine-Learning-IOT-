@@ -38,7 +38,7 @@ st.set_page_config(
 
 SUPABASE_URL = "https://cofxcqxbiminjabrptrp.supabase.co"
 
-SUPABASE_KEY = "YOUR_SUPABASE_KEY"
+SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNvZnhjcXhiaW1pbmphYnJwdHJwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY1ODEyMDAsImV4cCI6MjA5MjE1NzIwMH0.6FDwnj_AiaOPVoYNiRA43RKDn3cqLYK00rTHuSaNh3c"
 
 # =====================================================
 # CONNECT TO SUPABASE
