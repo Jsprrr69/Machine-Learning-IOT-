@@ -27,147 +27,160 @@ BACKGROUND
     linear-gradient(
         180deg,
         #000000 0%,
-        #120000 30%,
-        #220000 65%,
+        #140000 40%,
+        #260000 75%,
         #000000 100%
     );
     overflow: hidden;
 }
 
 /* =====================================================
-MINIMALIST WAVY FIRE BACKGROUND
+MAIN FIRE CONTAINER
 ===================================================== */
-.fire-wrapper {
+.fire-bg {
     position: fixed;
     bottom: 0;
     left: 0;
     width: 100%;
-    height: 260px;
-    z-index: -1;
-    opacity: 0.35;
+    height: 350px;
+    z-index: 0;
+    pointer-events: none;
     overflow: hidden;
 }
 
-/* FIRE LAYERS */
+/* =====================================================
+FIRE WAVES
+===================================================== */
 .fire-wave {
     position: absolute;
-    bottom: -40px;
-    width: 200%;
-    height: 240px;
-
-    background:
-        radial-gradient(circle at 50% 100%,
-        rgba(255,140,0,0.95) 0%,
-        rgba(255,69,0,0.75) 25%,
-        rgba(255,0,0,0.45) 45%,
-        transparent 70%);
+    bottom: -80px;
+    left: -25%;
+    width: 150%;
+    height: 300px;
 
     border-radius: 45%;
 
+    background:
+        radial-gradient(
+            ellipse at center,
+            rgba(255,180,0,0.95) 0%,
+            rgba(255,90,0,0.85) 25%,
+            rgba(255,0,0,0.55) 45%,
+            rgba(255,0,0,0.15) 65%,
+            transparent 80%
+        );
+
     filter: blur(35px);
 
-    animation: waveFire 6s ease-in-out infinite;
+    animation: fireWave 6s ease-in-out infinite;
 }
 
-/* SECOND FIRE */
-.fire-wave2 {
+/* SECOND LAYER */
+.fire-wave:nth-child(2) {
     animation-delay: 2s;
-    opacity: 0.5;
-    height: 280px;
+    opacity: 0.7;
+    height: 340px;
 }
 
-/* THIRD FIRE */
-.fire-wave3 {
+/* THIRD LAYER */
+.fire-wave:nth-child(3) {
     animation-delay: 4s;
-    opacity: 0.3;
-    height: 220px;
+    opacity: 0.5;
+    height: 260px;
 }
 
-/* WAVE ANIMATION */
-@keyframes waveFire {
+/* =====================================================
+FIRE ANIMATION
+===================================================== */
+@keyframes fireWave {
 
     0% {
         transform:
-            translateX(-10%)
+            translateX(-5%)
             translateY(0px)
             scaleY(1);
     }
 
     25% {
         transform:
-            translateX(-5%)
-            translateY(-15px)
-            scaleY(1.08);
+            translateX(0%)
+            translateY(-20px)
+            scaleY(1.15);
     }
 
     50% {
         transform:
-            translateX(0%)
-            translateY(-25px)
-            scaleY(1.15);
+            translateX(5%)
+            translateY(-40px)
+            scaleY(1.3);
     }
 
     75% {
         transform:
-            translateX(5%)
-            translateY(-10px)
-            scaleY(1.05);
+            translateX(0%)
+            translateY(-15px)
+            scaleY(1.1);
     }
 
     100% {
         transform:
-            translateX(10%)
+            translateX(-5%)
             translateY(0px)
             scaleY(1);
     }
 }
 
 /* =====================================================
-GLOWING EMBERS
+FLOATING EMBERS
 ===================================================== */
 .embers {
     position: fixed;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    z-index: -1;
+    inset: 0;
+    z-index: 1;
     pointer-events: none;
 }
 
 .embers span {
     position: absolute;
     bottom: -20px;
-    width: 4px;
-    height: 4px;
+
+    width: 6px;
+    height: 6px;
+
     background: orange;
     border-radius: 50%;
-    box-shadow: 0 0 10px orange;
+
+    box-shadow:
+        0 0 10px orange,
+        0 0 20px red;
+
     animation: emberFloat linear infinite;
 }
 
+/* RANDOM EMBERS */
 .embers span:nth-child(1) {
     left: 10%;
-    animation-duration: 7s;
+    animation-duration: 8s;
 }
 
 .embers span:nth-child(2) {
     left: 25%;
-    animation-duration: 9s;
+    animation-duration: 10s;
 }
 
 .embers span:nth-child(3) {
     left: 40%;
-    animation-duration: 6s;
+    animation-duration: 7s;
 }
 
 .embers span:nth-child(4) {
     left: 55%;
-    animation-duration: 10s;
+    animation-duration: 12s;
 }
 
 .embers span:nth-child(5) {
     left: 70%;
-    animation-duration: 8s;
+    animation-duration: 9s;
 }
 
 .embers span:nth-child(6) {
@@ -175,21 +188,39 @@ GLOWING EMBERS
     animation-duration: 11s;
 }
 
+/* =====================================================
+EMBER FLOAT
+===================================================== */
 @keyframes emberFloat {
 
     0% {
-        transform: translateY(0px) scale(1);
+        transform:
+            translateY(0px)
+            scale(1);
+
         opacity: 0;
     }
 
-    20% {
+    10% {
         opacity: 1;
     }
 
     100% {
-        transform: translateY(-100vh) scale(0);
+        transform:
+            translateY(-110vh)
+            translateX(40px)
+            scale(0);
+
         opacity: 0;
     }
+}
+
+/* =====================================================
+MAKE CONTENT ABOVE FIRE
+===================================================== */
+.main .block-container {
+    position: relative;
+    z-index: 5;
 }
 
 /* =====================================================
@@ -200,10 +231,13 @@ TITLE
     font-size: 58px;
     font-weight: bold;
     color: white;
+
     text-shadow:
         0 0 10px red,
         0 0 20px red,
         0 0 40px orange;
+
+    margin-bottom: 10px;
 }
 
 .subtitle {
@@ -277,13 +311,13 @@ PLOTLY CHART
 </style>
 
 <!-- =====================================================
-MINIMALIST FIRE HTML
+ANIMATED FIRE HTML
 ===================================================== -->
 
-<div class="fire-wrapper">
+<div class="fire-bg">
     <div class="fire-wave"></div>
-    <div class="fire-wave fire-wave2"></div>
-    <div class="fire-wave fire-wave3"></div>
+    <div class="fire-wave"></div>
+    <div class="fire-wave"></div>
 </div>
 
 <div class="embers">
@@ -434,9 +468,15 @@ if status == "FIRE":
     status_color = "#ff0000"
 
 st.markdown(f"""
-<div class="status-box" style="border-color:{status_color}; box-shadow:0px 0px 30px {status_color};">
-<div class="status-text" style="color:{status_color};">
+<div class="status-box"
+style="border-color:{status_color};
+box-shadow:0px 0px 30px {status_color};">
+
+<div class="status-text"
+style="color:{status_color};">
+
 {status}
+
 </div>
 </div>
 """, unsafe_allow_html=True)
