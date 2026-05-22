@@ -14,15 +14,16 @@ st.set_page_config(
 )
 
 # =====================================================
-# FIRE UI DESIGN
+# UI DESIGN
 # =====================================================
 st.markdown("""
 <style>
 
 /* =====================================================
-BACKGROUND
+APP BACKGROUND
 ===================================================== */
 .stApp {
+
     background:
     radial-gradient(circle at center,
     #250000 0%,
@@ -33,276 +34,129 @@ BACKGROUND
 }
 
 /* =====================================================
-LIVE FIRE CONTAINER
+ANIMATED FIRE WAVES
 ===================================================== */
-.live-fire-container {
+.stApp::before {
+
+    content: "";
 
     position: fixed;
 
-    bottom: 0;
-    left: 0;
+    bottom: -120px;
+    left: -10%;
 
-    width: 100%;
-    height: 450px;
-
-    overflow: hidden;
-
-    z-index: 1;
-
-    pointer-events: none;
-}
-
-/* =====================================================
-FIRE GLOW
-===================================================== */
-.fire-glow {
-
-    position: absolute;
-
-    bottom: -150px;
-    left: -20%;
-
-    width: 140%;
+    width: 120%;
     height: 420px;
 
     background:
     radial-gradient(
         ellipse at center,
-        rgba(255,180,0,0.95) 0%,
-        rgba(255,100,0,0.75) 25%,
-        rgba(255,0,0,0.45) 55%,
-        transparent 80%
-    );
-
-    filter: blur(70px);
-
-    animation:
-        firePulse 5s ease-in-out infinite;
-}
-
-/* =====================================================
-FIRE WAVES
-===================================================== */
-.fire-wave {
-
-    position: absolute;
-
-    bottom: -120px;
-    left: -15%;
-
-    width: 140%;
-    height: 320px;
-
-    border-radius: 45%;
-
-    background:
-    radial-gradient(
-        ellipse at center,
         rgba(255,220,120,0.95) 0%,
-        rgba(255,150,0,0.85) 20%,
-        rgba(255,80,0,0.6) 45%,
+        rgba(255,140,0,0.85) 20%,
+        rgba(255,60,0,0.55) 45%,
         rgba(255,0,0,0.15) 70%,
         transparent 85%
     );
 
-    filter: blur(45px);
-
-    mix-blend-mode: screen;
+    filter: blur(55px);
 
     animation:
-        fireWave 7s ease-in-out infinite;
+        fireWave1 7s ease-in-out infinite;
+
+    z-index: 0;
+
+    pointer-events: none;
 }
 
-/* SECOND FIRE */
-.wave2 {
+.stApp::after {
 
-    animation-delay: 2s;
+    content: "";
 
-    opacity: 0.75;
+    position: fixed;
 
-    height: 380px;
-}
+    bottom: -160px;
+    left: -15%;
 
-/* THIRD FIRE */
-.wave3 {
+    width: 130%;
+    height: 520px;
 
-    animation-delay: 4s;
+    background:
+    radial-gradient(
+        ellipse at center,
+        rgba(255,180,0,0.75) 0%,
+        rgba(255,80,0,0.45) 40%,
+        transparent 80%
+    );
 
-    opacity: 0.5;
+    filter: blur(90px);
 
-    height: 260px;
+    animation:
+        fireWave2 10s ease-in-out infinite;
+
+    z-index: 0;
+
+    pointer-events: none;
 }
 
 /* =====================================================
-FIRE MOVEMENT
+FIRE ANIMATION
 ===================================================== */
-@keyframes fireWave {
+@keyframes fireWave1 {
 
     0% {
-
         transform:
-            translateX(-5%)
+            translateX(-3%)
             translateY(0px)
             scaleY(1);
     }
 
     25% {
-
-        transform:
-            translateX(0%)
-            translateY(-35px)
-            scaleY(1.15);
-    }
-
-    50% {
-
-        transform:
-            translateX(5%)
-            translateY(-70px)
-            scaleY(1.4);
-    }
-
-    75% {
-
         transform:
             translateX(0%)
             translateY(-30px)
             scaleY(1.15);
     }
 
-    100% {
-
+    50% {
         transform:
-            translateX(-5%)
+            translateX(3%)
+            translateY(-70px)
+            scaleY(1.35);
+    }
+
+    75% {
+        transform:
+            translateX(0%)
+            translateY(-25px)
+            scaleY(1.1);
+    }
+
+    100% {
+        transform:
+            translateX(-3%)
             translateY(0px)
             scaleY(1);
     }
 }
 
-/* =====================================================
-FIRE GLOW ANIMATION
-===================================================== */
-@keyframes firePulse {
+@keyframes fireWave2 {
 
     0% {
-        opacity: 0.75;
-        transform: scale(1);
+        transform:
+            translateX(0%)
+            scale(1);
     }
 
     50% {
-        opacity: 1;
-        transform: scale(1.08);
+        transform:
+            translateX(-2%)
+            scale(1.08);
     }
 
     100% {
-        opacity: 0.75;
-        transform: scale(1);
-    }
-}
-
-/* =====================================================
-EMBERS
-===================================================== */
-.embers {
-
-    position: fixed;
-
-    inset: 0;
-
-    z-index: 2;
-
-    pointer-events: none;
-}
-
-.embers span {
-
-    position: absolute;
-
-    bottom: -30px;
-
-    width: 7px;
-    height: 7px;
-
-    border-radius: 50%;
-
-    background:
-    radial-gradient(circle,
-    #fff3b0 0%,
-    orange 50%,
-    red 100%);
-
-    box-shadow:
-        0 0 10px orange,
-        0 0 20px red,
-        0 0 30px orange;
-
-    animation:
-        emberRise linear infinite;
-}
-
-/* RANDOM EMBERS */
-.embers span:nth-child(1) {
-    left: 8%;
-    animation-duration: 8s;
-}
-
-.embers span:nth-child(2) {
-    left: 20%;
-    animation-duration: 11s;
-}
-
-.embers span:nth-child(3) {
-    left: 35%;
-    animation-duration: 7s;
-}
-
-.embers span:nth-child(4) {
-    left: 50%;
-    animation-duration: 13s;
-}
-
-.embers span:nth-child(5) {
-    left: 65%;
-    animation-duration: 9s;
-}
-
-.embers span:nth-child(6) {
-    left: 78%;
-    animation-duration: 12s;
-}
-
-.embers span:nth-child(7) {
-    left: 90%;
-    animation-duration: 10s;
-}
-
-/* =====================================================
-EMBER FLOATING
-===================================================== */
-@keyframes emberRise {
-
-    0% {
-
         transform:
-            translateY(0px)
-            translateX(0px)
+            translateX(0%)
             scale(1);
-
-        opacity: 0;
-    }
-
-    15% {
-        opacity: 1;
-    }
-
-    100% {
-
-        transform:
-            translateY(-110vh)
-            translateX(60px)
-            scale(0);
-
-        opacity: 0;
     }
 }
 
@@ -313,9 +167,7 @@ CONTENT ABOVE FIRE
 
     position: relative;
 
-    z-index: 10;
-
-    background: transparent;
+    z-index: 5;
 }
 
 /* =====================================================
@@ -436,41 +288,7 @@ TABLE
     backdrop-filter: blur(6px);
 }
 
-/* =====================================================
-PLOTLY CHART
-===================================================== */
-.js-plotly-plot {
-
-    border-radius: 20px;
-
-    overflow: hidden;
-}
-
 </style>
-
-<div class="live-fire-container">
-
-    <div class="fire-glow"></div>
-
-    <div class="fire-wave"></div>
-
-    <div class="fire-wave wave2"></div>
-
-    <div class="fire-wave wave3"></div>
-
-</div>
-
-<div class="embers">
-
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-    <span></span>
-
-</div>
 
 <div class="main-title">
 🔥 LIVE SENSOR READINGS
@@ -483,7 +301,7 @@ Fire Detection and Monitoring System
 """, unsafe_allow_html=True)
 
 # =====================================================
-# MOCK DATA STORAGE
+# MOCK DATA
 # =====================================================
 if "sensor_data" not in st.session_state:
 
@@ -520,7 +338,7 @@ if "sensor_data" not in st.session_state:
     st.session_state.sensor_data = pd.DataFrame(rows)
 
 # =====================================================
-# ADD NEW MOCK READING
+# NEW DATA
 # =====================================================
 new_temp = random.randint(30, 70)
 new_air = random.randint(500, 2600)
@@ -555,9 +373,6 @@ st.session_state.sensor_data = pd.concat([
 
 df = st.session_state.sensor_data
 
-# =====================================================
-# LATEST VALUES
-# =====================================================
 latest = df.iloc[0]
 
 # =====================================================
@@ -565,40 +380,26 @@ latest = df.iloc[0]
 # =====================================================
 col1, col2, col3, col4 = st.columns(4)
 
-with col1:
-    st.markdown(f'''
-    <div class="metric-box">
-        <div class="metric-title">🌡 TEMPERATURE</div>
-        <div class="metric-value">{latest["Temperature Reading (°C)"]}°C</div>
-    </div>
-    ''', unsafe_allow_html=True)
+metrics = [
+    ("🌡 TEMPERATURE", f"{latest['Temperature Reading (°C)']}°C"),
+    ("🌫 AIR QUALITY", latest["Air Quality Reading"]),
+    ("💨 SMOKE", latest["Smoke Reading"]),
+    ("☠ CO LEVEL", latest["Carbon Monoxide Reading"])
+]
 
-with col2:
-    st.markdown(f'''
-    <div class="metric-box">
-        <div class="metric-title">🌫 AIR QUALITY</div>
-        <div class="metric-value">{latest["Air Quality Reading"]}</div>
-    </div>
-    ''', unsafe_allow_html=True)
+for col, metric in zip([col1, col2, col3, col4], metrics):
 
-with col3:
-    st.markdown(f'''
-    <div class="metric-box">
-        <div class="metric-title">💨 SMOKE</div>
-        <div class="metric-value">{latest["Smoke Reading"]}</div>
-    </div>
-    ''', unsafe_allow_html=True)
+    with col:
 
-with col4:
-    st.markdown(f'''
-    <div class="metric-box">
-        <div class="metric-title">☠ CO LEVEL</div>
-        <div class="metric-value">{latest["Carbon Monoxide Reading"]}</div>
-    </div>
-    ''', unsafe_allow_html=True)
+        st.markdown(f'''
+        <div class="metric-box">
+            <div class="metric-title">{metric[0]}</div>
+            <div class="metric-value">{metric[1]}</div>
+        </div>
+        ''', unsafe_allow_html=True)
 
 # =====================================================
-# STATUS DISPLAY
+# STATUS
 # =====================================================
 status = latest["Condition"]
 
@@ -625,7 +426,7 @@ style="color:{status_color};">
 ''', unsafe_allow_html=True)
 
 # =====================================================
-# SENSOR TABLE
+# TABLE
 # =====================================================
 st.markdown("## 📋 LIVE SENSOR DATA TABLE")
 
@@ -636,7 +437,7 @@ st.dataframe(
 )
 
 # =====================================================
-# CHARTS
+# CHART
 # =====================================================
 st.markdown("## 📈 SENSOR ANALYTICS")
 
@@ -660,7 +461,7 @@ fig.add_trace(go.Scatter(
     x=df["Time"],
     y=df["Carbon Monoxide Reading"],
     mode='lines+markers',
-    name='Carbon Monoxide'
+    name='CO Level'
 ))
 
 fig.update_layout(
