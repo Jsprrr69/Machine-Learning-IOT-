@@ -28,7 +28,7 @@ try:
     X = dataset[['temperature', 'air_quality',
                  'carbon_monoxide', 'smoke']]
 
-    y = dataset['label']
+    y = dataset['status']
 
     y_pred = model.predict(X)
 
