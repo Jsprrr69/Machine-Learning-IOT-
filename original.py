@@ -63,7 +63,7 @@ ANIMATED FIRE WAVES
     animation:
         fireWave1 7s ease-in-out infinite;
 
-    z-index: 0;
+    z-index: -2;
 
     pointer-events: none;
 }
@@ -93,7 +93,7 @@ ANIMATED FIRE WAVES
     animation:
         fireWave2 10s ease-in-out infinite;
 
-    z-index: 0;
+    z-index: -3;
 
     pointer-events: none;
 }
@@ -161,13 +161,13 @@ FIRE ANIMATION
 }
 
 /* =====================================================
-CONTENT ABOVE FIRE
+MAIN CONTENT LAYER
 ===================================================== */
 .main .block-container {
 
     position: relative;
 
-    z-index: 5;
+    z-index: 10;
 }
 
 /* =====================================================
@@ -189,6 +189,10 @@ TITLE
         0 0 40px orange;
 
     margin-bottom: 10px;
+
+    position: relative;
+
+    z-index: 20;
 }
 
 .subtitle {
@@ -200,6 +204,10 @@ TITLE
     font-size: 20px;
 
     margin-bottom: 30px;
+
+    position: relative;
+
+    z-index: 20;
 }
 
 /* =====================================================
@@ -221,6 +229,10 @@ METRIC BOXES
         0px 0px 20px rgba(255,0,0,0.3);
 
     backdrop-filter: blur(6px);
+
+    position: relative;
+
+    z-index: 20;
 }
 
 .metric-title {
@@ -263,6 +275,10 @@ STATUS BOX
         0px 0px 25px red;
 
     backdrop-filter: blur(5px);
+
+    position: relative;
+
+    z-index: 20;
 }
 
 .status-text {
@@ -273,11 +289,11 @@ STATUS BOX
 }
 
 /* =====================================================
-TABLE
+TABLE FIX
 ===================================================== */
 [data-testid="stDataFrame"] {
 
-    background-color: rgba(0,0,0,0.72);
+    background-color: rgba(0,0,0,0.85);
 
     border-radius: 15px;
 
@@ -286,6 +302,40 @@ TABLE
     padding: 10px;
 
     backdrop-filter: blur(6px);
+
+    position: relative;
+
+    z-index: 50 !important;
+}
+
+/* TABLE INNER ELEMENTS */
+[data-testid="stDataFrame"] div {
+
+    position: relative;
+
+    z-index: 50 !important;
+}
+
+/* =====================================================
+PLOTLY CHART FIX
+===================================================== */
+.js-plotly-plot {
+
+    position: relative;
+
+    z-index: 30;
+}
+
+/* =====================================================
+HEADERS
+===================================================== */
+h1, h2, h3, h4 {
+
+    color: white !important;
+
+    position: relative;
+
+    z-index: 20;
 }
 
 </style>
