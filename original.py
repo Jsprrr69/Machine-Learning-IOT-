@@ -14,7 +14,7 @@ st.set_page_config(
 )
 
 # =====================================================
-# UI DESIGN
+# FIRE BACKGROUND CSS
 # =====================================================
 st.markdown("""
 <style>
@@ -31,36 +31,16 @@ APP BACKGROUND
     #000000 100%);
 
     overflow-x: hidden;
-
-    position: relative;
 }
 
 /* =====================================================
-FIRE GLOW LAYER
+FIRE LAYER
 ===================================================== */
-.fire-bg {
+.stApp::before {
+
+    content: "";
 
     position: fixed;
-
-    bottom: 0;
-    left: 0;
-
-    width: 100%;
-    height: 100%;
-
-    pointer-events: none;
-
-    z-index: 1;
-
-    overflow: hidden;
-}
-
-/* =====================================================
-FIRST FIRE WAVE
-===================================================== */
-.fire-wave1 {
-
-    position: absolute;
 
     bottom: -120px;
     left: -10%;
@@ -74,7 +54,7 @@ FIRST FIRE WAVE
         rgba(255,220,120,0.95) 0%,
         rgba(255,140,0,0.85) 20%,
         rgba(255,60,0,0.55) 45%,
-        rgba(255,0,0,0.12) 70%,
+        rgba(255,0,0,0.18) 70%,
         transparent 85%
     );
 
@@ -82,14 +62,17 @@ FIRST FIRE WAVE
 
     animation:
         fireWave1 7s ease-in-out infinite;
+
+    z-index: 0;
+
+    pointer-events: none;
 }
 
-/* =====================================================
-SECOND FIRE WAVE
-===================================================== */
-.fire-wave2 {
+.stApp::after {
 
-    position: absolute;
+    content: "";
+
+    position: fixed;
 
     bottom: -160px;
     left: -15%;
@@ -109,6 +92,10 @@ SECOND FIRE WAVE
 
     animation:
         fireWave2 10s ease-in-out infinite;
+
+    z-index: 0;
+
+    pointer-events: none;
 }
 
 /* =====================================================
@@ -174,13 +161,13 @@ ANIMATION
 }
 
 /* =====================================================
-CONTENT ABOVE FIRE
+MAIN CONTENT
 ===================================================== */
 .main .block-container {
 
     position: relative;
 
-    z-index: 10;
+    z-index: 5;
 }
 
 /* =====================================================
@@ -237,7 +224,7 @@ METRIC BOXES
 
     position: relative;
 
-    z-index: 15;
+    z-index: 5;
 }
 
 .metric-title {
@@ -283,7 +270,7 @@ STATUS BOX
 
     position: relative;
 
-    z-index: 15;
+    z-index: 5;
 }
 
 .status-text {
@@ -302,33 +289,31 @@ TABLE FIX
 
     border-radius: 15px;
 
-    border: 1px solid red;
+    border: 2px solid rgba(255,80,0,0.7);
 
     padding: 10px;
 
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(12px);
 
     position: relative;
 
     z-index: 999 !important;
 }
 
-/* TABLE INNER ELEMENTS */
+/* TABLE CONTENT */
 [data-testid="stDataFrame"] * {
-
-    position: relative;
 
     z-index: 999 !important;
 }
 
 /* =====================================================
-CHART FIX
+CHART
 ===================================================== */
 .js-plotly-plot {
 
     position: relative;
 
-    z-index: 20;
+    z-index: 5;
 }
 
 /* =====================================================
@@ -337,22 +322,9 @@ HEADERS
 h1, h2, h3 {
 
     color: white !important;
-
-    position: relative;
-
-    z-index: 20;
 }
 
 </style>
-
-<!-- FIRE BACKGROUND -->
-<div class="fire-bg">
-
-    <div class="fire-wave1"></div>
-
-    <div class="fire-wave2"></div>
-
-</div>
 
 <div class="main-title">
 🔥 LIVE SENSOR READINGS
