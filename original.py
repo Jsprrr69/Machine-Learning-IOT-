@@ -1,5 +1,6 @@
 # =====================================================
 # FIRE DETECTION AI DASHBOARD + ML + ESP32 CONTROL
+# FIXED MACHINE LEARNING VERSION
 # =====================================================
 
 # =====================================================
@@ -37,7 +38,7 @@ st.set_page_config(
 
 SUPABASE_URL = "https://cofxcqxbiminjabrptrp.supabase.co"
 
-SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNvZnhjcXhiaW1pbmphYnJwdHJwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY1ODEyMDAsImV4cCI6MjA5MjE1NzIwMH0.6FDwnj_AiaOPVoYNiRA43RKDn3cqLYK00rTHuSaNh3c"
+SUPABASE_KEY = "YOUR_SUPABASE_KEY"
 
 # =====================================================
 # CONNECT TO SUPABASE
@@ -64,6 +65,7 @@ st.markdown("""
 /* =====================================================
 APP BACKGROUND
 ===================================================== */
+
 .stApp {
 
     background:
@@ -78,6 +80,7 @@ APP BACKGROUND
 /* =====================================================
 FIRE LAYER
 ===================================================== */
+
 .stApp::before {
 
     content: "";
@@ -143,6 +146,7 @@ FIRE LAYER
 /* =====================================================
 ANIMATION
 ===================================================== */
+
 @keyframes fireWave1 {
 
     0% {
@@ -205,6 +209,7 @@ ANIMATION
 /* =====================================================
 MAIN CONTENT
 ===================================================== */
+
 .main .block-container {
 
     position: relative;
@@ -215,6 +220,7 @@ MAIN CONTENT
 /* =====================================================
 TITLE
 ===================================================== */
+
 .main-title {
 
     text-align: center;
@@ -247,6 +253,7 @@ TITLE
 /* =====================================================
 METRIC BOXES
 ===================================================== */
+
 .metric-box {
 
     background: rgba(0,0,0,0.72);
@@ -290,6 +297,7 @@ METRIC BOXES
 /* =====================================================
 STATUS BOX
 ===================================================== */
+
 .status-box {
 
     background: rgba(0,0,0,0.75);
@@ -323,7 +331,7 @@ STATUS BOX
 }
 
 /* =====================================================
-RED TABLE DESIGN
+TABLE DESIGN
 ===================================================== */
 
 [data-testid="stDataFrame"] {
@@ -339,50 +347,11 @@ RED TABLE DESIGN
 
     border-radius: 15px;
 
-    box-shadow:
-        0 0 25px rgba(255,60,0,0.25);
-
     overflow: hidden;
 
     position: relative;
 
     z-index: 999 !important;
-}
-
-[data-testid="stDataFrame"] [role="grid"] {
-
-    background-color:
-    rgba(25,0,0,0.95) !important;
-
-    color: white !important;
-}
-
-[data-testid="stDataFrame"] [role="columnheader"] {
-
-    background:
-    linear-gradient(
-        180deg,
-        rgba(120,0,0,1) 0%,
-        rgba(70,0,0,1) 100%
-    ) !important;
-
-    color: white !important;
-
-    font-weight: bold !important;
-}
-
-[data-testid="stDataFrame"] [role="gridcell"] {
-
-    background-color:
-    rgba(30,0,0,0.92) !important;
-
-    color: white !important;
-}
-
-[data-testid="stDataFrame"] [role="row"]:hover [role="gridcell"] {
-
-    background-color:
-    rgba(255,60,0,0.20) !important;
 }
 
 h1, h2, h3 {
@@ -445,20 +414,22 @@ smoke = latest["smoke_reading"]
 
 # =====================================================
 # PREPARE ML INPUT
+# IMPORTANT:
+# FEATURE ORDER MUST MATCH TRAINING
 # =====================================================
 
-X = np.array([[
-    temperature,
-    air_quality,
-    carbon_monoxide,
-    smoke
-]])
+input_data = pd.DataFrame([{
+    'temperature': temperature,
+    'air_quality': air_quality,
+    'carbon_monoxide': carbon_monoxide,
+    'smoke': smoke,
+}])
 
 # =====================================================
 # MACHINE LEARNING PREDICTION
 # =====================================================
 
-prediction = model.predict(X)[0]
+prediction = model.predict(input_data)[0]
 
 # =====================================================
 # PREDICTION PROBABILITY
@@ -466,7 +437,7 @@ prediction = model.predict(X)[0]
 
 try:
 
-    probabilities = model.predict_proba(X)[0]
+    probabilities = model.predict_proba(input_data)[0]
 
     fire_probability = float(np.max(probabilities))
 
@@ -476,20 +447,22 @@ except:
 
 # =====================================================
 # MACHINE LEARNING CONDITION MAPPING
+# FIXED VERSION
 # =====================================================
 
-condition = str(prediction).upper()
+condition = str(prediction).strip()
 
 # =====================================================
-# NORMAL
+# NON-FIRE
 # =====================================================
 
 if (
     condition == "Non-Fire" or
+    condition == "NON-FIRE" or
     condition == "0"
 ):
 
-    condition = "NORMAL"
+    condition = "NON-FIRE"
 
     remarks = "System Safe"
 
@@ -505,11 +478,12 @@ if (
 
 elif (
     condition == "Potential Fire" or
+    condition == "POTENTIAL FIRE" or
     condition == "POTENTIAL_FIRE" or
     condition == "1"
 ):
 
-    condition = "Potential Fire"
+    condition = "POTENTIAL FIRE"
 
     remarks = "Warning Sent | Buzzer Activated"
 
@@ -523,9 +497,13 @@ elif (
 # FIRE
 # =====================================================
 
-else:
+elif (
+    condition == "Fire" or
+    condition == "FIRE" or
+    condition == "2"
+):
 
-    condition = "Fire"
+    condition = "FIRE"
 
     remarks = "Relay Activated | Breaker Tripped | SMS Sent"
 
@@ -534,6 +512,22 @@ else:
     breaker_status = True
 
     buzzer_status = True
+
+# =====================================================
+# UNKNOWN CONDITION
+# =====================================================
+
+else:
+
+    condition = "UNKNOWN"
+
+    remarks = "Model Returned Unknown Prediction"
+
+    relay_status = False
+
+    breaker_status = False
+
+    buzzer_status = False
 
 # =====================================================
 # SAVE AI RESULTS TO SUPABASE
@@ -636,7 +630,7 @@ for col, metric in zip(
         ''', unsafe_allow_html=True)
 
 # =====================================================
-# STATUS BOX
+# STATUS COLORS
 # =====================================================
 
 status_color = "#00ff99"
@@ -648,6 +642,10 @@ if condition == "POTENTIAL FIRE":
 if condition == "FIRE":
 
     status_color = "#ff0000"
+
+# =====================================================
+# STATUS BOX
+# =====================================================
 
 st.markdown(f'''
 <div class="status-box"
