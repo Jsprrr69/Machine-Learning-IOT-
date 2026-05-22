@@ -28,22 +28,26 @@ BACKGROUND
     #220000 0%,
     #0a0000 50%,
     #000000 100%);
+
+    overflow-x: hidden;
 }
 
 /* =====================================================
 FIRE CONTAINER
 ===================================================== */
 .live-fire-container {
+
     position: fixed;
+
     bottom: 0;
     left: 0;
 
     width: 100%;
-    height: 420px;
+    height: 450px;
 
     overflow: hidden;
 
-    z-index: -1;
+    z-index: 1;
 
     pointer-events: none;
 }
@@ -55,24 +59,25 @@ FIRE GLOW
 
     position: absolute;
 
-    bottom: -120px;
+    bottom: -150px;
     left: -20%;
 
     width: 140%;
-    height: 350px;
+    height: 400px;
 
     background:
     radial-gradient(
         ellipse at center,
-        rgba(255,120,0,0.9) 0%,
-        rgba(255,60,0,0.7) 30%,
-        rgba(255,0,0,0.4) 55%,
-        transparent 75%
+        rgba(255,180,0,0.95) 0%,
+        rgba(255,100,0,0.75) 25%,
+        rgba(255,0,0,0.45) 55%,
+        transparent 80%
     );
 
-    filter: blur(60px);
+    filter: blur(70px);
 
-    animation: firePulse 5s ease-in-out infinite;
+    animation:
+        firePulse 5s ease-in-out infinite;
 }
 
 /* =====================================================
@@ -82,25 +87,25 @@ FIRE WAVES
 
     position: absolute;
 
-    bottom: -100px;
-    left: -20%;
+    bottom: -120px;
+    left: -15%;
 
-    width: 150%;
-    height: 300px;
+    width: 140%;
+    height: 320px;
 
     border-radius: 45%;
 
     background:
     radial-gradient(
         ellipse at center,
-        rgba(255,200,0,0.95) 0%,
-        rgba(255,120,0,0.8) 20%,
-        rgba(255,0,0,0.55) 45%,
-        rgba(255,0,0,0.1) 70%,
+        rgba(255,220,120,0.95) 0%,
+        rgba(255,150,0,0.85) 20%,
+        rgba(255,80,0,0.6) 45%,
+        rgba(255,0,0,0.15) 70%,
         transparent 85%
     );
 
-    filter: blur(40px);
+    filter: blur(45px);
 
     mix-blend-mode: screen;
 
@@ -110,16 +115,22 @@ FIRE WAVES
 
 /* SECOND FIRE */
 .wave2 {
+
     animation-delay: 2s;
-    opacity: 0.7;
-    height: 360px;
+
+    opacity: 0.75;
+
+    height: 380px;
 }
 
 /* THIRD FIRE */
 .wave3 {
+
     animation-delay: 4s;
+
     opacity: 0.5;
-    height: 240px;
+
+    height: 260px;
 }
 
 /* =====================================================
@@ -128,6 +139,7 @@ FIRE MOVEMENT
 @keyframes fireWave {
 
     0% {
+
         transform:
             translateX(-5%)
             translateY(0px)
@@ -135,27 +147,31 @@ FIRE MOVEMENT
     }
 
     25% {
+
         transform:
             translateX(0%)
-            translateY(-25px)
+            translateY(-35px)
             scaleY(1.15);
     }
 
     50% {
+
         transform:
             translateX(5%)
-            translateY(-50px)
-            scaleY(1.35);
+            translateY(-70px)
+            scaleY(1.4);
     }
 
     75% {
+
         transform:
             translateX(0%)
-            translateY(-20px)
-            scaleY(1.1);
+            translateY(-30px)
+            scaleY(1.15);
     }
 
     100% {
+
         transform:
             translateX(-5%)
             translateY(0px)
@@ -169,7 +185,7 @@ FIRE GLOW ANIMATION
 @keyframes firePulse {
 
     0% {
-        opacity: 0.7;
+        opacity: 0.75;
         transform: scale(1);
     }
 
@@ -179,7 +195,7 @@ FIRE GLOW ANIMATION
     }
 
     100% {
-        opacity: 0.7;
+        opacity: 0.75;
         transform: scale(1);
     }
 }
@@ -193,7 +209,7 @@ EMBERS
 
     inset: 0;
 
-    z-index: -1;
+    z-index: 2;
 
     pointer-events: none;
 }
@@ -202,10 +218,10 @@ EMBERS
 
     position: absolute;
 
-    bottom: -20px;
+    bottom: -30px;
 
-    width: 6px;
-    height: 6px;
+    width: 7px;
+    height: 7px;
 
     border-radius: 50%;
 
@@ -217,7 +233,8 @@ EMBERS
 
     box-shadow:
         0 0 10px orange,
-        0 0 20px red;
+        0 0 20px red,
+        0 0 30px orange;
 
     animation:
         emberRise linear infinite;
@@ -225,37 +242,42 @@ EMBERS
 
 /* RANDOM EMBERS */
 .embers span:nth-child(1) {
-    left: 10%;
+    left: 8%;
     animation-duration: 8s;
 }
 
 .embers span:nth-child(2) {
-    left: 25%;
+    left: 20%;
     animation-duration: 11s;
 }
 
 .embers span:nth-child(3) {
-    left: 40%;
+    left: 35%;
     animation-duration: 7s;
 }
 
 .embers span:nth-child(4) {
-    left: 55%;
+    left: 50%;
     animation-duration: 13s;
 }
 
 .embers span:nth-child(5) {
-    left: 70%;
+    left: 65%;
     animation-duration: 9s;
 }
 
 .embers span:nth-child(6) {
-    left: 85%;
+    left: 78%;
+    animation-duration: 12s;
+}
+
+.embers span:nth-child(7) {
+    left: 90%;
     animation-duration: 10s;
 }
 
 /* =====================================================
-EMBER MOVEMENT
+EMBER FLOATING
 ===================================================== */
 @keyframes emberRise {
 
@@ -263,6 +285,7 @@ EMBER MOVEMENT
 
         transform:
             translateY(0px)
+            translateX(0px)
             scale(1);
 
         opacity: 0;
@@ -275,7 +298,7 @@ EMBER MOVEMENT
     100% {
 
         transform:
-            translateY(-100vh)
+            translateY(-110vh)
             translateX(60px)
             scale(0);
 
@@ -287,16 +310,23 @@ EMBER MOVEMENT
 CONTENT ABOVE FIRE
 ===================================================== */
 .main .block-container {
+
     position: relative;
-    z-index: 5;
+
+    z-index: 10;
+
+    background: transparent;
 }
 
 /* =====================================================
 TITLE
 ===================================================== */
 .main-title {
+
     text-align: center;
+
     font-size: 60px;
+
     font-weight: bold;
 
     color: white;
@@ -310,9 +340,13 @@ TITLE
 }
 
 .subtitle {
+
     text-align: center;
+
     color: #dddddd;
+
     font-size: 20px;
+
     margin-bottom: 30px;
 }
 
@@ -321,7 +355,7 @@ METRIC BOXES
 ===================================================== */
 .metric-box {
 
-    background: rgba(0,0,0,0.70);
+    background: rgba(0,0,0,0.72);
 
     border: 1px solid rgba(255,80,0,0.5);
 
@@ -333,17 +367,25 @@ METRIC BOXES
 
     box-shadow:
         0px 0px 20px rgba(255,0,0,0.3);
+
+    backdrop-filter: blur(6px);
 }
 
 .metric-title {
+
     color: white;
+
     font-size: 18px;
+
     font-weight: bold;
 }
 
 .metric-value {
-    color: #ff5c33;
+
+    color: #ff7b42;
+
     font-size: 38px;
+
     font-weight: bold;
 }
 
@@ -367,10 +409,14 @@ STATUS BOX
 
     box-shadow:
         0px 0px 25px red;
+
+    backdrop-filter: blur(5px);
 }
 
 .status-text {
+
     font-size: 38px;
+
     font-weight: bold;
 }
 
@@ -379,20 +425,24 @@ TABLE
 ===================================================== */
 [data-testid="stDataFrame"] {
 
-    background-color: rgba(0,0,0,0.65);
+    background-color: rgba(0,0,0,0.72);
 
     border-radius: 15px;
 
     border: 1px solid red;
 
     padding: 10px;
+
+    backdrop-filter: blur(6px);
 }
 
 /* =====================================================
 PLOTLY CHART
 ===================================================== */
 .js-plotly-plot {
+
     border-radius: 20px;
+
     overflow: hidden;
 }
 
@@ -412,6 +462,7 @@ PLOTLY CHART
 
 <div class="embers">
 
+    <span></span>
     <span></span>
     <span></span>
     <span></span>
