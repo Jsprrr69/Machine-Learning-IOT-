@@ -11,30 +11,6 @@
 # pip install joblib plotly
 #
 # =====================================================
-# =====================================================
-# FILE NAME:
-# predict_and_control.py
-#
-# PURPOSE:
-# 1. Get RAW sensor data from Supabase
-# 2. Run Machine Learning prediction
-# 3. Save prediction results to Supabase
-# 4. Notify ESP32 to activate:
-#       - Relay
-#       - Breaker
-#       - Buzzer
-# 5. Dashboard reads FINAL AI results
-#
-# ======================================================
-
-# =====================================================
-# INSTALL REQUIRED LIBRARIES
-# =====================================================
-#
-# pip install pandas numpy scikit-learn
-# pip install supabase joblib
-#
-# =====================================================
 
 import streamlit as st
 import pandas as pd
@@ -58,12 +34,10 @@ st.set_page_config(
 # =====================================================
 # SUPABASE CONFIGURATION
 # =====================================================
-# CHANGE THESE
-# =====================================================
 
 SUPABASE_URL = "https://cofxcqxbiminjabrptrp.supabase.co"
 
-SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNvZnhjcXhiaW1pbmphYnJwdHJwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY1ODEyMDAsImV4cCI6MjA5MjE1NzIwMH0.6FDwnj_AiaOPVoYNiRA43RKDn3cqLYK00rTHuSaNh3c"
+SUPABASE_KEY = "YOUR_SUPABASE_KEY"
 
 # =====================================================
 # CONNECT TO SUPABASE
@@ -76,8 +50,6 @@ supabase = create_client(
 
 # =====================================================
 # LOAD MACHINE LEARNING MODEL
-# =====================================================
-# CHANGE THIS IF YOUR FILE NAME IS DIFFERENT
 # =====================================================
 
 model = joblib.load("fire_detection_model.pkl")
@@ -413,9 +385,6 @@ RED TABLE DESIGN
     rgba(255,60,0,0.20) !important;
 }
 
-/* =====================================================
-HEADERS
-===================================================== */
 h1, h2, h3 {
 
     color: white !important;
@@ -434,12 +403,7 @@ AI Fire Detection and Monitoring System
 """, unsafe_allow_html=True)
 
 # =====================================================
-# FETCH LATEST RAW SENSOR DATA
-# =====================================================
-#
-# TABLE:
-# raw_sensor_readings
-#
+# FETCH RAW SENSOR DATA
 # =====================================================
 
 response = supabase.table(
@@ -460,7 +424,7 @@ if len(response.data) == 0:
     st.stop()
 
 # =====================================================
-# CONVERT TO DATAFRAME
+# DATAFRAME
 # =====================================================
 
 df = pd.DataFrame(response.data)
@@ -468,7 +432,7 @@ df = pd.DataFrame(response.data)
 latest = df.iloc[0]
 
 # =====================================================
-# GET SENSOR VALUES
+# SENSOR VALUES
 # =====================================================
 
 temperature = latest["temperature_reading"]
@@ -479,18 +443,17 @@ carbon_monoxide = latest["carbon_monoxide_reading"]
 
 smoke = latest["smoke_reading"]
 
-
-
 # =====================================================
 # PREPARE ML INPUT
 # =====================================================
 
 X = np.array([[
+
     temperature,
     air_quality,
     carbon_monoxide,
     smoke
-   
+
 ]])
 
 # =====================================================
@@ -500,21 +463,23 @@ X = np.array([[
 prediction = model.predict(X)[0]
 
 # =====================================================
-# PREDICTION PROBABILITY
+# PROBABILITY
 # =====================================================
 
 try:
 
     probabilities = model.predict_proba(X)[0]
 
-    fire_probability = float(np.max(probabilities))
+    fire_probability = float(
+        np.max(probabilities)
+    )
 
 except:
 
     fire_probability = 0.0
 
 # =====================================================
-# MACHINE LEARNING CONDITION MAPPING
+# CONDITION MAPPING
 # =====================================================
 
 condition = str(prediction).upper()
@@ -562,10 +527,7 @@ elif (
 # FIRE
 # =====================================================
 
-elif (
-    condition == "FIRE" or
-    condition == "2"
-):
+else:
 
     condition = "FIRE"
 
@@ -578,28 +540,7 @@ elif (
     buzzer_status = True
 
 # =====================================================
-# UNKNOWN
-# =====================================================
-
-else:
-
-    condition = "UNKNOWN"
-
-    remarks = "Unknown Prediction"
-
-    relay_status = False
-
-    breaker_status = False
-
-    buzzer_status = False
-
-# =====================================================
 # SAVE AI RESULTS TO SUPABASE
-# =====================================================
-#
-# TABLE:
-# predicted_sensor_readings
-#
 # =====================================================
 
 supabase.table(
@@ -617,7 +558,7 @@ supabase.table(
 
     "carbon_monoxide_reading":
     int(carbon_monoxide),
-    
+
     "smoke_reading":
     int(smoke),
 
@@ -633,12 +574,7 @@ supabase.table(
 }).execute()
 
 # =====================================================
-# SEND CONTROL COMMANDS TO ESP32
-# =====================================================
-#
-# TABLE:
-# esp32_control
-#
+# SEND COMMANDS TO ESP32
 # =====================================================
 
 supabase.table(
@@ -691,6 +627,7 @@ for col, metric in zip(
 
         st.markdown(f'''
         <div class="metric-box">
+
             <div class="metric-title">
                 {metric[0]}
             </div>
@@ -698,6 +635,7 @@ for col, metric in zip(
             <div class="metric-value">
                 {metric[1]}
             </div>
+
         </div>
         ''', unsafe_allow_html=True)
 
