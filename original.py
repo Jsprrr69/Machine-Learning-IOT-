@@ -5,237 +5,372 @@ import time
 from datetime import datetime
 import plotly.graph_objects as go
 
-# ======================================================
+# =====================================================
 # PAGE CONFIG
-# ======================================================
+# =====================================================
 st.set_page_config(
-    page_title="🔥 Fire Detection Dashboard",
+    page_title="Fire Detection Dashboard",
     layout="wide"
 )
 
-# ======================================================
-# CUSTOM CSS DESIGN
-# ======================================================
+# =====================================================
+# CUSTOM CSS
+# =====================================================
 st.markdown("""
 <style>
 
-/* MAIN BACKGROUND */
+/* =====================================================
+BACKGROUND
+===================================================== */
 .stApp {
-    background: linear-gradient(135deg, #2b0000, #000000);
+    background:
+    linear-gradient(
+        180deg,
+        #000000 0%,
+        #1a0000 30%,
+        #3b0000 60%,
+        #000000 100%
+    );
     overflow: hidden;
 }
 
-/* FIRE ANIMATION BACKGROUND */
-.fire-bg {
+/* =====================================================
+ANIMATED FIRE BACKGROUND
+===================================================== */
+.fire-container {
     position: fixed;
-    top: 0;
+    bottom: 0;
     left: 0;
     width: 100%;
-    height: 100%;
+    height: 300px;
     z-index: -1;
-    opacity: 0.15;
-    background: radial-gradient(circle at 50% 100%,
-        rgba(255,80,0,0.8),
-        rgba(255,0,0,0.4),
+    opacity: 0.35;
+    overflow: hidden;
+}
+
+.fire {
+    position: absolute;
+    bottom: -20px;
+    width: 200%;
+    height: 300px;
+    background:
+        radial-gradient(circle at 50% 100%,
+        rgba(255,140,0,0.9) 0%,
+        rgba(255,69,0,0.8) 20%,
+        rgba(255,0,0,0.5) 40%,
         transparent 70%);
-    animation: firemove 3s infinite alternate;
+
+    animation: firemove 4s infinite alternate ease-in-out;
+    filter: blur(20px);
+}
+
+.fire2 {
+    animation-delay: 1s;
+    opacity: 0.6;
+}
+
+.fire3 {
+    animation-delay: 2s;
+    opacity: 0.4;
 }
 
 @keyframes firemove {
     0% {
-        transform: scale(1) translateY(0px);
-        filter: blur(20px);
+        transform: translateX(-5%) scaleY(1);
     }
 
     50% {
-        transform: scale(1.1) translateY(-20px);
-        filter: blur(30px);
+        transform: translateX(0%) scaleY(1.2);
     }
 
     100% {
-        transform: scale(1.05) translateY(-10px);
-        filter: blur(25px);
+        transform: translateX(5%) scaleY(1);
     }
 }
 
-/* TITLE */
-.title {
+/* =====================================================
+TITLE
+===================================================== */
+.main-title {
     text-align: center;
-    font-size: 48px;
+    font-size: 60px;
     font-weight: bold;
-    color: #ff4b4b;
-    text-shadow: 0px 0px 20px red;
+    color: white;
+    text-shadow:
+        0 0 10px red,
+        0 0 20px red,
+        0 0 40px orange;
+    margin-top: 10px;
 }
 
-/* STATUS BOX */
-.status-box {
-    background-color: rgba(0,0,0,0.6);
-    border: 2px solid red;
-    border-radius: 15px;
+.subtitle {
+    text-align: center;
+    color: #cccccc;
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+/* =====================================================
+METRIC CARDS
+===================================================== */
+.metric-box {
+    background: rgba(0,0,0,0.7);
+    border: 2px solid rgba(255,0,0,0.6);
+    border-radius: 20px;
     padding: 20px;
     text-align: center;
-    margin-bottom: 20px;
-    color: white;
-    font-size: 28px;
-    font-weight: bold;
-    box-shadow: 0px 0px 20px red;
+    box-shadow: 0px 0px 20px rgba(255,0,0,0.4);
 }
 
-/* TABLE */
+.metric-title {
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.metric-value {
+    color: #ff4b4b;
+    font-size: 42px;
+    font-weight: bold;
+}
+
+/* =====================================================
+STATUS BOX
+===================================================== */
+.status-box {
+    background: rgba(0,0,0,0.8);
+    border-radius: 20px;
+    padding: 25px;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    border: 2px solid red;
+    box-shadow: 0px 0px 30px red;
+}
+
+.status-text {
+    font-size: 38px;
+    font-weight: bold;
+    color: #ff4b4b;
+}
+
+/* =====================================================
+TABLE
+===================================================== */
 table {
     color: white !important;
 }
 
 thead tr th {
-    background-color: rgba(255,0,0,0.8) !important;
+    background: linear-gradient(180deg,#ff1a1a,#990000) !important;
     color: white !important;
     font-size: 18px !important;
     text-align: center !important;
 }
 
 tbody tr {
-    background-color: rgba(0,0,0,0.65) !important;
+    background-color: rgba(0,0,0,0.7) !important;
 }
 
 tbody td {
     color: white !important;
-    font-size: 16px !important;
     text-align: center !important;
+    font-size: 16px !important;
 }
 
-/* METRICS */
-[data-testid="metric-container"] {
+/* =====================================================
+DATAFRAME
+===================================================== */
+[data-testid="stDataFrame"] {
     background-color: rgba(0,0,0,0.65);
-    border: 2px solid red;
-    padding: 15px;
     border-radius: 15px;
-    box-shadow: 0px 0px 15px red;
-}
-
-[data-testid="metric-container"] label {
-    color: white !important;
-}
-
-[data-testid="metric-container"] div {
-    color: #ff4b4b !important;
-}
-
-/* CHARTS */
-.js-plotly-plot {
-    background-color: rgba(0,0,0,0.5) !important;
-    border-radius: 15px;
+    border: 1px solid red;
     padding: 10px;
+}
+
+/* =====================================================
+PLOTLY CHARTS
+===================================================== */
+.js-plotly-plot {
+    border-radius: 20px;
+    overflow: hidden;
 }
 
 </style>
 
-<div class="fire-bg"></div>
-
-<div class="title">
-🔥 FIRE DETECTION DASHBOARD 🔥
+<div class="fire-container">
+    <div class="fire"></div>
+    <div class="fire fire2"></div>
+    <div class="fire fire3"></div>
 </div>
+
+<div class="main-title">
+🔥 LIVE SENSOR READINGS
+</div>
+
+<div class="subtitle">
+Fire Detection and Monitoring System
+</div>
+
 """, unsafe_allow_html=True)
 
-# ======================================================
-# MOCK LIVE DATA
-# ======================================================
-if "data" not in st.session_state:
-    st.session_state.data = pd.DataFrame(columns=[
-        "Time",
-        "Temperature Reading",
-        "Air Quality Reading",
-        "Smoke Reading",
-        "Carbon Monoxide Reading"
-    ])
+# =====================================================
+# MOCK DATA STORAGE
+# =====================================================
+if "sensor_data" not in st.session_state:
 
-# ======================================================
-# GENERATE MOCK SENSOR VALUES
-# ======================================================
-def generate_data():
-    return {
-        "Time": datetime.now().strftime("%H:%M:%S"),
-        "Temperature Reading": random.randint(28, 75),
-        "Air Quality Reading": random.randint(400, 2500),
-        "Smoke Reading": random.randint(300, 3500),
-        "Carbon Monoxide Reading": random.randint(200, 3000)
-    }
+    rows = []
 
-# ======================================================
-# ADD NEW DATA
-# ======================================================
-new_row = generate_data()
+    for i in range(12):
 
-st.session_state.data = pd.concat([
-    st.session_state.data,
-    pd.DataFrame([new_row])
-], ignore_index=True)
+        temp = random.randint(30, 65)
+        air = random.randint(500, 2500)
+        smoke = random.randint(400, 3200)
+        co = random.randint(300, 2500)
 
-# Keep only latest 20 rows
-st.session_state.data = st.session_state.data.tail(20)
+        condition = "NORMAL"
+        remarks = "Safe"
 
-df = st.session_state.data
+        if smoke > 2500 or co > 2200 or temp > 55:
+            condition = "FIRE"
+            remarks = "Breaker tripped & SMS sent"
 
-# ======================================================
-# FIRE CONDITION
-# ======================================================
-latest = df.iloc[-1]
+        elif smoke > 1700 or co > 1500 or temp > 45:
+            condition = "POTENTIAL FIRE"
+            remarks = "SMS Sent"
 
-temp = latest["Temperature Reading"]
-air = latest["Air Quality Reading"]
-smoke = latest["Smoke Reading"]
-co = latest["Carbon Monoxide Reading"]
+        rows.append({
+            "Time": datetime.now().strftime("%I:%M:%S %p"),
+            "Temperature Reading (°C)": temp,
+            "Air Quality Reading": air,
+            "Smoke Reading": smoke,
+            "Carbon Monoxide Reading": co,
+            "Condition": condition,
+            "Remarks": remarks
+        })
 
-condition = "✅ SAFE"
-color = "#00ff88"
+    st.session_state.sensor_data = pd.DataFrame(rows)
 
-if temp > 55 or smoke > 2500 or co > 2200:
-    condition = "🔥 FIRE DETECTED"
-    color = "#ff0000"
+# =====================================================
+# ADD NEW MOCK READING
+# =====================================================
+new_temp = random.randint(30, 70)
+new_air = random.randint(500, 2600)
+new_smoke = random.randint(400, 3500)
+new_co = random.randint(300, 2700)
 
-elif temp > 45 or smoke > 1800 or co > 1500:
-    condition = "⚠ WARNING"
-    color = "#ffaa00"
+condition = "NORMAL"
+remarks = "Safe"
 
-# ======================================================
-# STATUS DISPLAY
-# ======================================================
-st.markdown(f"""
-<div class="status-box" style="border-color:{color}; box-shadow:0px 0px 20px {color};">
-{condition}
-</div>
-""", unsafe_allow_html=True)
+if new_smoke > 2600 or new_co > 2300 or new_temp > 60:
+    condition = "FIRE"
+    remarks = "Breaker tripped & SMS sent"
 
-# ======================================================
-# LIVE METRICS
-# ======================================================
+elif new_smoke > 1800 or new_co > 1600 or new_temp > 48:
+    condition = "POTENTIAL FIRE"
+    remarks = "SMS Sent"
+
+new_row = pd.DataFrame([{
+    "Time": datetime.now().strftime("%I:%M:%S %p"),
+    "Temperature Reading (°C)": new_temp,
+    "Air Quality Reading": new_air,
+    "Smoke Reading": new_smoke,
+    "Carbon Monoxide Reading": new_co,
+    "Condition": condition,
+    "Remarks": remarks
+}])
+
+st.session_state.sensor_data = pd.concat([
+    new_row,
+    st.session_state.sensor_data
+]).head(15)
+
+df = st.session_state.sensor_data
+
+# =====================================================
+# LATEST VALUES
+# =====================================================
+latest = df.iloc[0]
+
+# =====================================================
+# METRIC CARDS
+# =====================================================
 col1, col2, col3, col4 = st.columns(4)
 
-col1.metric("🌡 Temperature", f"{temp} °C")
-col2.metric("🌫 Air Quality", air)
-col3.metric("💨 Smoke", smoke)
-col4.metric("☠ Carbon Monoxide", co)
+with col1:
+    st.markdown(f"""
+    <div class="metric-box">
+        <div class="metric-title">🌡 TEMPERATURE</div>
+        <div class="metric-value">{latest['Temperature Reading (°C)']}°C</div>
+    </div>
+    """, unsafe_allow_html=True)
 
-# ======================================================
-# TABLE
-# ======================================================
-st.markdown("## 📋 LIVE SENSOR TABLE")
+with col2:
+    st.markdown(f"""
+    <div class="metric-box">
+        <div class="metric-title">🌫 AIR QUALITY</div>
+        <div class="metric-value">{latest['Air Quality Reading']}</div>
+    </div>
+    """, unsafe_allow_html=True)
+
+with col3:
+    st.markdown(f"""
+    <div class="metric-box">
+        <div class="metric-title">💨 SMOKE</div>
+        <div class="metric-value">{latest['Smoke Reading']}</div>
+    </div>
+    """, unsafe_allow_html=True)
+
+with col4:
+    st.markdown(f"""
+    <div class="metric-box">
+        <div class="metric-title">☠ CO LEVEL</div>
+        <div class="metric-value">{latest['Carbon Monoxide Reading']}</div>
+    </div>
+    """, unsafe_allow_html=True)
+
+# =====================================================
+# STATUS DISPLAY
+# =====================================================
+status = latest["Condition"]
+
+status_color = "#00ff99"
+
+if status == "POTENTIAL FIRE":
+    status_color = "#ffaa00"
+
+if status == "FIRE":
+    status_color = "#ff0000"
+
+st.markdown(f"""
+<div class="status-box" style="border-color:{status_color}; box-shadow:0px 0px 30px {status_color};">
+<div class="status-text" style="color:{status_color};">
+{status}
+</div>
+</div>
+""", unsafe_allow_html=True)
+
+# =====================================================
+# SENSOR TABLE
+# =====================================================
+st.markdown("## 📋 LIVE SENSOR DATA TABLE")
 
 st.dataframe(
     df,
     use_container_width=True,
-    height=450
+    height=500
 )
 
-# ======================================================
-# LIVE CHART
-# ======================================================
+# =====================================================
+# CHARTS
+# =====================================================
 st.markdown("## 📈 SENSOR ANALYTICS")
 
 fig = go.Figure()
 
 fig.add_trace(go.Scatter(
     x=df["Time"],
-    y=df["Temperature Reading"],
+    y=df["Temperature Reading (°C)"],
     mode='lines+markers',
     name='Temperature'
 ))
@@ -251,20 +386,20 @@ fig.add_trace(go.Scatter(
     x=df["Time"],
     y=df["Carbon Monoxide Reading"],
     mode='lines+markers',
-    name='CO'
+    name='Carbon Monoxide'
 ))
 
 fig.update_layout(
-    paper_bgcolor='rgba(0,0,0,0.5)',
-    plot_bgcolor='rgba(0,0,0,0.5)',
+    paper_bgcolor='rgba(0,0,0,0.6)',
+    plot_bgcolor='rgba(0,0,0,0.6)',
     font=dict(color='white'),
     height=500
 )
 
 st.plotly_chart(fig, use_container_width=True)
 
-# ======================================================
+# =====================================================
 # AUTO REFRESH
-# ======================================================
+# =====================================================
 time.sleep(2)
 st.rerun()
