@@ -509,7 +509,7 @@ elif (
     condition == "1"
 ):
 
-    condition = "POTENTIAL FIRE"
+    condition = "Potential Fire"
 
     remarks = "Warning Sent | Buzzer Activated"
 
@@ -525,7 +525,7 @@ elif (
 
 else:
 
-    condition = "FIRE"
+    condition = "Fire"
 
     remarks = "Relay Activated | Breaker Tripped | SMS Sent"
 
