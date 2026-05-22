@@ -485,7 +485,7 @@ condition = str(prediction).upper()
 # =====================================================
 
 if (
-    condition == "NORMAL" or
+    condition == "Non-Fire" or
     condition == "0"
 ):
 
@@ -504,7 +504,7 @@ if (
 # =====================================================
 
 elif (
-    condition == "POTENTIAL FIRE" or
+    condition == "Potential Fire" or
     condition == "POTENTIAL_FIRE" or
     condition == "1"
 ):
