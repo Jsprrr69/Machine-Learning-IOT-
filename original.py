@@ -14,7 +14,7 @@ st.set_page_config(
 )
 
 # =====================================================
-# LIVE ACTION FIRE UI DESIGN
+# LIVE FIRE UI DESIGN
 # =====================================================
 st.markdown("""
 <style>
@@ -28,12 +28,10 @@ BACKGROUND
     #220000 0%,
     #0a0000 50%,
     #000000 100%);
-
-    overflow: hidden;
 }
 
 /* =====================================================
-LIVE FIRE CONTAINER
+FIRE CONTAINER
 ===================================================== */
 .live-fire-container {
     position: fixed;
@@ -43,17 +41,21 @@ LIVE FIRE CONTAINER
     width: 100%;
     height: 420px;
 
-    z-index: 0;
     overflow: hidden;
+
+    z-index: -1;
+
     pointer-events: none;
 }
 
 /* =====================================================
-FIRE BASE GLOW
+FIRE GLOW
 ===================================================== */
 .fire-glow {
+
     position: absolute;
-    bottom: -100px;
+
+    bottom: -120px;
     left: -20%;
 
     width: 140%;
@@ -68,114 +70,101 @@ FIRE BASE GLOW
         transparent 75%
     );
 
-    filter: blur(50px);
+    filter: blur(60px);
 
-    animation:
-        firePulse 5s ease-in-out infinite;
+    animation: firePulse 5s ease-in-out infinite;
 }
 
 /* =====================================================
 FIRE WAVES
 ===================================================== */
 .fire-wave {
+
     position: absolute;
 
-    bottom: -80px;
-    left: -25%;
+    bottom: -100px;
+    left: -20%;
 
-    width: 160%;
+    width: 150%;
     height: 300px;
 
-    border-radius: 40%;
+    border-radius: 45%;
 
     background:
     radial-gradient(
         ellipse at center,
-        rgba(255,180,0,0.95) 0%,
-        rgba(255,100,0,0.8) 20%,
-        rgba(255,0,0,0.5) 45%,
+        rgba(255,200,0,0.95) 0%,
+        rgba(255,120,0,0.8) 20%,
+        rgba(255,0,0,0.55) 45%,
         rgba(255,0,0,0.1) 70%,
         transparent 85%
     );
 
-    filter: blur(35px);
+    filter: blur(40px);
 
     mix-blend-mode: screen;
 
     animation:
-        waveMove 7s ease-in-out infinite;
+        fireWave 7s ease-in-out infinite;
 }
 
 /* SECOND FIRE */
-.fire-wave.wave2 {
-    height: 360px;
-    opacity: 0.7;
+.wave2 {
     animation-delay: 2s;
+    opacity: 0.7;
+    height: 360px;
 }
 
 /* THIRD FIRE */
-.fire-wave.wave3 {
-    height: 250px;
-    opacity: 0.5;
+.wave3 {
     animation-delay: 4s;
+    opacity: 0.5;
+    height: 240px;
 }
 
 /* =====================================================
 FIRE MOVEMENT
 ===================================================== */
-@keyframes waveMove {
+@keyframes fireWave {
 
     0% {
         transform:
             translateX(-5%)
             translateY(0px)
-            scaleY(1)
-            skewX(0deg);
+            scaleY(1);
     }
 
-    20% {
+    25% {
+        transform:
+            translateX(0%)
+            translateY(-25px)
+            scaleY(1.15);
+    }
+
+    50% {
+        transform:
+            translateX(5%)
+            translateY(-50px)
+            scaleY(1.35);
+    }
+
+    75% {
         transform:
             translateX(0%)
             translateY(-20px)
-            scaleY(1.1)
-            skewX(2deg);
-    }
-
-    40% {
-        transform:
-            translateX(5%)
-            translateY(-45px)
-            scaleY(1.35)
-            skewX(-2deg);
-    }
-
-    60% {
-        transform:
-            translateX(2%)
-            translateY(-30px)
-            scaleY(1.2)
-            skewX(1deg);
-    }
-
-    80% {
-        transform:
-            translateX(-2%)
-            translateY(-15px)
-            scaleY(1.05)
-            skewX(-1deg);
+            scaleY(1.1);
     }
 
     100% {
         transform:
             translateX(-5%)
             translateY(0px)
-            scaleY(1)
-            skewX(0deg);
+            scaleY(1);
     }
 }
 
 /* =====================================================
-FIRE GLOW PULSE
+FIRE GLOW ANIMATION
 ===================================================== */
 @keyframes firePulse {
 
@@ -199,33 +188,36 @@ FIRE GLOW PULSE
 EMBERS
 ===================================================== */
 .embers {
+
     position: fixed;
+
     inset: 0;
 
-    z-index: 1;
+    z-index: -1;
+
     pointer-events: none;
 }
 
 .embers span {
+
     position: absolute;
 
-    bottom: -30px;
+    bottom: -20px;
 
-    width: 7px;
-    height: 7px;
+    width: 6px;
+    height: 6px;
 
     border-radius: 50%;
 
     background:
-        radial-gradient(circle,
-        #fff3b0 0%,
-        orange 50%,
-        red 100%);
+    radial-gradient(circle,
+    #fff3b0 0%,
+    orange 50%,
+    red 100%);
 
     box-shadow:
         0 0 10px orange,
-        0 0 20px red,
-        0 0 30px orange;
+        0 0 20px red;
 
     animation:
         emberRise linear infinite;
@@ -233,49 +225,44 @@ EMBERS
 
 /* RANDOM EMBERS */
 .embers span:nth-child(1) {
-    left: 8%;
+    left: 10%;
     animation-duration: 8s;
 }
 
 .embers span:nth-child(2) {
-    left: 20%;
+    left: 25%;
     animation-duration: 11s;
 }
 
 .embers span:nth-child(3) {
-    left: 35%;
+    left: 40%;
     animation-duration: 7s;
 }
 
 .embers span:nth-child(4) {
-    left: 50%;
+    left: 55%;
     animation-duration: 13s;
 }
 
 .embers span:nth-child(5) {
-    left: 65%;
+    left: 70%;
     animation-duration: 9s;
 }
 
 .embers span:nth-child(6) {
-    left: 78%;
-    animation-duration: 12s;
-}
-
-.embers span:nth-child(7) {
-    left: 90%;
+    left: 85%;
     animation-duration: 10s;
 }
 
 /* =====================================================
-EMBER FLOATING
+EMBER MOVEMENT
 ===================================================== */
 @keyframes emberRise {
 
     0% {
+
         transform:
             translateY(0px)
-            translateX(0px)
             scale(1);
 
         opacity: 0;
@@ -286,8 +273,9 @@ EMBER FLOATING
     }
 
     100% {
+
         transform:
-            translateY(-110vh)
+            translateY(-100vh)
             translateX(60px)
             scale(0);
 
@@ -300,7 +288,112 @@ CONTENT ABOVE FIRE
 ===================================================== */
 .main .block-container {
     position: relative;
-    z-index: 10;
+    z-index: 5;
+}
+
+/* =====================================================
+TITLE
+===================================================== */
+.main-title {
+    text-align: center;
+    font-size: 60px;
+    font-weight: bold;
+
+    color: white;
+
+    text-shadow:
+        0 0 10px red,
+        0 0 20px red,
+        0 0 40px orange;
+
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    text-align: center;
+    color: #dddddd;
+    font-size: 20px;
+    margin-bottom: 30px;
+}
+
+/* =====================================================
+METRIC BOXES
+===================================================== */
+.metric-box {
+
+    background: rgba(0,0,0,0.70);
+
+    border: 1px solid rgba(255,80,0,0.5);
+
+    border-radius: 18px;
+
+    padding: 20px;
+
+    text-align: center;
+
+    box-shadow:
+        0px 0px 20px rgba(255,0,0,0.3);
+}
+
+.metric-title {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.metric-value {
+    color: #ff5c33;
+    font-size: 38px;
+    font-weight: bold;
+}
+
+/* =====================================================
+STATUS BOX
+===================================================== */
+.status-box {
+
+    background: rgba(0,0,0,0.75);
+
+    border-radius: 20px;
+
+    padding: 20px;
+
+    text-align: center;
+
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    border: 2px solid red;
+
+    box-shadow:
+        0px 0px 25px red;
+}
+
+.status-text {
+    font-size: 38px;
+    font-weight: bold;
+}
+
+/* =====================================================
+TABLE
+===================================================== */
+[data-testid="stDataFrame"] {
+
+    background-color: rgba(0,0,0,0.65);
+
+    border-radius: 15px;
+
+    border: 1px solid red;
+
+    padding: 10px;
+}
+
+/* =====================================================
+PLOTLY CHART
+===================================================== */
+.js-plotly-plot {
+    border-radius: 20px;
+    overflow: hidden;
 }
 
 </style>
@@ -325,8 +418,15 @@ CONTENT ABOVE FIRE
     <span></span>
     <span></span>
     <span></span>
-    <span></span>
 
+</div>
+
+<div class="main-title">
+🔥 LIVE SENSOR READINGS
+</div>
+
+<div class="subtitle">
+Fire Detection and Monitoring System
 </div>
 
 """, unsafe_allow_html=True)
@@ -340,9 +440,9 @@ if "sensor_data" not in st.session_state:
 
     for i in range(12):
 
-        temp = random.randint(30, 65)
+        temp = random.randint(30, 70)
         air = random.randint(500, 2500)
-        smoke = random.randint(400, 3200)
+        smoke = random.randint(400, 3500)
         co = random.randint(300, 2500)
 
         condition = "NORMAL"
