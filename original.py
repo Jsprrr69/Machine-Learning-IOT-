@@ -110,7 +110,6 @@ FIRE WAVES
 .fire-wave.wave2 {
     height: 360px;
     opacity: 0.7;
-
     animation-delay: 2s;
 }
 
@@ -118,7 +117,6 @@ FIRE WAVES
 .fire-wave.wave3 {
     height: 250px;
     opacity: 0.5;
-
     animation-delay: 4s;
 }
 
@@ -208,7 +206,6 @@ EMBERS
     pointer-events: none;
 }
 
-/* EMBER PARTICLES */
 .embers span {
     position: absolute;
 
@@ -306,112 +303,7 @@ CONTENT ABOVE FIRE
     z-index: 10;
 }
 
-/* =====================================================
-TITLE
-===================================================== */
-.main-title {
-    text-align: center;
-    font-size: 60px;
-    font-weight: bold;
-    color: white;
-
-    text-shadow:
-        0 0 10px red,
-        0 0 20px red,
-        0 0 40px orange;
-
-    margin-bottom: 10px;
-}
-
-.subtitle {
-    text-align: center;
-    color: #dddddd;
-    font-size: 20px;
-    margin-bottom: 30px;
-}
-
-/* =====================================================
-METRIC BOXES
-===================================================== */
-.metric-box {
-    background: rgba(0,0,0,0.70);
-
-    border: 1px solid rgba(255,80,0,0.5);
-
-    border-radius: 18px;
-
-    padding: 20px;
-
-    text-align: center;
-
-    box-shadow:
-        0px 0px 20px rgba(255,0,0,0.3);
-}
-
-.metric-title {
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-}
-
-.metric-value {
-    color: #ff5c33;
-    font-size: 38px;
-    font-weight: bold;
-}
-
-/* =====================================================
-STATUS BOX
-===================================================== */
-.status-box {
-    background: rgba(0,0,0,0.75);
-
-    border-radius: 20px;
-
-    padding: 20px;
-
-    text-align: center;
-
-    margin-top: 20px;
-    margin-bottom: 20px;
-
-    border: 2px solid red;
-
-    box-shadow:
-        0px 0px 25px red;
-}
-
-.status-text {
-    font-size: 38px;
-    font-weight: bold;
-}
-
-/* =====================================================
-TABLE
-===================================================== */
-[data-testid="stDataFrame"] {
-    background-color: rgba(0,0,0,0.65);
-
-    border-radius: 15px;
-
-    border: 1px solid red;
-
-    padding: 10px;
-}
-
-/* =====================================================
-PLOTLY CHART
-===================================================== */
-.js-plotly-plot {
-    border-radius: 20px;
-    overflow: hidden;
-}
-
 </style>
-
-<!-- =====================================================
-LIVE FIRE HTML
-===================================================== -->
 
 <div class="live-fire-container">
 
@@ -435,14 +327,6 @@ LIVE FIRE HTML
     <span></span>
     <span></span>
 
-</div>
-
-<div class="main-title">
-🔥 LIVE SENSOR READINGS
-</div>
-
-<div class="subtitle">
-Fire Detection and Monitoring System
 </div>
 
 """, unsafe_allow_html=True)
