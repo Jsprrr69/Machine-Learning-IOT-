@@ -14,94 +14,146 @@ st.set_page_config(
 )
 
 # =====================================================
-# UI DESIGN
+# FIRE UI DESIGN
 # =====================================================
 st.markdown("""
 <style>
 
 /* =====================================================
-APP BACKGROUND
+BACKGROUND
 ===================================================== */
 .stApp {
 
     background:
-    radial-gradient(circle at center,
-    #250000 0%,
-    #0a0000 45%,
-    #000000 100%);
+    linear-gradient(
+        180deg,
+        #000000 0%,
+        #120000 30%,
+        #220000 60%,
+        #000000 100%
+    );
 
     overflow-x: hidden;
 }
 
 /* =====================================================
-ANIMATED FIRE WAVES
+LIVE FIRE ANIMATION
 ===================================================== */
-.stApp::before {
-
-    content: "";
+.fire-container {
 
     position: fixed;
 
-    bottom: -120px;
-    left: -10%;
+    bottom: 0;
+    left: 0;
 
-    width: 120%;
-    height: 420px;
+    width: 100%;
+    height: 55vh;
 
-    background:
-    radial-gradient(
-        ellipse at center,
-        rgba(255,220,120,0.95) 0%,
-        rgba(255,140,0,0.85) 20%,
-        rgba(255,60,0,0.55) 45%,
-        rgba(255,0,0,0.15) 70%,
-        transparent 85%
-    );
-
-    filter: blur(55px);
-
-    animation:
-        fireWave1 7s ease-in-out infinite;
+    overflow: hidden;
 
     z-index: 0;
 
     pointer-events: none;
 }
 
-.stApp::after {
+/* =====================================================
+FIRE LAYER 1
+===================================================== */
+.fire {
 
-    content: "";
+    position: absolute;
 
-    position: fixed;
+    bottom: -120px;
+    left: -10%;
 
-    bottom: -160px;
+    width: 120%;
+    height: 450px;
+
+    border-radius: 45%;
+
+    background:
+    radial-gradient(
+        ellipse at center,
+        rgba(255,240,180,0.95) 0%,
+        rgba(255,180,0,0.90) 15%,
+        rgba(255,100,0,0.75) 35%,
+        rgba(255,40,0,0.45) 55%,
+        rgba(255,0,0,0.15) 70%,
+        transparent 85%
+    );
+
+    filter: blur(60px);
+
+    mix-blend-mode: screen;
+
+    animation:
+        fireMove1 7s ease-in-out infinite;
+}
+
+/* =====================================================
+FIRE LAYER 2
+===================================================== */
+.fire2 {
+
+    position: absolute;
+
+    bottom: -150px;
     left: -15%;
 
     width: 130%;
     height: 520px;
+
+    border-radius: 40%;
 
     background:
     radial-gradient(
         ellipse at center,
         rgba(255,180,0,0.75) 0%,
         rgba(255,80,0,0.45) 40%,
-        transparent 80%
+        rgba(255,0,0,0.12) 65%,
+        transparent 85%
     );
 
     filter: blur(90px);
 
     animation:
-        fireWave2 10s ease-in-out infinite;
+        fireMove2 10s ease-in-out infinite;
+}
 
-    z-index: 0;
+/* =====================================================
+FIRE LAYER 3
+===================================================== */
+.fire3 {
 
-    pointer-events: none;
+    position: absolute;
+
+    bottom: -80px;
+    left: -5%;
+
+    width: 110%;
+    height: 350px;
+
+    border-radius: 50%;
+
+    background:
+    radial-gradient(
+        ellipse at center,
+        rgba(255,255,255,0.35) 0%,
+        rgba(255,220,120,0.45) 15%,
+        rgba(255,140,0,0.25) 35%,
+        transparent 70%
+    );
+
+    filter: blur(45px);
+
+    animation:
+        fireMove3 5s ease-in-out infinite;
 }
 
 /* =====================================================
 FIRE ANIMATION
 ===================================================== */
-@keyframes fireWave1 {
+@keyframes fireMove1 {
 
     0% {
         transform:
@@ -113,22 +165,22 @@ FIRE ANIMATION
     25% {
         transform:
             translateX(0%)
-            translateY(-30px)
+            translateY(-40px)
             scaleY(1.15);
     }
 
     50% {
         transform:
             translateX(3%)
-            translateY(-70px)
-            scaleY(1.35);
+            translateY(-90px)
+            scaleY(1.45);
     }
 
     75% {
         transform:
             translateX(0%)
-            translateY(-25px)
-            scaleY(1.1);
+            translateY(-35px)
+            scaleY(1.15);
     }
 
     100% {
@@ -139,7 +191,7 @@ FIRE ANIMATION
     }
 }
 
-@keyframes fireWave2 {
+@keyframes fireMove2 {
 
     0% {
         transform:
@@ -156,6 +208,27 @@ FIRE ANIMATION
     100% {
         transform:
             translateX(0%)
+            scale(1);
+    }
+}
+
+@keyframes fireMove3 {
+
+    0% {
+        transform:
+            translateY(0px)
+            scale(1);
+    }
+
+    50% {
+        transform:
+            translateY(-30px)
+            scale(1.1);
+    }
+
+    100% {
+        transform:
+            translateY(0px)
             scale(1);
     }
 }
@@ -177,7 +250,7 @@ TITLE
 
     text-align: center;
 
-    font-size: 60px;
+    font-size: 70px;
 
     font-weight: bold;
 
@@ -186,7 +259,8 @@ TITLE
     text-shadow:
         0 0 10px red,
         0 0 20px red,
-        0 0 40px orange;
+        0 0 40px orange,
+        0 0 80px orange;
 
     margin-bottom: 10px;
 }
@@ -236,7 +310,7 @@ METRIC BOXES
 
     color: #ff7b42;
 
-    font-size: 38px;
+    font-size: 42px;
 
     font-weight: bold;
 }
@@ -267,7 +341,7 @@ STATUS BOX
 
 .status-text {
 
-    font-size: 38px;
+    font-size: 42px;
 
     font-weight: bold;
 }
@@ -289,6 +363,16 @@ TABLE
 }
 
 </style>
+
+<div class="fire-container">
+
+    <div class="fire"></div>
+
+    <div class="fire2"></div>
+
+    <div class="fire3"></div>
+
+</div>
 
 <div class="main-title">
 🔥 LIVE SENSOR READINGS
@@ -338,7 +422,7 @@ if "sensor_data" not in st.session_state:
     st.session_state.sensor_data = pd.DataFrame(rows)
 
 # =====================================================
-# NEW DATA
+# LIVE MOCK UPDATE
 # =====================================================
 new_temp = random.randint(30, 70)
 new_air = random.randint(500, 2600)
@@ -399,7 +483,7 @@ for col, metric in zip([col1, col2, col3, col4], metrics):
         ''', unsafe_allow_html=True)
 
 # =====================================================
-# STATUS
+# STATUS DISPLAY
 # =====================================================
 status = latest["Condition"]
 
