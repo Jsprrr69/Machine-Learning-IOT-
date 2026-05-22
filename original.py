@@ -14,7 +14,7 @@ st.set_page_config(
 )
 
 # =====================================================
-# LIVE FIRE UI DESIGN
+# FIRE UI DESIGN
 # =====================================================
 st.markdown("""
 <style>
@@ -25,15 +25,15 @@ BACKGROUND
 .stApp {
     background:
     radial-gradient(circle at center,
-    #220000 0%,
-    #0a0000 50%,
+    #250000 0%,
+    #0a0000 45%,
     #000000 100%);
 
     overflow-x: hidden;
 }
 
 /* =====================================================
-FIRE CONTAINER
+LIVE FIRE CONTAINER
 ===================================================== */
 .live-fire-container {
 
@@ -63,7 +63,7 @@ FIRE GLOW
     left: -20%;
 
     width: 140%;
-    height: 400px;
+    height: 420px;
 
     background:
     radial-gradient(
@@ -566,36 +566,36 @@ latest = df.iloc[0]
 col1, col2, col3, col4 = st.columns(4)
 
 with col1:
-    st.markdown(f"""
+    st.markdown(f'''
     <div class="metric-box">
         <div class="metric-title">🌡 TEMPERATURE</div>
-        <div class="metric-value">{latest['Temperature Reading (°C)']}°C</div>
+        <div class="metric-value">{latest["Temperature Reading (°C)"]}°C</div>
     </div>
-    """, unsafe_allow_html=True)
+    ''', unsafe_allow_html=True)
 
 with col2:
-    st.markdown(f"""
+    st.markdown(f'''
     <div class="metric-box">
         <div class="metric-title">🌫 AIR QUALITY</div>
-        <div class="metric-value">{latest['Air Quality Reading']}</div>
+        <div class="metric-value">{latest["Air Quality Reading"]}</div>
     </div>
-    """, unsafe_allow_html=True)
+    ''', unsafe_allow_html=True)
 
 with col3:
-    st.markdown(f"""
+    st.markdown(f'''
     <div class="metric-box">
         <div class="metric-title">💨 SMOKE</div>
-        <div class="metric-value">{latest['Smoke Reading']}</div>
+        <div class="metric-value">{latest["Smoke Reading"]}</div>
     </div>
-    """, unsafe_allow_html=True)
+    ''', unsafe_allow_html=True)
 
 with col4:
-    st.markdown(f"""
+    st.markdown(f'''
     <div class="metric-box">
         <div class="metric-title">☠ CO LEVEL</div>
-        <div class="metric-value">{latest['Carbon Monoxide Reading']}</div>
+        <div class="metric-value">{latest["Carbon Monoxide Reading"]}</div>
     </div>
-    """, unsafe_allow_html=True)
+    ''', unsafe_allow_html=True)
 
 # =====================================================
 # STATUS DISPLAY
@@ -610,7 +610,7 @@ if status == "POTENTIAL FIRE":
 if status == "FIRE":
     status_color = "#ff0000"
 
-st.markdown(f"""
+st.markdown(f'''
 <div class="status-box"
 style="border-color:{status_color};
 box-shadow:0px 0px 30px {status_color};">
@@ -622,7 +622,7 @@ style="color:{status_color};">
 
 </div>
 </div>
-""", unsafe_allow_html=True)
+''', unsafe_allow_html=True)
 
 # =====================================================
 # SENSOR TABLE
