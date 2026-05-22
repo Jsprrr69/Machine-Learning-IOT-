@@ -281,15 +281,23 @@ STATUS BOX
 }
 
 /* =====================================================
-TABLE FIX
+RED TABLE DESIGN
 ===================================================== */
 [data-testid="stDataFrame"] {
 
-    background-color: rgba(0,0,0,0.88);
+    background:
+    linear-gradient(
+        180deg,
+        rgba(40,0,0,0.95) 0%,
+        rgba(20,0,0,0.95) 100%
+    );
 
     border-radius: 15px;
 
-    border: 2px solid rgba(255,80,0,0.7);
+    border: 2px solid rgba(255,70,0,0.75);
+
+    box-shadow:
+        0 0 20px rgba(255,50,0,0.25);
 
     padding: 10px;
 
@@ -298,6 +306,41 @@ TABLE FIX
     position: relative;
 
     z-index: 999 !important;
+}
+
+/* TABLE CELLS */
+[data-testid="stDataFrame"] td {
+
+    background-color: rgba(25,0,0,0.92) !important;
+
+    color: #ffffff !important;
+
+    border-color: rgba(255,80,0,0.15) !important;
+}
+
+/* HEADER */
+[data-testid="stDataFrame"] th {
+
+    background:
+    linear-gradient(
+        180deg,
+        rgba(120,0,0,0.95) 0%,
+        rgba(70,0,0,0.95) 100%
+    ) !important;
+
+    color: #ffffff !important;
+
+    font-weight: bold !important;
+
+    border-bottom:
+    2px solid rgba(255,120,0,0.7) !important;
+}
+
+/* ROW HOVER */
+[data-testid="stDataFrame"] tr:hover td {
+
+    background-color:
+    rgba(255,60,0,0.18) !important;
 }
 
 /* TABLE CONTENT */
