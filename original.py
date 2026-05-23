@@ -38,7 +38,7 @@ st.set_page_config(
 
 SUPABASE_URL = "https://cofxcqxbiminjabrptrp.supabase.co"
 
-SUPABASE_KEY = "YOUR_SUPABASE_KEY"
+SUPABASE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNvZnhjcXhiaW1pbmphYnJwdHJwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY1ODEyMDAsImV4cCI6MjA5MjE1NzIwMH0.6FDwnj_AiaOPVoYNiRA43RKDn3cqLYK00rTHuSaNh3c"
 
 # =====================================================
 # CONNECT TO SUPABASE
@@ -362,11 +362,11 @@ h1, h2, h3 {
 </style>
 
 <div class="main-title">
-🔥 LIVE SENSOR READINGS
+🔥 FIRE DETECTION AND MONITORING SYSTEM 🔥 
 </div>
 
 <div class="subtitle">
-AI Fire Detection and Monitoring System
+Live Sensor Readings
 </div>
 
 """, unsafe_allow_html=True)
