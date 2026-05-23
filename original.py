@@ -29,7 +29,7 @@ from streamlit_autorefresh import st_autorefresh
 
 st.set_page_config(
     page_title="Fire Detection Dashboard",
-    layout=,"wide"
+    layout="wide",
     initial_sidebar_state="collapsed"
 )
 # =====================================================
