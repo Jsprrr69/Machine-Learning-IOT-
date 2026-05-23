@@ -623,120 +623,131 @@ col1, col2, col3, col4 = st.columns(4)
 
 with col1:
 
-    st.markdown(f'''
-    <div class="metric-box">
+    st.markdown(
+        f"""
+        <div class='metric-box'>
 
-        <div style="
-            font-size:55px;
-            margin-bottom:10px;">
-            🌡
+            <div style='
+                font-size:55px;
+                margin-bottom:10px;'>
+                🌡
+            </div>
+
+            <div class='metric-title'>
+                TEMPERATURE
+            </div>
+
+            <div style='
+                color:white;
+                font-size:22px;
+                margin-top:20px;'>
+                Temperature:
+            </div>
+
+            <div class='metric-value'>
+                {temperature}°C
+            </div>
+
         </div>
-
-        <div class="metric-title">
-            TEMPERATURE
-        </div>
-
-        <div style="
-            color:white;
-            font-size:22px;
-            margin-top:20px;">
-            Temperature:
-        </div>
-
-        <div class="metric-value">
-            {temperature}°C
-        </div>
-
-    </div>
-    ''', unsafe_allow_html=True)
+        """,
+        unsafe_allow_html=True
+    )
 
 with col2:
 
-    st.markdown(f'''
-    <div class="metric-box">
+    st.markdown(
+        f"""
+        <div class='metric-box'>
 
-        <div style="
-            font-size:55px;
-            margin-bottom:10px;">
-            🌫
+            <div style='
+                font-size:55px;
+                margin-bottom:10px;'>
+                🌫
+            </div>
+
+            <div class='metric-title'>
+                AIR QUALITY
+            </div>
+
+            <div style='
+                color:white;
+                font-size:22px;
+                margin-top:20px;'>
+                Air Quality:
+            </div>
+
+            <div class='metric-value'>
+                {air_quality}
+            </div>
+
         </div>
-
-        <div class="metric-title">
-            AIR QUALITY
-        </div>
-
-        <div style="
-            color:white;
-            font-size:22px;
-            margin-top:20px;">
-            Air Quality:
-        </div>
-
-        <div class="metric-value">
-            {air_quality}
-        </div>
-
-    </div>
-    ''', unsafe_allow_html=True)
+        """,
+        unsafe_allow_html=True
+    )
 
 with col3:
 
-    st.markdown(f'''
-    <div class="metric-box">
+    st.markdown(
+        f"""
+        <div class='metric-box'>
 
-        <div style="
-            font-size:55px;
-            margin-bottom:10px;">
-            ☠
+            <div style='
+                font-size:55px;
+                margin-bottom:10px;'>
+                ☠
+            </div>
+
+            <div class='metric-title'>
+                CO LEVEL
+            </div>
+
+            <div style='
+                color:white;
+                font-size:22px;
+                margin-top:20px;'>
+                Carbon Monoxide:
+            </div>
+
+            <div class='metric-value'>
+                {carbon_monoxide} PPM
+            </div>
+
         </div>
-
-        <div class="metric-title">
-            CO LEVEL
-        </div>
-
-        <div style="
-            color:white;
-            font-size:22px;
-            margin-top:20px;">
-            Carbon Monoxide:
-        </div>
-
-        <div class="metric-value">
-            {carbon_monoxide} PPM
-        </div>
-
-    </div>
-    ''', unsafe_allow_html=True)
+        """,
+        unsafe_allow_html=True
+    )
 
 with col4:
 
-    st.markdown(f'''
-    <div class="metric-box">
+    st.markdown(
+        f"""
+        <div class='metric-box'>
 
-        <div style="
-            font-size:55px;
-            margin-bottom:10px;">
-            💨
+            <div style='
+                font-size:55px;
+                margin-bottom:10px;'>
+                💨
+            </div>
+
+            <div class='metric-title'>
+                SMOKE
+            </div>
+
+            <div style='
+                color:white;
+                font-size:22px;
+                margin-top:20px;'>
+                Smoke:
+            </div>
+
+            <div class='metric-value'>
+                {smoke} PPM
+            </div>
+
         </div>
-
-        <div class="metric-title">
-            SMOKE
-        </div>
-
-        <div style="
-            color:white;
-            font-size:22px;
-            margin-top:20px;">
-            Smoke:
-        </div>
-
-        <div class="metric-value">
-            {smoke} PPM
-        </div>
-
-    </div>
-    ''', unsafe_allow_html=True)
-
+        """,
+        unsafe_allow_html=True
+    )
 # =====================================================
 # STATUS COLORS
 # =====================================================
