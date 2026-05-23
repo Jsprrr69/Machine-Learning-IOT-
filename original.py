@@ -462,7 +462,7 @@ if (
     condition == "0"
 ):
 
-    condition = "NON-FIRE"
+    condition = "NORMAL"
 
     remarks = "System Safe"
 
@@ -483,7 +483,7 @@ elif (
     condition == "1"
 ):
 
-    condition = "POTENTIAL FIRE"
+    condition = "POTENTIAL_FIRE"
 
     remarks = "Warning Sent | Buzzer Activated"
 
@@ -573,16 +573,7 @@ supabase.table(
 
     "id": 1,
 
-    "relay_status":
-    relay_status,
-
-    "breaker_status":
-    breaker_status,
-
-    "buzzer_status":
-    buzzer_status,
-
-    "condition":
+    "Status":
     condition
 
 }).execute()
