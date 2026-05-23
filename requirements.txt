@@ -7,3 +7,4 @@ scipy
 plotly
 matplotlib
 supabase
+streamlit_autorefresh
