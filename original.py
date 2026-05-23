@@ -391,7 +391,9 @@ h1, h2, h3 {
 }
 
 </style>
+""", unsafe_allow_html=True)
 
+st.markdown("""
 <div class="main-title">
 FIRE DETECTION AND MONITORING SYSTEM
 </div>
@@ -399,7 +401,6 @@ FIRE DETECTION AND MONITORING SYSTEM
 <div class="subtitle">
 Live Sensor Readings
 </div>
-
 """, unsafe_allow_html=True)
 
 # =====================================================
