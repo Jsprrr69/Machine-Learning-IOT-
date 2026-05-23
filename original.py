@@ -280,11 +280,9 @@ METRIC BOXES
 
     min-height: 330px;
 
-    display: flex;
+    position: relative;
 
-    flex-direction: column;
-
-    justify-content: center;
+    overflow: hidden;
 }
 
 .metric-box:hover {
@@ -321,7 +319,12 @@ METRIC BOXES
     text-shadow:
         0 0 10px rgba(255,80,0,0.7);
 }
+.metric-box div {
 
+    position: relative;
+
+    z-index: 5;
+}
 /* =====================================================
 STATUS BOX
 ===================================================== */
