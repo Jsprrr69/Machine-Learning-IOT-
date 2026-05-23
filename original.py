@@ -22,7 +22,7 @@ import time
 
 from supabase import create_client
 from datetime import datetime
-
+from streamlit_autorefresh import st_autorefresh
 # =====================================================
 # PAGE CONFIG
 # =====================================================
@@ -30,8 +30,13 @@ from datetime import datetime
 st.set_page_config(
     page_title="Fire Detection Dashboard",
     layout="wide"
+    initial_sidebar_state="collapsed"
 )
+# =====================================================
+# AUTO REFRESH
+# =====================================================
 
+st_autorefresh(interval=2000, key="fire_refresh")
 # =====================================================
 # SUPABASE CONFIGURATION
 # =====================================================
@@ -48,12 +53,33 @@ supabase = create_client(
     SUPABASE_URL,
     SUPABASE_KEY
 )
+except Exception as e:
 
+    st.error(f"Supabase Connection Error: {e}")
+
+    st.stop()
+    
 # =====================================================
 # LOAD MACHINE LEARNING MODEL
 # =====================================================
 
-model = joblib.load("fire_detection_model.pkl")
+@st.cache_resource
+
+def load_model():
+
+    return joblib.load(
+        "fire_detection_model.pkl"
+    )
+
+try:
+
+    model = load_model()
+
+except Exception as e:
+
+    st.error(f"Model Loading Error: {e}")
+
+    st.stop()
 
 # =====================================================
 # FIRE BACKGROUND CSS
@@ -63,22 +89,27 @@ st.markdown("""
 <style>
 
 /* =====================================================
-APP BACKGROUND
+GLOBAL APP
 ===================================================== */
+
+html, body, [class*="css"] {
+
+    font-family: 'Arial', sans-serif;
+}
 
 .stApp {
 
     background:
     radial-gradient(circle at center,
-    #250000 0%,
-    #0a0000 45%,
+    #220000 0%,
+    #0a0000 40%,
     #000000 100%);
 
     overflow-x: hidden;
 }
 
 /* =====================================================
-FIRE LAYER
+FIRE ANIMATION
 ===================================================== */
 
 .stApp::before {
@@ -87,26 +118,25 @@ FIRE LAYER
 
     position: fixed;
 
-    bottom: -120px;
+    bottom: -180px;
     left: -10%;
 
     width: 120%;
-    height: 420px;
+    height: 500px;
 
     background:
     radial-gradient(
         ellipse at center,
-        rgba(255,220,120,0.95) 0%,
-        rgba(255,140,0,0.85) 20%,
-        rgba(255,60,0,0.55) 45%,
-        rgba(255,0,0,0.18) 70%,
+        rgba(255,200,50,0.95) 0%,
+        rgba(255,120,0,0.75) 25%,
+        rgba(255,60,0,0.45) 50%,
+        rgba(255,0,0,0.15) 70%,
         transparent 85%
     );
-
-    filter: blur(55px);
+     filter: blur(70px);
 
     animation:
-        fireWave1 7s ease-in-out infinite;
+        fireWave1 8s ease-in-out infinite;
 
     z-index: 0;
 
@@ -119,51 +149,46 @@ FIRE LAYER
 
     position: fixed;
 
-    bottom: -160px;
+    bottom: -220px;
     left: -15%;
 
     width: 130%;
-    height: 520px;
+    height: 650px;
 
     background:
     radial-gradient(
         ellipse at center,
-        rgba(255,180,0,0.75) 0%,
-        rgba(255,80,0,0.45) 40%,
+        rgba(255,100,0,0.55) 0%,
+        rgba(255,40,0,0.35) 40%,
         transparent 80%
-    );
+     );
 
-    filter: blur(90px);
+    filter: blur(100px);
 
     animation:
-        fireWave2 10s ease-in-out infinite;
+        fireWave2 12s ease-in-out infinite;
 
     z-index: 0;
 
     pointer-events: none;
 }
 
-/* =====================================================
-ANIMATION
-===================================================== */
-
 @keyframes fireWave1 {
 
     0% {
         transform:
-            translateX(-3%)
+            translateX(-2%)
             translateY(0px)
             scaleY(1);
     }
 
     25% {
         transform:
-            translateX(0%)
-            translateY(-30px)
-            scaleY(1.15);
+            translateX(1%)
+            translateY(-40px)
+            scaleY(1.12);
     }
-
-    50% {
+     50% {
         transform:
             translateX(3%)
             translateY(-70px)
@@ -173,13 +198,13 @@ ANIMATION
     75% {
         transform:
             translateX(0%)
-            translateY(-25px)
+            translateY(-30px)
             scaleY(1.1);
     }
 
     100% {
         transform:
-            translateX(-3%)
+            translateX(-2%)
             translateY(0px)
             scaleY(1);
     }
@@ -188,21 +213,14 @@ ANIMATION
 @keyframes fireWave2 {
 
     0% {
-        transform:
-            translateX(0%)
-            scale(1);
+        transform: translateX(0%) scale(1);
     }
-
-    50% {
-        transform:
-            translateX(-2%)
-            scale(1.08);
+     50% {
+        transform: translateX(-3%) scale(1.1);
     }
 
     100% {
-        transform:
-            translateX(0%)
-            scale(1);
+        transform: translateX(0%) scale(1);
     }
 }
 
@@ -215,6 +233,8 @@ MAIN CONTENT
     position: relative;
 
     z-index: 5;
+
+    padding-top: 2rem;
 }
 
 /* =====================================================
@@ -225,16 +245,18 @@ TITLE
 
     text-align: center;
 
-    font-size: 60px;
+    font-size: 70px;
 
-    font-weight: bold;
+    font-weight: 900;
 
     color: white;
+  line-height: 1.1;
 
     text-shadow:
         0 0 10px red,
         0 0 20px red,
-        0 0 40px orange;
+        0 0 40px orange,
+        0 0 80px rgba(255,120,0,0.5);
 
     margin-bottom: 10px;
 }
@@ -245,85 +267,111 @@ TITLE
 
     color: #dddddd;
 
-    font-size: 20px;
+    font-size: 26px;
 
-    margin-bottom: 30px;
+    margin-bottom: 40px;
 }
 
 /* =====================================================
-METRIC BOXES
+METRIC CARDS
 ===================================================== */
 
-.metric-box {
+.metric-card {
 
     background:
     linear-gradient(
         180deg,
-        rgba(25,25,25,0.95) 0%,
-        rgba(10,10,10,0.95) 100%
+        rgba(15,15,15,0.97) 0%,
+        rgba(5,5,5,0.97) 100%
     );
 
-    border: 2px solid rgba(255,80,0,0.7);
+    border: 2px solid rgba(255,69,0,0.85);
 
-    border-radius: 22px;
+    border-radius: 28px;
 
     padding: 35px;
 
+    min-height: 360px;
+
     text-align: center;
 
-    box-shadow:
-        0px 0px 30px rgba(255,60,0,0.35);
-
-    backdrop-filter: blur(10px);
-
-    transition: 0.3s;
-
-    min-height: 330px;
-
     position: relative;
+      overflow: hidden;
 
-    overflow: hidden;
+    transition: all 0.3s ease;
+
+    box-shadow:
+        0 0 25px rgba(255,69,0,0.35);
 }
 
-.metric-box:hover {
+.metric-card:hover {
 
     transform: translateY(-8px);
 
     box-shadow:
-        0px 0px 45px rgba(255,80,0,0.7);
+        0 0 45px rgba(255,69,0,0.7);
 }
 
-.metric-title {
+.metric-icon {
+
+    font-size: 90px;
+
+    margin-bottom: 10px;
+}
+
+.metric-header {
 
     color: white;
 
+    font-size: 30px;
+     font-weight: 800;
+
+    margin-bottom: 10px;
+}
+
+.metric-line {
+
+    width: 110px;
+
+    height: 4px;
+
+    background: #ff4500;
+
+    margin: auto;
+
+    margin-bottom: 25px;
+
+    border-radius: 50px;
+}
+
+.metric-label {
+
+    color: #f1f1f1;
+
     font-size: 28px;
 
-    font-weight: bold;
-
-    letter-spacing: 2px;
-
-    margin-top: 10px;
+    font-weight: 600;
+    
+ margin-bottom: 25px;
 }
 
 .metric-value {
 
-    color: #ff5e00;
+    color: #ff4500;
 
-    font-size: 60px;
+    font-size: 82px;
 
-    font-weight: bold;
-
-    margin-top: 10px;
+    font-weight: 900;
 
     text-shadow:
-        0 0 10px rgba(255,80,0,0.7);
+        0 0 25px rgba(255,69,0,0.7);
 }
-.metric-box div {
 
-    position: relative;
+.metric-unit {
 
-    z-index: 5;
+    font-size: 38px;
+
+    color: white;
 }
 /* =====================================================
 STATUS BOX
@@ -331,34 +379,35 @@ STATUS BOX
 
 .status-box {
 
-    background: rgba(0,0,0,0.75);
+    margin-top: 35px;
 
-    border-radius: 20px;
+    background:
+    rgba(25,0,0,0.8);
 
-    padding: 20px;
+    border-radius: 25px;
+
+    padding: 30px;
 
     text-align: center;
 
-    margin-top: 20px;
-    margin-bottom: 20px;
-
-    border: 2px solid red;
-
-    box-shadow:
-        0px 0px 25px red;
-
-    backdrop-filter: blur(5px);
-
-    position: relative;
-
-    z-index: 5;
+    backdrop-filter: blur(10px);
 }
 
-.status-text {
+.status-title {
 
-    font-size: 38px;
+    font-size: 50px;
 
-    font-weight: bold;
+    font-weight: 900;
+
+    margin-bottom: 10px;
+
+    }
+
+.status-subtitle {
+
+    color: white;
+
+    font-size: 24px;
 }
 
 /* =====================================================
@@ -371,18 +420,24 @@ TABLE DESIGN
     linear-gradient(
         180deg,
         rgba(45,0,0,0.96) 0%,
-        rgba(15,0,0,0.96) 100%
+        rgba(10,0,0,0.96) 100%
     ) !important;
 
     border: 2px solid rgba(255,80,0,0.8);
 
-    border-radius: 15px;
+    border-radius: 20px;
 
     overflow: hidden;
+}
+/* =====================================================
+CHARTS
+===================================================== */
 
-    position: relative;
+.js-plotly-plot {
 
-    z-index: 999 !important;
+    border-radius: 20px;
+
+    overflow: hidden;
 }
 
 h1, h2, h3 {
@@ -392,6 +447,10 @@ h1, h2, h3 {
 
 </style>
 """, unsafe_allow_html=True)
+
+# =====================================================
+# TITLE
+# =====================================================
 
 st.markdown("""
 <div class="main-title">
@@ -413,14 +472,18 @@ response = supabase.table(
     "Date_and_Time",
     desc=True
 ).limit(1).execute()
+except Exception as e:
 
+    st.error(f"Database Error: {e}")
+
+    st.stop()
 # =====================================================
 # CHECK IF EMPTY
 # =====================================================
 
-if len(response.data) == 0:
+if not response.data:
 
-    st.warning("No sensor data found.")
+    st.warning("No sensor data available.")
 
     st.stop()
 
@@ -436,13 +499,28 @@ latest = df.iloc[0]
 # GET SENSOR VALUES
 # =====================================================
 
-temperature = latest["temperature_reading"]
+def safe_float(value):
 
-air_quality = latest["air_quality_reading"]
+    try:
+        return float(value)
+    except:
+        return 0.0
 
-carbon_monoxide = latest["carbon_monoxide_reading"]
+temperature = safe_float(
+    latest.get("temperature_reading", 0)
+)
 
-smoke = latest["smoke_reading"]
+air_quality = safe_float(
+    latest.get("air_quality_reading", 0)
+)
+
+carbon_monoxide = safe_float(
+    latest.get("carbon_monoxide_reading", 0)
+)
+
+smoke = safe_float(
+    latest.get("smoke_reading", 0)
+)
 
 # =====================================================
 # PREPARE ML INPUT
@@ -450,18 +528,31 @@ smoke = latest["smoke_reading"]
 # FEATURE ORDER MUST MATCH TRAINING
 # =====================================================
 
-input_data = pd.DataFrame([{
-    'temperature': temperature,
-    'air_quality': air_quality,
-    'carbon_monoxide': carbon_monoxide,
-    'smoke': smoke,
-}])
+input_data = pd.DataFrame([[
+    temperature,
+    air_quality,
+    carbon_monoxide,
+    smoke
+]], columns=[
+    'temperature',
+    'air_quality',
+    'carbon_monoxide',
+    'smoke'
+])
 
 # =====================================================
 # MACHINE LEARNING PREDICTION
 # =====================================================
 
-prediction = model.predict(input_data)[0]
+try:
+
+    prediction = model.predict(input_data)[0]
+
+except Exception as e:
+
+    st.error(f"Prediction Error: {e}")
+
+    prediction = "Non-Fire"
 
 # =====================================================
 # PREDICTION PROBABILITY
@@ -469,9 +560,14 @@ prediction = model.predict(input_data)[0]
 
 try:
 
-    probabilities = model.predict_proba(input_data)[0]
+    probabilities = model.predict_proba(
+        input_data
+    )[0]
 
-    fire_probability = float(np.max(probabilities))
+    fire_probability = round(
+        float(np.max(probabilities)) * 100,
+        2
+    )
 
 except:
 
@@ -628,106 +724,47 @@ col1, col2, col3, col4 = st.columns(4)
 with col1:
 
     st.markdown(f"""
-    <div style="
-        background: rgba(0,0,0,0.88);
-        border: 2px solid #ff4500;
-        border-radius: 25px;
-        padding: 30px;
-        text-align: center;
-        box-shadow: 0 0 25px rgba(255,69,0,0.5);
-        min-height: 350px;
-    ">
+    <div class="metric-card">
 
-        <div style="
-            font-size: 75px;
-            margin-bottom: 15px;
-            color: #ff3c00;">
-            🌡
-        </div>
+        <div class="metric-icon">🌡️</div>
 
-        <div style="
-            color: white;
-            font-size: 32px;
-            font-weight: bold;
-            margin-bottom: 10px;">
+        <div class="metric-header">
             TEMPERATURE
         </div>
 
-        <div style="
-            width: 100px;
-            height: 3px;
-            background: #ff3c00;
-            margin: auto;
-            margin-bottom: 30px;">
-        </div>
+        <div class="metric-line"></div>
 
-        <div style="
-            color: white;
-            font-size: 24px;
-            margin-bottom: 20px;">
+        <div class="metric-label">
             Temperature
         </div>
 
-        <div style="
-            color: #ff4500;
-            font-size: 75px;
-            font-weight: bold;
-            text-shadow: 0 0 20px rgba(255,69,0,0.7);">
-            {temperature}<span style="font-size:40px;">°C</span>
+        <div class="metric-value">
+            {temperature:.0f}
+            <span class="metric-unit">°C</span>
         </div>
 
     </div>
     """, unsafe_allow_html=True)
-
-with col2:
+    with col2:
 
     st.markdown(f"""
-    <div style="
-        background: rgba(0,0,0,0.88);
-        border: 2px solid #ff4500;
-        border-radius: 25px;
-        padding: 30px;
-        text-align: center;
-        box-shadow: 0 0 25px rgba(255,69,0,0.5);
-        min-height: 350px;
-    ">
+    <div class="metric-card">
 
-        <div style="
-            font-size: 75px;
-            margin-bottom: 15px;">
-            🌫
-        </div>
+        <div class="metric-icon">🌫️</div>
 
-        <div style="
-            color: white;
-            font-size: 32px;
-            font-weight: bold;
-            margin-bottom: 10px;">
+        <div class="metric-header">
             AIR QUALITY
         </div>
 
-        <div style="
-            width: 100px;
-            height: 3px;
-            background: #ff3c00;
-            margin: auto;
-            margin-bottom: 30px;">
-        </div>
+        <div class="metric-line"></div>
 
-        <div style="
-            color: white;
-            font-size: 24px;
-            margin-bottom: 20px;">
+        <div class="metric-label">
             Air Quality
         </div>
 
-        <div style="
-            color: #ff4500;
-            font-size: 75px;
-            font-weight: bold;
-            text-shadow: 0 0 20px rgba(255,69,0,0.7);">
-            {air_quality}
-            <span style="font-size:40px;">PPM</span>
+        <div class="metric-value">
+            {air_quality:.0f}
+            <span class="metric-unit">PPM</span>
         </div>
 
     </div>
@@ -736,52 +773,23 @@ with col2:
 with col3:
 
     st.markdown(f"""
-    <div style="
-        background: rgba(0,0,0,0.88);
-        border: 2px solid #ff4500;
-        border-radius: 25px;
-        padding: 30px;
-        text-align: center;
-        box-shadow: 0 0 25px rgba(255,69,0,0.5);
-        min-height: 350px;
-    ">
+    <div class="metric-card">
 
-        <div style="
-            font-size: 75px;
-            margin-bottom: 15px;">
-            ☁
-        </div>
+        <div class="metric-icon">☁️</div>
 
-        <div style="
-            color: white;
-            font-size: 32px;
-            font-weight: bold;
-            margin-bottom: 10px;">
+        <div class="metric-header">
             CARBON MONOXIDE
         </div>
 
-        <div style="
-            width: 100px;
-            height: 3px;
-            background: #ff3c00;
-            margin: auto;
-            margin-bottom: 30px;">
-        </div>
+        <div class="metric-line"></div>
 
-        <div style="
-            color: white;
-            font-size: 24px;
-            margin-bottom: 20px;">
+        <div class="metric-label">
             Carbon Monoxide
         </div>
 
-        <div style="
-            color: #ff4500;
-            font-size: 75px;
-            font-weight: bold;
-            text-shadow: 0 0 20px rgba(255,69,0,0.7);">
-            {carbon_monoxide}
-            <span style="font-size:40px;">PPM</span>
+        <div class="metric-value">
+            {carbon_monoxide:.0f}
+            <span class="metric-unit">PPM</span>
         </div>
 
     </div>
@@ -790,52 +798,22 @@ with col3:
 with col4:
 
     st.markdown(f"""
-    <div style="
-        background: rgba(0,0,0,0.88);
-        border: 2px solid #ff4500;
-        border-radius: 25px;
-        padding: 30px;
-        text-align: center;
-        box-shadow: 0 0 25px rgba(255,69,0,0.5);
-        min-height: 350px;
-    ">
+    <div class="metric-card">
 
-        <div style="
-            font-size: 75px;
-            margin-bottom: 15px;">
-            💨
-        </div>
-
-        <div style="
-            color: white;
-            font-size: 32px;
-            font-weight: bold;
-            margin-bottom: 10px;">
+        <div class="metric-icon">💨</div>
+  <div class="metric-header">
             SMOKE
         </div>
 
-        <div style="
-            width: 100px;
-            height: 3px;
-            background: #ff3c00;
-            margin: auto;
-            margin-bottom: 30px;">
-        </div>
+        <div class="metric-line"></div>
 
-        <div style="
-            color: white;
-            font-size: 24px;
-            margin-bottom: 20px;">
+        <div class="metric-label">
             Smoke
         </div>
 
-        <div style="
-            color: #ff4500;
-            font-size: 75px;
-            font-weight: bold;
-            text-shadow: 0 0 20px rgba(255,69,0,0.7);">
-            {smoke}
-            <span style="font-size:40px;">PPM</span>
+        <div class="metric-value">
+            {smoke:.0f}
+            <span class="metric-unit">PPM</span>
         </div>
 
     </div>
@@ -857,127 +835,140 @@ if condition == "FIRE":
 # =====================================================
 # STATUS BOX
 # =====================================================
-
-st.markdown(f'''
+st.markdown(f"""
 <div class="status-box"
-style="border-color:{status_color};
-box-shadow:0px 0px 30px {status_color};">
+style="
+border:2px solid {status_color};
+box-shadow:0 0 30px {status_color};">
 
-<div class="status-text"
+<div class="status-title"
 style="color:{status_color};">
-
 {condition}
+</div>
 
+<div class="status-subtitle">
+{remarks}
 </div>
 
 <div style="
-color:white;
-margin-top:10px;
-font-size:18px;">
+margin-top:15px;
+font-size:20px;
+color:white;">
 
-{remarks}
-
+AI Confidence: {fire_probability}%
 </div>
 
 </div>
-''', unsafe_allow_html=True)
-
+""", unsafe_allow_html=True)
 # =====================================================
 # HISTORY TABLE
 # =====================================================
 
-history_response = supabase.table(
-    "table2_with_MLmodel"
-).select("*").order(
-    "Date_and_Time",
-    desc=True
-).limit(15).execute()
+try:
 
-history_df = pd.DataFrame(
-    history_response.data
-)
+    history_response = supabase.table(
+        "table2_with_MLmodel"
+    ).select("*").order(
+        "Date_and_Time",
+        desc=True
+    ).limit(20).execute()
+
+    history_df = pd.DataFrame(
+        history_response.data
+    )
+
+except:
+
+    history_df = pd.DataFrame()
 
 st.markdown(
     "## 📋 LIVE SENSOR DATA TABLE"
 )
 
-st.dataframe(
-    history_df,
-    use_container_width=True,
-    height=500
-)
+if not history_df.empty:
+
+    st.dataframe(
+        history_df,
+        use_container_width=True,
+        height=450
+    )
+
+else:
+ st.info("No historical data available.")
 
 # =====================================================
-# CHART
+# SENSOR ANALYTICS
 # =====================================================
 
 st.markdown(
     "## 📈 SENSOR ANALYTICS"
 )
 
-fig = go.Figure()
+if not history_df.empty:
 
-fig.add_trace(go.Scatter(
+    fig = go.Figure()
 
-    x=history_df["Date_and_Time"],
+    fig.add_trace(go.Scatter(
 
-    y=history_df[
-        "temperature_reading"
-    ],
+        x=history_df["Date_and_Time"],
 
-    mode='lines+markers',
+        y=history_df[
+            "temperature_reading"
+              ],
 
-    name='Temperature'
-))
+        mode='lines+markers',
 
-fig.add_trace(go.Scatter(
+        name='Temperature'
+    ))
 
-    x=history_df["Date_and_Time"],
+    fig.add_trace(go.Scatter(
 
-    y=history_df[
-        "smoke_reading"
-    ],
+        x=history_df["Date_and_Time"],
 
-    mode='lines+markers',
+        y=history_df[
+            "smoke_reading"
+        ],
 
-    name='Smoke'
-))
+        mode='lines+markers',
 
-fig.add_trace(go.Scatter(
+        name='Smoke'
+    ))
 
-    x=history_df["Date_and_Time"],
+    fig.add_trace(go.Scatter(
 
-    y=history_df[
-        "carbon_monoxide_reading"
-    ],
+        x=history_df["Date_and_Time"],
 
-    mode='lines+markers',
+        y=history_df[
+            "carbon_monoxide_reading"
+        ],
+        mode='lines+markers',
 
-    name='CO Level'
-))
+        name='CO Level'
+    ))
 
-fig.update_layout(
+    fig.update_layout(
 
-    paper_bgcolor=
-    'rgba(0,0,0,0.6)',
+        paper_bgcolor='rgba(0,0,0,0.65)',
 
-    plot_bgcolor=
-    'rgba(0,0,0,0.6)',
+        plot_bgcolor='rgba(0,0,0,0.65)',
 
-    font=dict(color='white'),
+        font=dict(color='white'),
 
-    height=500
-)
+        height=550,
 
-st.plotly_chart(
-    fig,
-    use_container_width=True
-)
+        xaxis_title='Date and Time',
+
+        yaxis_title='Sensor Values'
+    )
+
+    st.plotly_chart(
+        fig,
+        use_container_width=True
+    )
 
 # =====================================================
-# TERMINAL OUTPUT
-# =====================================================
-
+# TERMINAL LOGS
+# ================
 print("=======================================")
 
 print("AI FIRE DETECTION RESULT")
@@ -1007,11 +998,3 @@ print("Breaker:", breaker_status)
 print("Buzzer:", buzzer_status)
 
 print("=======================================")
-
-# =====================================================
-# AUTO REFRESH
-# =====================================================
-
-time.sleep(2)
-
-st.rerun()
