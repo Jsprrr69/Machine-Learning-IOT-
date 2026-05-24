@@ -628,7 +628,7 @@ status_color = "#00ff99"
 
 if condition == "POTENTIAL FIRE":
 
-    status_color = "#ff6600"
+    status_color = "#ff4500"
 
 if condition == "FIRE":
 
