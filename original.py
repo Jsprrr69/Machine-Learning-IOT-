@@ -590,13 +590,13 @@ metrics = [
      f"{temperature}°C"),
 
     ("🌫 AIR QUALITY",
-     air_quality),
+     f"{air_quality} PPM"),
 
     ("☠ CO LEVEL",
-     carbon_monoxide),
+     f"{carbon_monoxide} PPM"),
 
     ("💨 SMOKE",
-     smoke)
+     f"{smoke} PPM")
 ]
 
 for col, metric in zip(
@@ -612,6 +612,8 @@ for col, metric in zip(
             <div class="metric-title">
                 {metric[0]}
             </div>
+
+            <br>
 
             <div class="metric-value">
                 {metric[1]}
