@@ -610,21 +610,19 @@ with col1:
 
 with col2:
 
-    st.markdown(f"""
-    <div class="metric-box">
+    st.markdown(f"""<div class="metric-box">
 
-        <div class="metric-title">
-            🌫 AIR QUALITY
-        </div>
+<div class="metric-title">
+🌫 AIR QUALITY
+</div>
 
-        <br>
+<br>
 
-        <div class="metric-value">
-            {air_quality} PPM
-        </div>
+<div class="metric-value">
+{air_quality} PPM
+</div>
 
-    </div>
-    """, unsafe_allow_html=True)
+</div>""", unsafe_allow_html=True)
 
 # =====================================================
 # CO LEVEL
@@ -632,21 +630,19 @@ with col2:
 
 with col3:
 
-    st.markdown(f"""
-    <div class="metric-box">
+    st.markdown(f"""<div class="metric-box">
 
-        <div class="metric-title">
-            ☠ CO LEVEL
-        </div>
+<div class="metric-title">
+☠ CO LEVEL
+</div>
 
-        <br>
+<br>
 
-        <div class="metric-value">
-            {carbon_monoxide} PPM
-        </div>
+<div class="metric-value">
+{carbon_monoxide} PPM
+</div>
 
-    </div>
-    """, unsafe_allow_html=True)
+</div>""", unsafe_allow_html=True)
 
 # =====================================================
 # SMOKE
@@ -654,21 +650,19 @@ with col3:
 
 with col4:
 
-    st.markdown(f"""
-    <div class="metric-box">
+    st.markdown(f"""<div class="metric-box">
 
-        <div class="metric-title">
-            💨 SMOKE
-        </div>
+<div class="metric-title">
+💨 SMOKE
+</div>
 
-        <br>
+<br>
 
-        <div class="metric-value">
-            {smoke} PPM
-        </div>
+<div class="metric-value">
+{smoke} PPM
+</div>
 
-    </div>
-    """, unsafe_allow_html=True)
+</div>""", unsafe_allow_html=True)
 # =====================================================
 # STATUS COLORS
 # =====================================================
