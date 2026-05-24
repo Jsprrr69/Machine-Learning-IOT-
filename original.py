@@ -591,22 +591,19 @@ col1, col2, col3, col4 = st.columns(4)
 
 with col1:
 
-    st.markdown(f"""
-    <div class="metric-box">
+    st.markdown(f"""<div class="metric-box">
 
-        <div class="metric-title">
-            🌡 TEMPERATURE
-        </div>
+<div class="metric-title">
+🌡 TEMPERATURE
+</div>
 
-        <br>
+<br>
 
-        <div class="metric-value">
-            {temperature}°C
-        </div>
+<div class="metric-value">
+{temperature}°C
+</div>
 
-    </div>
-    """, unsafe_allow_html=True)
-
+</div>""", unsafe_allow_html=True)
 # =====================================================
 # AIR QUALITY
 # =====================================================
