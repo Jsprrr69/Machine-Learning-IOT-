@@ -626,9 +626,9 @@ for col, metric in zip(
 
 status_color = "#00ff99"
 
-if condition == "POTENTIAL FIRE":
+if condition == "POTENTIAL_FIRE":
 
-    status_color = "#ff4500"
+    status_color = "#ff6600"
 
 if condition == "FIRE":
 
