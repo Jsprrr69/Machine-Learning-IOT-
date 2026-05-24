@@ -585,49 +585,93 @@ supabase.table(
 
 col1, col2, col3, col4 = st.columns(4)
 
-metrics = [
+# =====================================================
+# TEMPERATURE
+# =====================================================
 
-    ("🌡 TEMPERATURE",
-     f"{temperature}°C"),
+with col1:
 
-    ("🌫 AIR QUALITY",
-     f"{air_quality} PPM"),
+    st.markdown(f"""
+    <div class="metric-box">
 
-    ("☠ CO LEVEL",
-     f"{carbon_monoxide} PPM"),
-
-    ("💨 SMOKE",
-     f"{smoke} PPM")
-]
-
-for col, metric in zip(
-    [col1, col2, col3, col4],
-    metrics
-):
-
-    with col:
-
-        html_code = f"""
-        <div class="metric-box">
-
-            <div class="metric-title">
-                {metric[0]}
-            </div>
-
-            <br>
-
-            <div class="metric-value">
-                {metric[1]}
-            </div>
-
+        <div class="metric-title">
+            🌡 TEMPERATURE
         </div>
-        """
 
-        st.markdown(
-            html_code,
-            unsafe_allow_html=True
-        )
+        <br>
 
+        <div class="metric-value">
+            {temperature}°C
+        </div>
+
+    </div>
+    """, unsafe_allow_html=True)
+
+# =====================================================
+# AIR QUALITY
+# =====================================================
+
+with col2:
+
+    st.markdown(f"""
+    <div class="metric-box">
+
+        <div class="metric-title">
+            🌫 AIR QUALITY
+        </div>
+
+        <br>
+
+        <div class="metric-value">
+            {air_quality} PPM
+        </div>
+
+    </div>
+    """, unsafe_allow_html=True)
+
+# =====================================================
+# CO LEVEL
+# =====================================================
+
+with col3:
+
+    st.markdown(f"""
+    <div class="metric-box">
+
+        <div class="metric-title">
+            ☠ CO LEVEL
+        </div>
+
+        <br>
+
+        <div class="metric-value">
+            {carbon_monoxide} PPM
+        </div>
+
+    </div>
+    """, unsafe_allow_html=True)
+
+# =====================================================
+# SMOKE
+# =====================================================
+
+with col4:
+
+    st.markdown(f"""
+    <div class="metric-box">
+
+        <div class="metric-title">
+            💨 SMOKE
+        </div>
+
+        <br>
+
+        <div class="metric-value">
+            {smoke} PPM
+        </div>
+
+    </div>
+    """, unsafe_allow_html=True)
 # =====================================================
 # STATUS COLORS
 # =====================================================
