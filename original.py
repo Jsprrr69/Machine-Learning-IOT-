@@ -606,7 +606,7 @@ for col, metric in zip(
 
     with col:
 
-        st.markdown(f'''
+        html_code = f"""
         <div class="metric-box">
 
             <div class="metric-title">
@@ -620,7 +620,12 @@ for col, metric in zip(
             </div>
 
         </div>
-        ''', unsafe_allow_html=True)
+        """
+
+        st.markdown(
+            html_code,
+            unsafe_allow_html=True
+        )
 
 # =====================================================
 # STATUS COLORS
