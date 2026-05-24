@@ -143,10 +143,6 @@ FIRE LAYER
     pointer-events: none;
 }
 
-/* =====================================================
-ANIMATION
-===================================================== */
-
 @keyframes fireWave1 {
 
     0% {
@@ -360,15 +356,20 @@ h1, h2, h3 {
 }
 
 </style>
+""", unsafe_allow_html=True)
 
+# =====================================================
+# TITLE
+# =====================================================
+
+st.markdown("""
 <div class="main-title">
-🔥 FIRE DETECTION AND MONITORING SYSTEM 🔥 
+🔥 FIRE DETECTION AND MONITORING SYSTEM 🔥
 </div>
 
 <div class="subtitle">
 Live Sensor Readings
 </div>
-
 """, unsafe_allow_html=True)
 
 # =====================================================
