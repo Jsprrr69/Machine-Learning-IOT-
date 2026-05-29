@@ -52,6 +52,48 @@ if dataset is None:
 dataset.columns = dataset.columns.str.strip()
 
 # =========================
+# STATISTICAL ANALYSIS TABLE
+# =========================
+st.subheader("📋 Table 2. Statistical Analysis by Fire Classification")
+
+rows = []
+
+for label in dataset['status'].unique():
+
+    df = dataset[dataset['status'] == label]
+
+    rows.append({
+        "Label": label,
+
+        "Temp Mean": round(df['temperature'].mean(), 2),
+        "Temp Std": round(df['temperature'].std(), 2),
+        "Temp Min": round(df['temperature'].min(), 2),
+        "Temp Max": round(df['temperature'].max(), 2),
+
+        "AQ Mean": round(df['air_quality'].mean(), 2),
+        "AQ Std": round(df['air_quality'].std(), 2),
+        "AQ Min": round(df['air_quality'].min(), 2),
+        "AQ Max": round(df['air_quality'].max(), 2),
+
+        "CO Mean": round(df['carbon_monoxide'].mean(), 2),
+        "CO Std": round(df['carbon_monoxide'].std(), 2),
+        "CO Min": round(df['carbon_monoxide'].min(), 2),
+        "CO Max": round(df['carbon_monoxide'].max(), 2),
+
+        "Smoke Mean": round(df['smoke'].mean(), 2),
+        "Smoke Std": round(df['smoke'].std(), 2),
+        "Smoke Min": round(df['smoke'].min(), 2),
+        "Smoke Max": round(df['smoke'].max(), 2)
+    })
+
+stats_df = pd.DataFrame(rows)
+
+st.dataframe(
+    stats_df,
+    use_container_width=True
+)
+
+# =========================
 # FEATURES / LABEL
 # =========================
 X = dataset[['temperature', 'air_quality', 'carbon_monoxide', 'smoke']]
@@ -95,7 +137,6 @@ precision, recall, f1, _ = precision_recall_fscore_support(
     y, y_pred, average=None, labels=classes
 )
 
-# convert to %
 precision *= 100
 recall *= 100
 f1 *= 100
@@ -157,7 +198,8 @@ fig_cm = go.Figure(
         y=classes,
         colorscale="Reds",
         text=[
-            [f"{cm[i][j]} ({cm_percent[i][j]:.1f}%)" for j in range(len(classes))]
+            [f"{cm[i][j]} ({cm_percent[i][j]:.1f}%)"
+             for j in range(len(classes))]
             for i in range(len(classes))
         ],
         texttemplate="%{text}"
@@ -205,7 +247,12 @@ st.plotly_chart(fig_z, use_container_width=True)
 # =========================
 st.subheader("🔥 Sensor Correlation Matrix")
 
-sensor_features = ['temperature', 'air_quality', 'carbon_monoxide', 'smoke']
+sensor_features = [
+    'temperature',
+    'air_quality',
+    'carbon_monoxide',
+    'smoke'
+]
 
 corr = dataset[sensor_features].corr()
 
@@ -222,6 +269,8 @@ fig_corr = go.Figure(
     )
 )
 
-fig_corr.update_layout(title="Sensor Correlation Matrix")
+fig_corr.update_layout(
+    title="Sensor Correlation Matrix"
+)
 
 st.plotly_chart(fig_corr, use_container_width=True)
