@@ -52,46 +52,61 @@ if dataset is None:
 dataset.columns = dataset.columns.str.strip()
 
 # =========================
-# STATISTICAL ANALYSIS TABLE
+# STATISTICAL ANALYSIS TABLES
 # =========================
 st.subheader("📋 Table 2. Statistical Analysis by Fire Classification")
 
-rows = []
+# =========================
+# TEMPERATURE STATISTICS
+# =========================
+st.markdown("### 🌡️ Temperature Statistics")
 
-for label in dataset['status'].unique():
-
-    df = dataset[dataset['status'] == label]
-
-    rows.append({
-        "Label": label,
-
-        "Temp Mean": round(df['temperature'].mean(), 2),
-        "Temp Std": round(df['temperature'].std(), 2),
-        "Temp Min": round(df['temperature'].min(), 2),
-        "Temp Max": round(df['temperature'].max(), 2),
-
-        "AQ Mean": round(df['air_quality'].mean(), 2),
-        "AQ Std": round(df['air_quality'].std(), 2),
-        "AQ Min": round(df['air_quality'].min(), 2),
-        "AQ Max": round(df['air_quality'].max(), 2),
-
-        "CO Mean": round(df['carbon_monoxide'].mean(), 2),
-        "CO Std": round(df['carbon_monoxide'].std(), 2),
-        "CO Min": round(df['carbon_monoxide'].min(), 2),
-        "CO Max": round(df['carbon_monoxide'].max(), 2),
-
-        "Smoke Mean": round(df['smoke'].mean(), 2),
-        "Smoke Std": round(df['smoke'].std(), 2),
-        "Smoke Min": round(df['smoke'].min(), 2),
-        "Smoke Max": round(df['smoke'].max(), 2)
-    })
-
-stats_df = pd.DataFrame(rows)
-
-st.dataframe(
-    stats_df,
-    use_container_width=True
+temp_stats = (
+    dataset.groupby('status')['temperature']
+    .agg(['mean', 'std', 'min', 'max'])
+    .round(2)
 )
+
+st.dataframe(temp_stats, use_container_width=True)
+
+# =========================
+# AIR QUALITY STATISTICS
+# =========================
+st.markdown("### 🌫️ Air Quality Statistics")
+
+aq_stats = (
+    dataset.groupby('status')['air_quality']
+    .agg(['mean', 'std', 'min', 'max'])
+    .round(2)
+)
+
+st.dataframe(aq_stats, use_container_width=True)
+
+# =========================
+# CARBON MONOXIDE STATISTICS
+# =========================
+st.markdown("### ☠️ Carbon Monoxide Statistics")
+
+co_stats = (
+    dataset.groupby('status')['carbon_monoxide']
+    .agg(['mean', 'std', 'min', 'max'])
+    .round(2)
+)
+
+st.dataframe(co_stats, use_container_width=True)
+
+# =========================
+# SMOKE STATISTICS
+# =========================
+st.markdown("### 🔥 Smoke Statistics")
+
+smoke_stats = (
+    dataset.groupby('status')['smoke']
+    .agg(['mean', 'std', 'min', 'max'])
+    .round(2)
+)
+
+st.dataframe(smoke_stats, use_container_width=True)    
 
 # =========================
 # FEATURES / LABEL
