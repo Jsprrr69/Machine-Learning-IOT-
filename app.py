@@ -28,7 +28,7 @@ st.title("🔥 IOT BASED FIRE DETECTION AND CLASSIFICATION")
 # =========================
 # DATASET HANDLING
 # =========================
-DATA_PATH = "testingset.csv"
+DATA_PATH = "testingset3.csv"
 
 dataset = None
 
