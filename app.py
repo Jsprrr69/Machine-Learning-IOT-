@@ -109,6 +109,31 @@ smoke_stats = (
 st.dataframe(smoke_stats, use_container_width=True)    
 
 # =========================
+# TABLE 1. TRAINING DATA STATISTICS
+# =========================
+st.subheader("📋 Table 1. Training Data Statistics")
+
+stats_table = dataset.groupby('status').agg({
+    'temperature': ['mean', 'median', 'min', 'max'],
+    'air_quality': ['mean', 'median', 'min', 'max'],
+    'carbon_monoxide': ['mean', 'median', 'min', 'max'],
+    'smoke': ['mean', 'median', 'min', 'max']
+}).round(3)
+
+# Convert MultiIndex column names
+stats_table.columns = [
+    f"{col[0]}_{col[1]}"
+    for col in stats_table.columns
+]
+
+stats_table = stats_table.reset_index()
+
+st.dataframe(
+    stats_table,
+    use_container_width=True
+)
+
+# =========================
 # FEATURES / LABEL
 # =========================
 X = dataset[['temperature', 'air_quality', 'carbon_monoxide', 'smoke']]
