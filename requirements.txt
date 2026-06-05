@@ -1,10 +1,4 @@
 streamlit
 pandas
 numpy
-joblib
-scikit-learn
-scipy
-plotly
-matplotlib
-supabase
-streamlit_autorefresh
+Pillow
