@@ -763,8 +763,6 @@ elif page == "📚 User Manual":
 
     • Relay Module
 
-    • LCD Display
-
     Allow the sensors a few moments to stabilize after startup.
     """)
 
