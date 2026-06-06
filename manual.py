@@ -1028,7 +1028,7 @@ elif page == "👨‍💻 Developers":
     </div>
     """, unsafe_allow_html=True)
 
-     with col3: 
+    with col3: 
          st.markdown(""" 
     <div class='team-card'> 
     👨‍💻<br><br> 
