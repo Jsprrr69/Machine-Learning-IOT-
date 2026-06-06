@@ -905,13 +905,13 @@ Examples:
 
 System Response:
 
+✓ Breaker Isolation Activated
+
 ✓ Fire Alert Displayed
 
 ✓ SMS Notification Sent
 
 ✓ Alarm Activated
-
-✓ Breaker Isolation Activated
 """)
 
     st.divider()
