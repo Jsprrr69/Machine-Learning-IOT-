@@ -1028,18 +1028,13 @@ elif page == "👨‍💻 Developers":
     </div>
     """, unsafe_allow_html=True)
 
-    with col3:
-        st.image(
-        "assets/reyes.jfif",
-        use_container_width=True
-    )
-
-    st.markdown("""
-    ### Amiell Reyes
-
-    Researcher
-    """)
-
+     with col3: 
+         st.markdown(""" 
+    <div class='team-card'> 
+    👨‍💻<br><br> 
+    Reyes </div> 
+    """, unsafe_allow_html=True)
+    
     with col4:
         st.markdown("""
     <div class='team-card'>
