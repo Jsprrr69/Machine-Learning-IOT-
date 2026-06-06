@@ -1140,7 +1140,16 @@ EMERGENCY ALERT!!!
 A fire incident has been detected!
 
 Immediate response is needed.
+
 (Sample SMS Alert for Homeowners/Tenants)
+
+A fire incident has been detected!
+
+Immediate response is needed.
+
+Immediate response is needed at PUP CEA Manila!
+
+(Sample SMS Alert for BFP)
     """)
 
     st.success("""
