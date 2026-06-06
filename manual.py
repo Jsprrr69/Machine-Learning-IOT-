@@ -332,7 +332,19 @@ st.markdown("""
 # SIDEBAR MENU
 # ==========================================================
 
-st.sidebar.title("🔥 Menu Bar 🔥")
+st.sidebar.markdown("""
+<div class="sidebar-title">
+
+🔥 FIREGUARD AI
+
+</div>
+""", unsafe_allow_html=True)
+
+st.sidebar.markdown("""
+<p style='text-align:center;color:#bbbbbb;'>
+Smart Fire Detection System
+</p>
+""", unsafe_allow_html=True)
 
 page = st.sidebar.radio(
     "",
