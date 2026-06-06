@@ -1022,7 +1022,6 @@ st.success("""
 7. Breaker isolation activates during confirmed Fire conditions.
    """)
 
-
 elif page == "🏗️ Architecture":
 
     st.title("🏗️ System Architecture")
