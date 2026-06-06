@@ -1027,29 +1027,75 @@ The system then performs automated responses.
 """)
 
 elif page == "📊 Performance":
+    st.markdown("""
+<div class='glass'>
 
-   st.title("📊 System Performance")
+<h1 style='text-align:center;'>
 
-c1,c2,c3 = st.columns(3)
+📊 System Performance
+
+</h1>
+
+<p style='text-align:center;'>
+
+Performance evaluation of the
+IoT-Based Fire Detection and Classification System.
+
+</p>
+
+</div>
+""", unsafe_allow_html=True)
+
+c1, c2, c3 = st.columns(3)
 
 with c1:
-    st.metric(
-        "Model Accuracy",
-        "98.80%"
-    )
+    st.markdown("""
+    <div class='glass' style='text-align:center;'>
+
+    <h1 style='color:#ff8c42;'>98.80%</h1>
+
+    <h3>🧠 Model Accuracy</h3>
+
+    <p>
+    Random Forest Classification
+    Performance
+    </p>
+
+    </div>
+    """, unsafe_allow_html=True)
 
 with c2:
-    st.metric(
-        "SMS Reliability",
-        "100%"
-    )
+    st.markdown("""
+    <div class='glass' style='text-align:center;'>
+
+    <h1 style='color:#ff8c42;'>100%</h1>
+
+    <h3>📱 SMS Reliability</h3>
+
+    <p>
+    Notification Delivery
+    Success Rate
+    </p>
+
+    </div>
+    """, unsafe_allow_html=True)
 
 with c3:
-    st.metric(
-        "Breaker Reliability",
-        "100%"
-    )
-    
+    st.markdown("""
+    <div class='glass' style='text-align:center;'>
+
+    <h1 style='color:#ff8c42;'>100%</h1>
+
+    <h3>⚡ Breaker Reliability</h3>
+
+    <p>
+    Automatic Isolation
+    Success Rate
+    </p>
+
+    </div>
+    """, unsafe_allow_html=True)
+
     st.divider()
 
     st.subheader("🧠 Random Forest Results")
