@@ -344,16 +344,40 @@ fig_acc.add_trace(go.Pie(
     rotation=90
 ))
 
+accuracy = accuracy_score(y, y_pred) * 100
+error = 100 - accuracy
+
+st.subheader("🎯 Model Accuracy (Circular View)")
+
+fig_acc = go.Figure()
+
+# Donut chart (Accuracy vs Error)
+fig_acc.add_trace(go.Pie(
+    values=[accuracy, error],
+    labels=["Accuracy", "Error"],
+    hole=0.75,
+    marker_colors=["red", "black"],
+    textinfo="label+percent",
+    textfont_size=18,
+    rotation=90
+))
+
+# Center text (BIG accuracy display)
 fig_acc.update_layout(
     annotations=[
         dict(
             text=f"{accuracy:.2f}%",
             x=0.5,
             y=0.5,
-            font_size=40,   # 👈 BIG CENTER TEXT
+            font_size=40,
             showarrow=False
         )
     ],
-    legend=dict(font=dict(size=18)),
-    showlegend=True
+    legend=dict(
+        font=dict(size=18)
+    ),
+    showlegend=True,
+    margin=dict(t=20, b=20, l=20, r=20)
 )
+
+st.plotly_chart(fig_acc, use_container_width=True)
