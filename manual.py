@@ -382,7 +382,7 @@ st.markdown("""
 st.sidebar.markdown("""
 <div class="sidebar-title">
 
-🔥 FIREGUARD AI 🔥
+🔥 MAIN MENU 🔥
 
 </div>
 """, unsafe_allow_html=True)
@@ -421,12 +421,9 @@ if page == "🏠 Home":
     <h1>
     IoT-Based Fire Detection
     and Classification System
-    </h1>
-
-    <h3>
     with Automatic Breaker Isolation
     and SMS Notification
-    </h3>
+    </h1>
 
     <br>
 
@@ -1339,9 +1336,8 @@ st.markdown("""
 <div class='footer'>
 
 🔥 IoT-Based Fire Detection and Classification System
-
 with Automatic Breaker Isolation
-and SMS Notification
+and SMS Notification 🔥
 
 <br><br>
 
