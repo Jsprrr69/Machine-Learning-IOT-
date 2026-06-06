@@ -532,8 +532,6 @@ elif page == "⚙️ How It Works":
 
     st.divider()
 
-    st.subheader("📌 Complete Workflow")
-
     st.markdown("""
     <div class='timeline-card'>
     1️⃣ Sensors collect environmental data
@@ -567,6 +565,8 @@ elif page == "⚙️ How It Works":
     8️⃣ Breaker isolation activates during Fire
     </div>
     """, unsafe_allow_html=True)
+
+     st.subheader("📌 Complete Workflow")
 
     st.title("⚙️ How The System Works")
 
@@ -1052,10 +1052,11 @@ IoT-Based Fire Detection and Classification System
 with Automatic Breaker Isolation
 and SMS Notification
 """)
+
+# FOOTER #
+st.markdown("""
     
-    st.markdown("""
-    
-    <div class='footer'>
+<div class='footer'>
 
     🔥 IoT-Based Fire Detection and Classification System
 
