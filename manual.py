@@ -894,7 +894,7 @@ Non-Fire, Potential Fire, or Fire.
 </div>
 """, unsafe_allow_html=True)
 
-    st.divider()
+st.divider()
 
     st.markdown("""
     ### 🚦 Step 4 — Classification Result
