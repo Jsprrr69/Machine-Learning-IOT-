@@ -154,6 +154,64 @@ st.markdown("""
 }
 
 /* ========================================= */
+/* RESEARCHER CARD */
+/* ========================================= */
+
+.researcher-card{
+
+    background: rgba(255,255,255,0.05);
+
+    border-radius:20px;
+
+    padding:20px;
+
+    text-align:center;
+
+    transition:0.35s;
+
+    cursor:pointer;
+
+    height:100%;
+}
+
+.researcher-card:hover{
+
+    transform:translateY(-10px);
+
+    box-shadow:
+        0 0 30px rgba(255,140,66,0.4);
+
+    border:1px solid rgba(255,140,66,0.5);
+}
+
+.researcher-card img{
+
+    width:180px;
+
+    height:180px;
+
+    object-fit:cover;
+
+    border-radius:50%;
+
+    border:4px solid #ff8c42;
+
+    margin-bottom:15px;
+}
+
+.researcher-card h3{
+
+    color:white;
+
+    margin-bottom:5px;
+}
+
+.researcher-card p{
+
+    color:#cccccc;
+}
+
+/* ========================================= */
 /* TIMELINE */
 /* ========================================= */
 
@@ -1010,47 +1068,98 @@ elif page == "👨‍💻 Developers":
     Group 5
     """)
 
-    col1,col2,col3,col4 = st.columns(4)
+    col1, col2 = st.columns(2)
 
     with col1:
+
         st.markdown("""
-    <div class='team-card'>
-    👨‍💻<br><br>
-    Latuga
-    </div>
-    """, unsafe_allow_html=True)
+        <a href="https://www.facebook.com/janrhemle.latuga.35"
+           target="_blank"
+           style="text-decoration:none;">
+
+        <div class="researcher-card">
+
+            <img src="app/static/assets/latuga.jfif">
+
+            <h3>Latuga</h3>
+
+            <p>Researcher</p>
+
+        </div>
+
+        </a>
+        """, unsafe_allow_html=True)
 
     with col2:
-        st.markdown("""
-    <div class='team-card'>
-    👨‍💻<br><br>
-    Padilla
-    </div>
-    """, unsafe_allow_html=True)
 
-    with col3: 
-         st.markdown(""" 
-    <div class='team-card'> 
-    👨‍💻<br><br> 
-    Reyes </div> 
-    """, unsafe_allow_html=True)
-    
-    with col4:
         st.markdown("""
-    <div class='team-card'>
-    👨‍💻<br><br>
-    Wenceslao
-    </div>
-    """, unsafe_allow_html=True)
+        <a href="https://www.facebook.com/EngrMika"
+           target="_blank"
+           style="text-decoration:none;">
+
+        <div class="researcher-card">
+
+            <img src="app/static/assets/padilla.jfif">
+
+            <h3>Padilla</h3>
+
+            <p>Researcher</p>
+
+        </div>
+
+        </a>
+        """, unsafe_allow_html=True)
+
+    col3, col4 = st.columns(2)
+
+    with col3:
+
+        st.markdown("""
+        <a href="https://www.facebook.com/Reyessir.Amieeell"
+           target="_blank"
+           style="text-decoration:none;">
+
+        <div class="researcher-card">
+
+            <img src="app/static/assets/reyes.jfif">
+
+            <h3>Reyes</h3>
+
+            <p>Researcher</p>
+
+        </div>
+
+        </a>
+        """, unsafe_allow_html=True)
+
+    with col4:
+
+        st.markdown("""
+        <a href="https://www.facebook.com/jsprrr"
+           target="_blank"
+           style="text-decoration:none;">
+
+        <div class="researcher-card">
+
+            <img src="app/static/assets/wenceslao.jfif">
+
+            <h3>Wenceslao</h3>
+
+            <p>Researcher</p>
+
+        </div>
+
+        </a>
+        """, unsafe_allow_html=True)
 
     st.divider()
 
     st.success("""
-IoT-Based Fire Detection and Classification System
+    IoT-Based Fire Detection and Classification System
 
-with Automatic Breaker Isolation
-and SMS Notification
-""")
+    with Automatic Breaker Isolation
+    and SMS Notification
+    """)
 
 # FOOTER #
 st.markdown("""
