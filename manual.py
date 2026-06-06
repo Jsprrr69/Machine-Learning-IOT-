@@ -1068,11 +1068,11 @@ elif page == "👨‍💻 Developers":
 
         st.markdown("""
         <div class='researcher-name'>
-        Amiel Latuga
+        Jan Rhemle Latuga
         </div>
 
         <div class='researcher-role'>
-        Lead Researcher
+        Researcher
         </div>
 
         <a class='fb-button'
@@ -1091,7 +1091,7 @@ elif page == "👨‍💻 Developers":
 
         st.markdown("""
         <div class='researcher-name'>
-        Mika Padilla
+        Mikaela Padilla
         </div>
 
         <div class='researcher-role'>
@@ -1118,7 +1118,7 @@ elif page == "👨‍💻 Developers":
 
         st.markdown("""
         <div class='researcher-name'>
-        Amiel Reyes
+        Amiell Reyes
         </div>
 
         <div class='researcher-role'>
@@ -1141,7 +1141,7 @@ elif page == "👨‍💻 Developers":
 
         st.markdown("""
         <div class='researcher-name'>
-        John Paul Wenceslao
+        Allen Jasper Wenceslao
         </div>
 
         <div class='researcher-role'>
