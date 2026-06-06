@@ -334,17 +334,26 @@ fig_acc.add_trace(go.Pie(
 ))
 
 # Center text (big accuracy value)
+fig_acc.add_trace(go.Pie(
+    values=[accuracy, error],
+    labels=["Accuracy", "Error"],
+    hole=0.75,
+    marker_colors=["red", "black"],
+    textinfo="label+percent",
+    textfont_size=18,
+    rotation=90
+))
+
 fig_acc.update_layout(
     annotations=[
         dict(
             text=f"{accuracy:.2f}%",
             x=0.5,
             y=0.5,
-            font_size=20,
+            font_size=40,   # 👈 BIG CENTER TEXT
             showarrow=False
         )
     ],
+    legend=dict(font=dict(size=18)),
     showlegend=True
 )
-
-st.plotly_chart(fig_acc, use_container_width=True)
