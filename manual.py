@@ -552,7 +552,7 @@ page = st.sidebar.radio(
         "🎥 Demonstration",
         "❓ FAQ",
         "👨‍💻 Developers",
-        "🎮 Fire Commander"
+        "🎮 Firefighter Mission"
     ]
 )
 
