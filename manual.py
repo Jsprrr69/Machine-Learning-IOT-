@@ -1027,23 +1027,13 @@ The system then performs automated responses.
 """)
 
 elif page == "📊 Performance":
-    
+
     st.markdown("""
     <div class='glass'>
-
-    <h1 style='text-align:center;'>
-
-📊 System Performance
-
-    </h1>
-
-    <p style='text-align:center;'>
-
-    Performance evaluation of the
-    IoT-Based Fire Detection and Classification System.
-
+    <h1>📊 System Performance</h1>
+    <p>
+    Performance evaluation of the IoT-Based Fire Detection and Classification System.
     </p>
-
     </div>
     """, unsafe_allow_html=True)
 
@@ -1051,116 +1041,72 @@ elif page == "📊 Performance":
 
     with c1:
         st.markdown("""
-        <div class='glass' style='text-align:center;'>
-    
+        <div class='glass'>
         <h1 style='color:#ff8c42;'>98.80%</h1>
-    
         <h3>🧠 Model Accuracy</h3>
-    
-        <p>
-        Random Forest Classification
-        Performance
-        </p>
-    
+        <p>Random Forest Classification Performance</p>
         </div>
         """, unsafe_allow_html=True)
-    
+
     with c2:
         st.markdown("""
-        <div class='glass' style='text-align:center;'>
-    
+        <div class='glass'>
         <h1 style='color:#ff8c42;'>100%</h1>
-    
         <h3>📱 SMS Reliability</h3>
-    
-        <p>
-        Notification Delivery
-        Success Rate
-        </p>
-    
+        <p>Notification Delivery Success Rate</p>
         </div>
         """, unsafe_allow_html=True)
-    
+
     with c3:
         st.markdown("""
-        <div class='glass' style='text-align:center;'>
-    
+        <div class='glass'>
         <h1 style='color:#ff8c42;'>100%</h1>
-    
         <h3>⚡ Breaker Reliability</h3>
-    
-        <p>
-        Automatic Isolation
-        Success Rate
-        </p>
-    
+        <p>Automatic Isolation Success Rate</p>
         </div>
         """, unsafe_allow_html=True)
-    
-        st.divider()
-    
-        st.subheader("🧠 Random Forest Results")
-    
-        st.success("""
-    The machine learning model achieved
-    98.80% overall accuracy.
-    
-    The model successfully classified:
-    
-    • Non-Fire
-    
-    • Potential Fire
-    
-    • Fire
-    
-    conditions using four environmental sensors.
-    """)
-    
-        st.divider()
-    
-        st.subheader("📈 Class Performance")
-    
-        st.markdown("""
-    <div class='glass'>
-    
-    <h3>📈 Classification</h3>
-    
-    <table style="width:100%; color:white;">
-    
-    <tr>
-    <th>Class</th>
-    <th>Description</th>
-    </tr>
-    
-    <tr>
-    <td>🟢 Non-Fire</td>
-    <td>Normal Conditions</td>
-    </tr>
-    
-    <tr>
-    <td>🟡 Potential Fire</td>
-    <td>Early Warning</td>
-    </tr>
-    
-    <tr>
-    <td>🔴 Fire</td>
-    <td>Emergency</td>
-    </tr>
-    
-    </table>
-    
-    </div>
-    """, unsafe_allow_html=True)
-    
-        st.divider()
-    
-        st.subheader("🔥 Dataset")
-    
-        st.info("""
-Approximately 13,000 sensor readings were
-collected from various residential scenarios.
 
-These include:
+    st.divider()
+
+    st.subheader("🧠 Random Forest Results")
+
+    st.success("""
+The machine learning model achieved 98.80% overall accuracy.
+
+The model successfully classified:
+
+• Non-Fire
+
+• Potential Fire
+
+• Fire
+
+conditions using four environmental sensors.
+""")
+
+    st.divider()
+
+    st.subheader("📈 Class Performance")
+
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        st.success("🟢 Non-Fire\n\nNormal Conditions")
+
+    with col2:
+        st.warning("🟡 Potential Fire\n\nEarly Warning")
+
+    with col3:
+        st.error("🔴 Fire\n\nEmergency")
+
+    st.divider()
+
+    st.subheader("🔥 Dataset")
+
+    st.info("""
+Approximately 13,000 sensor readings were collected from various residential scenarios.
+
+Examples include:
 
 • Cooking
 
@@ -1175,8 +1121,6 @@ These include:
 • Burning Leaves
 
 • Burning Clothes
-
-and other fire-related conditions.
 """)
 
 elif page == "📱 SMS Alerts":
