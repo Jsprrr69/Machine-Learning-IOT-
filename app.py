@@ -149,46 +149,24 @@ classes = np.unique(y)
 # ACCURACY
 # =========================
 accuracy = accuracy_score(y, y_pred) * 100
-error = 100 - accuracy
 
 st.subheader("🎯 Model Accuracy")
 
-fig_acc = go.Figure()
+df_acc = pd.DataFrame({
+    "Metric": ["Accuracy"],
+    "Value": [accuracy]
+})
 
-# Accuracy bar (thin)
-fig_acc.add_trace(go.Bar(
-    x=["Accuracy"],
-    y=[accuracy],
-    name="Accuracy",
-    marker_color="red",
-    width=0.3
-))
-
-# Error bar (thin)
-fig_acc.add_trace(go.Bar(
-    x=["Error"],
-    y=[error],
-    name="Error",
-    marker_color="black",
-    width=0.3
-))
-
-# Line showing relationship between accuracy and error
-fig_acc.add_trace(go.Scatter(
-    x=["Accuracy", "Error"],
-    y=[accuracy, error],
-    mode="lines+markers",
-    line=dict(color="white", width=2),
-    name="Accuracy-Error Line"
-))
-
-# Layout settings
-fig_acc.update_layout(
-    title="Accuracy vs Error (%)",
-    yaxis=dict(range=[0, 100]),
-    bargap=0.6,
-    barmode="group"
+fig_acc = px.bar(
+    df_acc,
+    x="Metric",
+    y="Value",
+    text_auto=".2f",
+    title="Accuracy (%)",
+    color_discrete_sequence=["red"]
 )
+
+fig_acc.update_layout(yaxis_range=[0, 100])
 
 st.plotly_chart(fig_acc, use_container_width=True)
 
@@ -336,5 +314,4 @@ fig_corr.update_layout(
 )
 
 st.plotly_chart(fig_corr, use_container_width=True)
-
 
