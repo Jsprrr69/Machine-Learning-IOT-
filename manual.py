@@ -809,7 +809,7 @@ st.success("""
 All sensors should initialize successfully before normal operation begins.
 """)
 
-```
+
 st.divider()
 
 st.markdown("""
@@ -869,7 +869,6 @@ System Response:
 ✓ No Emergency Action
 """)
 
-```
 with tab2:
 
     st.warning("""
