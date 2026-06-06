@@ -335,7 +335,7 @@ st.markdown("""
 st.sidebar.markdown("""
 <div class="sidebar-title">
 
-🔥 FIREGUARD AI
+🔥 FIREGUARD AI 🔥
 
 </div>
 """, unsafe_allow_html=True)
@@ -816,8 +816,8 @@ elif page == "🏗️ Architecture":
     """)
 
     st.image(
-    "assets/arki.jfif",
-    use_container_width=True
+        "assets/arki.jfif",
+        use_container_width=True
 )
 
     st.info("""
@@ -1054,16 +1054,17 @@ and SMS Notification
 """)
     
     st.markdown("""
-<div class='footer'>
+    
+    <div class='footer'>
 
-🔥 IoT-Based Fire Detection and Classification System
+    🔥 IoT-Based Fire Detection and Classification System
 
-with Automatic Breaker Isolation
-and SMS Notification
+    with Automatic Breaker Isolation
+    and SMS Notification
 
-<br><br>
+    <br><br>
 
-Bachelor of Science in Electrical Engineering
+    Bachelor of Science in Electrical Engineering
 
-</div>
-""", unsafe_allow_html=True)
+    </div>
+    """, unsafe_allow_html=True)
