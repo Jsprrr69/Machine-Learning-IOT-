@@ -1027,26 +1027,27 @@ The system then performs automated responses.
 """)
 
 elif page == "📊 Performance":
+    
     st.markdown("""
-<div class='glass'>
+    <div class='glass'>
 
-<h1 style='text-align:center;'>
+    <h1 style='text-align:center;'>
 
 📊 System Performance
 
-</h1>
+    </h1>
 
-<p style='text-align:center;'>
+    <p style='text-align:center;'>
 
-Performance evaluation of the
-IoT-Based Fire Detection and Classification System.
+    Performance evaluation of the
+    IoT-Based Fire Detection and Classification System.
 
-</p>
+    </p>
 
-</div>
-""", unsafe_allow_html=True)
+    </div>
+    """, unsafe_allow_html=True)
 
-c1, c2, c3 = st.columns(3)
+    c1, c2, c3 = st.columns(3)
 
 with c1:
     st.markdown("""
