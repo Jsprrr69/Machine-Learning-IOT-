@@ -718,8 +718,7 @@ Breaker Trip
 
 elif page == "📚 User Manual":
 
-```
-st.title("📚 User Manual")
+    st.title("📚 User Manual")
 
 st.markdown("""
 ## 📖 Introduction
