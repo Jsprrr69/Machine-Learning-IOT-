@@ -894,9 +894,9 @@ elif page == "⚙️ How It Works":
     </div>
     """, unsafe_allow_html=True)
 
-st.divider()
+    st.divider()
 
-    st.markdown("""
+st.markdown("""
     ### 🚦 Step 4 — Classification Result
     """)
 
