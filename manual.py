@@ -790,22 +790,109 @@ elif page == "⚙️ How It Works":
 
     st.divider()
 
-    st.markdown("""
-    ### 🧠 Step 3 — Machine Learning Classification
-    """)
+st.markdown("""
+<div class='glass fade-in'>
 
-    st.code("""
-Sensor Readings
-       ↓
-Random Forest
-       ↓
-Classification
-    """, language="text")
+<h2 style='text-align:center; color:#ff8c42;'>
 
-    st.markdown("""
-    The Random Forest model analyzes the sensor
-    readings and determines the current condition.
-    """)
+🧠 Step 3 — Machine Learning Classification
+
+</h2>
+
+<br>
+
+<div style="
+display:flex;
+justify-content:center;
+align-items:center;
+gap:30px;
+flex-wrap:wrap;
+text-align:center;
+">
+
+<div style="
+background:rgba(255,255,255,0.05);
+padding:20px;
+border-radius:15px;
+width:220px;
+">
+
+<h3>📡 Sensor Readings</h3>
+
+<p>
+MQ2<br>
+MQ7<br>
+MQ135<br>
+MCP9808
+</p>
+
+</div>
+
+<div style="
+font-size:40px;
+color:#ff8c42;
+">
+➡️
+</div>
+
+<div style="
+background:rgba(255,140,66,0.08);
+padding:20px;
+border-radius:15px;
+width:220px;
+">
+
+<h3>🌲 Random Forest</h3>
+
+<p>
+Machine Learning Model
+</p>
+
+</div>
+
+<div style="
+font-size:40px;
+color:#ff8c42;
+">
+➡️
+</div>
+
+<div style="
+background:rgba(255,255,255,0.05);
+padding:20px;
+border-radius:15px;
+width:220px;
+">
+
+<h3>🚦 Classification</h3>
+
+<p>
+
+🟢 Non-Fire<br>
+
+🟡 Potential Fire<br>
+
+🔴 Fire
+
+</p>
+
+</div>
+
+</div>
+
+<br>
+
+<p style='text-align:center;'>
+
+The Random Forest model analyzes the
+combined sensor readings and intelligently
+classifies the detected condition into
+Non-Fire, Potential Fire, or Fire.
+
+</p>
+
+</div>
+""", unsafe_allow_html=True)
 
     st.divider()
 
