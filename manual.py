@@ -81,7 +81,56 @@ st.markdown("""
     color: white;
 }
 
+.stApp::before {
 
+    content: "";
+
+    position: fixed;
+
+    top: -50%;
+    left: -50%;
+
+    width: 200%;
+    height: 200%;
+
+    background:
+    radial-gradient(
+        circle at 20% 20%,
+        rgba(255,140,66,0.15),
+        transparent 30%
+    ),
+
+    radial-gradient(
+        circle at 80% 30%,
+        rgba(255,69,0,0.12),
+        transparent 35%
+    ),
+
+    radial-gradient(
+        circle at 50% 80%,
+        rgba(255,180,80,0.08),
+        transparent 40%
+    );
+
+    animation: fireGlow 15s ease-in-out infinite;
+
+    z-index: -2;
+}
+
+@keyframes fireGlow {
+
+    0%{
+        transform: rotate(0deg);
+    }
+
+    50%{
+        transform: rotate(180deg);
+    }
+
+    100%{
+        transform: rotate(360deg);
+    }
+}
 
 /* ===================================================== */
 /* EMBER ANIMATION */
@@ -98,20 +147,50 @@ st.markdown("""
 }
 
 .ember {
-    position: absolute;
-    width: 6px;
-    height: 6px;
-    background: orange;
-    border-radius: 50%;
-    opacity: 0.7;
-    animation: floatUp 10s linear infinite;
+
+    position:absolute;
+
+    width:8px;
+
+    height:8px;
+
+    background:#ff8c42;
+
+    border-radius:50%;
+
+    box-shadow:
+        0 0 10px #ff8c42,
+        0 0 20px #ff8c42,
+        0 0 30px #ff4500;
+
+    animation:
+        emberFloat linear infinite;
 }
 
-@keyframes floatUp {
-    0% {
-        transform: translateY(100vh);
-        opacity: 0;
+@keyframes emberFloat {
+
+    from {
+
+        transform:
+        translateY(100vh)
+        translateX(0px);
+
+        opacity:0;
     }
+
+    20%{
+        opacity:1;
+    }
+
+    100%{
+
+        transform:
+        translateY(-150px)
+        translateX(120px);
+
+        opacity:0;
+    }
+}
 
     10% {
         opacity: 1;
@@ -218,6 +297,30 @@ st.markdown("""
 }
 
 .hero h1 {
+
+    animation:
+        flameText 2s ease-in-out infinite;
+
+    text-shadow:
+        0 0 10px #ff8c42,
+        0 0 20px #ff4500,
+        0 0 40px #ff8c42;
+}
+
+@keyframes flameText {
+
+    0%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-3px);
+    }
+
+    100%{
+        transform:translateY(0px);
+    }
+}
     font-size: 3.5rem;
     color: #ff8c42;
 }
@@ -260,7 +363,15 @@ st.markdown("""
 }
 
 .glass:hover {
-    transform: translateY(-5px);
+
+    transform:
+        translateY(-10px)
+        scale(1.02);
+
+    box-shadow:
+        0 0 20px rgba(255,140,66,0.25),
+        0 0 40px rgba(255,69,0,0.15),
+        0 0 60px rgba(255,140,66,0.10);
 }
 
 /* ===================================================== */
@@ -336,7 +447,24 @@ section[data-testid="stSidebar"] {
 }
 
 section[data-testid="stSidebar"] * {
+    animation:
+    sidebarGlow 5s ease infinite;
     color: white;
+}
+
+@keyframes sidebarGlow {
+
+    0%{
+        filter:brightness(1);
+    }
+
+    50%{
+        filter:brightness(1.15);
+    }
+
+    100%{
+        filter:brightness(1);
+    }
 }
 
 /* ===================================================== */
@@ -365,13 +493,31 @@ section[data-testid="stSidebar"] * {
 
 st.markdown("""
 <div class="fire-bg">
-    <div class="ember" style="left:10%;animation-delay:0s;"></div>
-    <div class="ember" style="left:20%;animation-delay:2s;"></div>
-    <div class="ember" style="left:35%;animation-delay:4s;"></div>
-    <div class="ember" style="left:50%;animation-delay:1s;"></div>
-    <div class="ember" style="left:65%;animation-delay:3s;"></div>
-    <div class="ember" style="left:80%;animation-delay:5s;"></div>
-    <div class="ember" style="left:90%;animation-delay:6s;"></div>
+
+<div class="ember" style="left:5%;animation-duration:8s;"></div>
+<div class="ember" style="left:10%;animation-duration:12s;"></div>
+<div class="ember" style="left:15%;animation-duration:9s;"></div>
+<div class="ember" style="left:20%;animation-duration:11s;"></div>
+<div class="ember" style="left:25%;animation-duration:10s;"></div>
+
+<div class="ember" style="left:30%;animation-duration:13s;"></div>
+<div class="ember" style="left:35%;animation-duration:9s;"></div>
+<div class="ember" style="left:40%;animation-duration:12s;"></div>
+<div class="ember" style="left:45%;animation-duration:8s;"></div>
+
+<div class="ember" style="left:50%;animation-duration:14s;"></div>
+<div class="ember" style="left:55%;animation-duration:10s;"></div>
+<div class="ember" style="left:60%;animation-duration:11s;"></div>
+<div class="ember" style="left:65%;animation-duration:9s;"></div>
+
+<div class="ember" style="left:70%;animation-duration:13s;"></div>
+<div class="ember" style="left:75%;animation-duration:8s;"></div>
+<div class="ember" style="left:80%;animation-duration:12s;"></div>
+
+<div class="ember" style="left:85%;animation-duration:9s;"></div>
+<div class="ember" style="left:90%;animation-duration:11s;"></div>
+<div class="ember" style="left:95%;animation-duration:10s;"></div>
+
 </div>
 """, unsafe_allow_html=True)
 
@@ -421,12 +567,9 @@ if page == "🏠 Home":
     <h1>
     IoT-Based Fire Detection
     and Classification System
-    </h1>
-
-    <h3>
     with Automatic Breaker Isolation
     and SMS Notification
-    </h3>
+    </h1>
 
     <br>
 
@@ -648,31 +791,118 @@ elif page == "⚙️ How It Works":
     st.divider()
 
     st.markdown("""
-    ### 🧠 Step 3 — Machine Learning Classification
-    """)
-
-    st.code("""
-Sensor Readings
-       ↓
-Random Forest
-       ↓
-Classification
-    """, language="text")
-
-    st.markdown("""
-    The Random Forest model analyzes the sensor
-    readings and determines the current condition.
-    """)
+    <div class='glass fade-in'>
+    
+    <h2 style='text-align:center; color:#ff8c42;'>
+    
+    🧠 Step 3 — Machine Learning Classification
+    
+    </h2>
+    
+    <br>
+    
+    <div style="
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:30px;
+    flex-wrap:wrap;
+    text-align:center;
+    ">
+    
+    <div style="
+    background:rgba(255,255,255,0.05);
+    padding:20px;
+    border-radius:15px;
+    width:220px;
+    ">
+    
+    <h3>📡 Sensor Readings</h3>
+    
+    <p>
+    MQ2<br>
+    MQ7<br>
+    MQ135<br>
+    MCP9808
+    </p>
+    
+    </div>
+    
+    <div style="
+    font-size:40px;
+    color:#ff8c42;
+    ">
+    ➡️
+    </div>
+    
+    <div style="
+    background:rgba(255,140,66,0.08);
+    padding:20px;
+    border-radius:15px;
+    width:220px;
+    ">
+    
+    <h3>🌲 Random Forest</h3>
+    
+    <p>
+    Machine Learning Model
+    </p>
+    
+    </div>
+    
+    <div style="
+    font-size:40px;
+    color:#ff8c42;
+    ">
+    ➡️
+    </div>
+    
+    <div style="
+    background:rgba(255,255,255,0.05);
+    padding:20px;
+    border-radius:15px;
+    width:220px;
+    ">
+    
+    <h3>🚦 Classification</h3>
+    
+    <p>
+    
+    🟢 Non-Fire<br>
+    
+    🟡 Potential Fire<br>
+    
+    🔴 Fire
+    
+    </p>
+    
+    </div>
+    
+    </div>
+    
+    <br>
+    
+    <p style='text-align:center;'>
+    
+    The Random Forest model analyzes the
+    combined sensor readings and intelligently
+    classifies the detected condition into
+    Non-Fire, Potential Fire, or Fire.
+    
+    </p>
+    
+    </div>
+    """, unsafe_allow_html=True)
 
     st.divider()
 
-    st.markdown("""
+st.markdown("""
     ### 🚦 Step 4 — Classification Result
     """)
 
-    col1, col2, col3 = st.columns(3)
+col1, col2, col3 = st.columns(3)
 
-    with col1:
+with col1:
         st.success("""
 🟢 NON-FIRE
 
@@ -788,7 +1018,7 @@ elif page == "📚 User Manual":
 
     st.divider()
 
-    st.markdown("""
+st.markdown("""
     ### Step 3 — Verify Sensor Initialization
     """)
 
@@ -802,6 +1032,7 @@ MCP9808  ✓ Temperature Sensor
     st.success("""
 All sensors should initialize successfully before normal operation begins.
 """)
+    
 
     st.divider()
 
@@ -1332,6 +1563,7 @@ elif page == "👨‍💻 Developers":
 
     with Automatic Breaker Isolation and SMS Notification
     """)
+    
 
 # FOOTER #
 st.markdown("""
