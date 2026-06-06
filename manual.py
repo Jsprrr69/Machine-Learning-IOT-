@@ -1012,7 +1012,7 @@ elif page == "🏗️ Architecture":
     """)
 
     st.image(
-        "assets/arki.jfif",
+        "assets/arki2.jfif",
         use_container_width=True
 )
 
