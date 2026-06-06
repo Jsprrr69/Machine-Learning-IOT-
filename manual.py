@@ -1058,14 +1058,14 @@ st.markdown("""
     
 <div class='footer'>
 
-    🔥 IoT-Based Fire Detection and Classification System
+🔥 IoT-Based Fire Detection and Classification System
 
-    with Automatic Breaker Isolation
-    and SMS Notification
+with Automatic Breaker Isolation
+and SMS Notification
 
-    <br><br>
+<br><br>
 
-    Bachelor of Science in Electrical Engineering
+Bachelor of Science in Electrical Engineering
 
-    </div>
-    """, unsafe_allow_html=True)
+</div>
+""", unsafe_allow_html=True)
