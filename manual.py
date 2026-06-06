@@ -154,64 +154,6 @@ st.markdown("""
 }
 
 /* ========================================= */
-/* RESEARCHER CARD */
-/* ========================================= */
-
-.researcher-card{
-
-    background: rgba(255,255,255,0.05);
-
-    border-radius:20px;
-
-    padding:20px;
-
-    text-align:center;
-
-    transition:0.35s;
-
-    cursor:pointer;
-
-    height:100%;
-}
-
-.researcher-card:hover{
-
-    transform:translateY(-10px);
-
-    box-shadow:
-        0 0 30px rgba(255,140,66,0.4);
-
-    border:1px solid rgba(255,140,66,0.5);
-}
-
-.researcher-card img{
-
-    width:180px;
-
-    height:180px;
-
-    object-fit:cover;
-
-    border-radius:50%;
-
-    border:4px solid #ff8c42;
-
-    margin-bottom:15px;
-}
-
-.researcher-card h3{
-
-    color:white;
-
-    margin-bottom:5px;
-}
-
-.researcher-card p{
-
-    color:#cccccc;
-}
-
-/* ========================================= */
 /* TIMELINE */
 /* ========================================= */
 
@@ -336,6 +278,51 @@ st.markdown("""
 
 .metric-card p {
     color: #cccccc;
+}
+
+/* ========================================= */
+/* RESEARCHER PROFILE CARD */
+/* ========================================= */
+
+.researcher-name{
+    text-align:center;
+    color:white;
+    font-weight:bold;
+    font-size:20px;
+    margin-top:10px;
+}
+
+.researcher-role{
+    text-align:center;
+    color:#cccccc;
+    margin-bottom:15px;
+}
+
+.fb-button{
+    display:block;
+    text-align:center;
+    padding:10px;
+    border-radius:10px;
+    background:rgba(255,140,66,0.15);
+    color:white !important;
+    text-decoration:none !important;
+    transition:0.3s;
+    border:1px solid rgba(255,140,66,0.3);
+}
+
+.fb-button:hover{
+    background:rgba(255,140,66,0.35);
+    transform:translateY(-3px);
+}
+
+[data-testid="stImage"] img{
+    transition:0.3s;
+    border-radius:15px;
+}
+
+[data-testid="stImage"] img:hover{
+    transform:translateY(-8px);
+    box-shadow:0 0 25px rgba(255,140,66,0.4);
 }
 
 /* ===================================================== */
@@ -1068,97 +1055,112 @@ elif page == "👨‍💻 Developers":
     Group 5
     """)
 
+    st.divider()
+
     col1, col2 = st.columns(2)
 
     with col1:
 
+        st.image(
+            "assets/latuga.jfif",
+            use_container_width=True
+        )
+
         st.markdown("""
-        <a href="https://www.facebook.com/janrhemle.latuga.35"
-           target="_blank"
-           style="text-decoration:none;">
-
-        <div class="researcher-card">
-
-            st.image("assets/latuga.jfif")
-
-            <h3>Latuga</h3>
-
-            <p>Researcher</p>
-
+        <div class='researcher-name'>
+        Amiel Latuga
         </div>
 
+        <div class='researcher-role'>
+        Lead Researcher
+        </div>
+
+        <a class='fb-button'
+        href='https://www.facebook.com/janrhemle.latuga.35'
+        target='_blank'>
+        🔗 Visit Facebook Profile
         </a>
         """, unsafe_allow_html=True)
 
     with col2:
 
+        st.image(
+            "assets/padilla.jfif",
+            use_container_width=True
+        )
+
         st.markdown("""
-        <a href="https://www.facebook.com/EngrMika"
-           target="_blank"
-           style="text-decoration:none;">
-
-        <div class="researcher-card">
-
-            st.image("assets/padilla.jfif")
-
-            <h3>Padilla</h3>
-
-            <p>Researcher</p>
-
+        <div class='researcher-name'>
+        Mika Padilla
         </div>
 
+        <div class='researcher-role'>
+        Researcher
+        </div>
+
+        <a class='fb-button'
+        href='https://www.facebook.com/EngrMika'
+        target='_blank'>
+        🔗 Visit Facebook Profile
         </a>
         """, unsafe_allow_html=True)
+
+    st.divider()
 
     col3, col4 = st.columns(2)
 
     with col3:
 
+        st.image(
+            "assets/reyes.jfif",
+            use_container_width=True
+        )
+
         st.markdown("""
-        <a href="https://www.facebook.com/Reyessir.Amieeell"
-           target="_blank"
-           style="text-decoration:none;">
-
-        <div class="researcher-card">
-
-            st.image("assets/reyes.jfif")
-
-            <h3>Reyes</h3>
-
-            <p>Researcher</p>
-
+        <div class='researcher-name'>
+        Amiel Reyes
         </div>
 
+        <div class='researcher-role'>
+        Researcher
+        </div>
+
+        <a class='fb-button'
+        href='https://www.facebook.com/Reyessir.Amieeell'
+        target='_blank'>
+        🔗 Visit Facebook Profile
         </a>
         """, unsafe_allow_html=True)
 
     with col4:
 
+        st.image(
+            "assets/wenceslao.jfif",
+            use_container_width=True
+        )
+
         st.markdown("""
-        <a href="https://www.facebook.com/jsprrr"
-           target="_blank"
-           style="text-decoration:none;">
-
-        <div class="researcher-card">
-
-            st.image("assets/wenceslao.jfif")
-
-            <h3>Wenceslao</h3>
-
-            <p>Researcher</p>
-
+        <div class='researcher-name'>
+        John Paul Wenceslao
         </div>
 
+        <div class='researcher-role'>
+        Researcher
+        </div>
+
+        <a class='fb-button'
+        href='https://www.facebook.com/jsprrr'
+        target='_blank'>
+        🔗 Visit Facebook Profile
         </a>
         """, unsafe_allow_html=True)
 
     st.divider()
 
     st.success("""
-    IoT-Based Fire Detection and Classification System
+    🔥 IoT-Based Fire Detection and Classification System
 
-    with Automatic Breaker Isolation
-    and SMS Notification
+    with Automatic Breaker Isolation and SMS Notification
     """)
 
 # FOOTER #
