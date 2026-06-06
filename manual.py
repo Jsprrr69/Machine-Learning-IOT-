@@ -716,107 +716,199 @@ Breaker Trip
     • Breaker Isolation
     """)
 
-    
-
 elif page == "📚 User Manual":
 
-    st.title("📚 User Manual")
+```
+st.title("📚 User Manual")
 
-    st.markdown("""
-    ## 🚀 Getting Started
-    """)
+st.markdown("""
+## 📖 Introduction
 
-    st.markdown("""
-    ### Step 1
+Welcome to the IoT-Based Fire Detection and Classification System
+with Automatic Breaker Isolation and SMS Notification.
 
-    Supply power to the system.
-    Ensure that the ESP32,
-    sensors, GSM module,
-    and relay are properly powered.
-    """)
+This system was developed to improve residential fire safety by
+combining multiple environmental sensors, machine learning,
+cloud monitoring, SMS notification, and automatic breaker isolation.
 
-    st.divider()
-
-    st.markdown("""
-    ### Step 2
-
-    Connect the ESP32
-    to the configured WiFi network.
-    """)
-
-    st.divider()
-
-    st.markdown("""
-    ### Step 3
-
-    Verify sensor initialization.
-    """)
-
-    st.code("""
-MQ2      ✓
-MQ7      ✓
-MQ135    ✓
-MCP9808  ✓
-    """)
-
-    st.divider()
-
-    st.markdown("""
-    ### Step 4
-
-    Open the monitoring dashboard.
-    Observe the current status.
-    """)
-
-    st.divider()
-
-    st.markdown("""
-    ### Step 5
-
-    Interpret the classification result.
-    """)
-
-    tab1, tab2, tab3 = st.tabs(
-        [
-            "🟢 Non-Fire",
-            "🟡 Potential Fire",
-            "🔴 Fire"
-        ]
-    )
-
-    with tab1:
-
-        st.success("""
-Examples:
-
-• Cooking
-
-• Cigarette Smoke
-
-• Humidifier
-
-• Solder Smoke
-
-• Boiling Water
+Unlike traditional smoke alarms that may generate false alarms from
+cooking smoke, cigarette smoke, or steam, this system intelligently
+analyzes environmental conditions and classifies them into
+Non-Fire, Potential Fire, or Fire.
 """)
 
-    with tab2:
+st.divider()
 
-        st.warning("""
+st.markdown("""
+## 🚀 Getting Started
+""")
+
+st.markdown("""
+### Step 1 — Power On the System
+
+Supply power to the system and ensure that all components are
+properly energized.
+
+Components include:
+
+• ESP32 Microcontroller
+
+• MQ2 Smoke Sensor
+
+• MQ7 Carbon Monoxide Sensor
+
+• MQ135 Air Quality Sensor
+
+• MCP9808 Temperature Sensor
+
+• SIM900A GSM Module
+
+• Relay Module
+
+• LCD Display
+
+Allow the sensors a few moments to stabilize after startup.
+""")
+
+st.divider()
+
+st.markdown("""
+### Step 2 — Verify WiFi Connectivity
+
+The ESP32 automatically connects to the configured WiFi network.
+
+A stable internet connection is required for:
+
+• Cloud Database Communication
+
+• Dashboard Monitoring
+
+• Real-Time Data Updates
+
+• Remote Notifications
+""")
+
+st.divider()
+
+st.markdown("""
+### Step 3 — Verify Sensor Initialization
+""")
+
+st.code("""
+```
+
+MQ2      ✓ Smoke Sensor
+MQ7      ✓ Carbon Monoxide Sensor
+MQ135    ✓ Air Quality Sensor
+MCP9808  ✓ Temperature Sensor
+""")
+
+```
+st.success("""
+```
+
+All sensors should initialize successfully before normal operation begins.
+""")
+
+```
+st.divider()
+
+st.markdown("""
+### Step 4 — Open the Monitoring Dashboard
+
+Access the monitoring dashboard to observe the system status,
+sensor activity, and classification results in real time.
+
+The dashboard updates automatically whenever new sensor data
+is received.
+""")
+
+st.divider()
+
+st.markdown("""
+### Step 5 — Machine Learning Classification
+
+The Random Forest model continuously analyzes sensor readings
+and determines the current environmental condition.
+""")
+
+tab1, tab2, tab3 = st.tabs(
+    [
+        "🟢 Non-Fire",
+        "🟡 Potential Fire",
+        "🔴 Fire"
+    ]
+)
+
+with tab1:
+
+    st.success("""
+```
+
+🟢 NON-FIRE
+
+Normal environmental conditions.
+
+Examples:
+
+• Cooking Smoke
+
+• Cigarette or Vape Smoke
+
+• Humidifier Vapor
+
+• Soldering Smoke
+
+• Steam from Boiling Water
+
+System Response:
+
+✓ Dashboard Updates
+
+✓ Monitoring Continues
+
+✓ No Emergency Action
+""")
+
+```
+with tab2:
+
+    st.warning("""
+```
+
+🟡 POTENTIAL FIRE
+
+Conditions that may lead to a fire.
+
 Examples:
 
 • Methane Gas
 
 • Smoldering Cartons
 
-• Early Smoke Buildup
+• Early Smoke Accumulation
 
-Warning SMS will be sent.
+• Combustible Gas Presence
+
+System Response:
+
+✓ Warning Displayed
+
+✓ SMS Notification Sent
+
+✓ User Inspection Recommended
 """)
 
-    with tab3:
+```
+with tab3:
 
-        st.error("""
+    st.error("""
+```
+
+🔴 FIRE
+
+Active fire or dangerous condition.
+
 Examples:
 
 • Burning Paper
@@ -827,30 +919,111 @@ Examples:
 
 • Open Flame
 
-Actions:
+• Significant Smoke and Heat
 
-✓ SMS Sent
+System Response:
+
+✓ Fire Alert Displayed
+
+✓ SMS Notification Sent
 
 ✓ Alarm Activated
 
-✓ Breaker Isolation
+✓ Breaker Isolation Activated
 """)
 
-    st.divider()
+```
+st.divider()
 
-    st.markdown("""
-    ## ⚠️ Important Reminders
+st.markdown("""
+## 📱 SMS Notification System
 
-    • Do not cover sensors.
+The SIM900A GSM Module automatically sends SMS alerts whenever
+the system detects Potential Fire or Fire conditions.
 
-    • Ensure internet connectivity.
+Potential Fire alerts notify users to inspect the area.
 
-    • Verify GSM signal strength.
+Fire alerts notify users that a dangerous condition has been
+detected and immediate action may be necessary.
+""")
 
-    • Regularly inspect wiring.
+st.divider()
 
-    • Test the system periodically.
-    """)
+st.markdown("""
+## ⚡ Automatic Breaker Isolation
+
+During a Fire classification, the relay module activates the
+breaker isolation mechanism.
+
+This disconnects electrical power from the protected circuit,
+helping reduce the risk of electrical faults and fire propagation.
+
+Breaker isolation is only activated during confirmed Fire conditions.
+""")
+
+st.divider()
+
+st.markdown("""
+## 🖥️ Dashboard Monitoring
+
+The dashboard provides real-time monitoring of:
+
+• Sensor Activity
+
+• System Status
+
+• Classification Results
+
+• Alert Conditions
+
+• Historical Monitoring Data
+
+Users can continuously monitor the condition of the protected area
+through the dashboard interface.
+""")
+
+st.divider()
+
+st.markdown("""
+## ⚠️ Important Reminders
+
+• Do not cover or obstruct the sensors.
+
+• Keep sensors clean and free from dust.
+
+• Ensure stable internet connectivity.
+
+• Verify GSM signal strength.
+
+• Regularly inspect wiring connections.
+
+• Test the system periodically.
+
+• Perform preventive maintenance when necessary.
+""")
+
+st.divider()
+
+st.success("""
+```
+
+✅ Normal Operation Summary
+
+1. Sensors collect environmental data.
+
+2. ESP32 transmits data to the cloud.
+
+3. Random Forest analyzes sensor readings.
+
+4. The system classifies the condition.
+
+5. Dashboard updates automatically.
+
+6. SMS notifications are sent when necessary.
+
+7. Breaker isolation activates during confirmed Fire conditions.
+   """)
+
 
 elif page == "🏗️ Architecture":
 
