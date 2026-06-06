@@ -552,6 +552,7 @@ page = st.sidebar.radio(
         "🎥 Demonstration",
         "❓ FAQ",
         "👨‍💻 Developers"
+        "🎮 Fire Safety Quiz"
     ]
 )
 
@@ -1478,6 +1479,25 @@ elif page == "👨‍💻 Developers":
 
     with Automatic Breaker Isolation and SMS Notification
     """)
+elif page == "🎮 Fire Safety Quiz":
+
+    st.title("🎮 Fire Safety Quiz")
+
+    question = st.radio(
+        "What condition does burning paper belong to?",
+        [
+            "Non-Fire",
+            "Potential Fire",
+            "Fire"
+        ]
+    )
+
+    if st.button("Submit"):
+
+        if question == "Fire":
+            st.success("✅ Correct!")
+        else:
+            st.error("❌ Incorrect. Burning paper is classified as Fire.")
 
 # FOOTER #
 st.markdown("""
