@@ -315,4 +315,4 @@ fig_corr.update_layout(
 
 st.plotly_chart(fig_corr, use_container_width=True)
 
-edit my accuracy part only wherein it will be thinner and will show a line between the percentage erro
+
