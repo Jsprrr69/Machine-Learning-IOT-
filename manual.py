@@ -421,12 +421,9 @@ if page == "🏠 Home":
     <h1>
     IoT-Based Fire Detection
     and Classification System
-    </h1>
-
-    <h3>
     with Automatic Breaker Isolation
     and SMS Notification
-    </h3>
+    </h1>
 
     <br>
 
