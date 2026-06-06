@@ -1079,7 +1079,7 @@ elif page == "👨‍💻 Developers":
 
         <div class="researcher-card">
 
-            <img src="app/static/assets/latuga.jfif">
+            st.image("assets/latuga.jfif")
 
             <h3>Latuga</h3>
 
@@ -1099,7 +1099,7 @@ elif page == "👨‍💻 Developers":
 
         <div class="researcher-card">
 
-            <img src="app/static/assets/padilla.jfif">
+            st.image("assets/padilla.jfif")
 
             <h3>Padilla</h3>
 
@@ -1121,7 +1121,7 @@ elif page == "👨‍💻 Developers":
 
         <div class="researcher-card">
 
-            <img src="app/static/assets/reyes.jfif">
+            st.image("assets/reyes.jfif")
 
             <h3>Reyes</h3>
 
@@ -1141,7 +1141,7 @@ elif page == "👨‍💻 Developers":
 
         <div class="researcher-card">
 
-            <img src="app/static/assets/wenceslao.jfif">
+            st.image("assets/wenceslao.jfif")
 
             <h3>Wenceslao</h3>
 
