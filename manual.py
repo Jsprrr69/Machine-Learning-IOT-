@@ -18,6 +18,55 @@ st.set_page_config(
 st.markdown("""
 <style>
 
+/* Sidebar */
+[data-testid="stSidebar"]{
+    background: linear-gradient(
+        180deg,
+        #0f172a 0%,
+        #1e293b 50%,
+        #111827 100%
+    );
+}
+
+/* Sidebar title */
+.sidebar-title{
+    text-align:center;
+    color:white;
+    font-size:24px;
+    font-weight:bold;
+    margin-bottom:20px;
+}
+
+/* Radio buttons */
+div[role="radiogroup"] > label{
+    background: rgba(255,255,255,0.05);
+    border-radius:12px;
+    padding:10px;
+    margin-bottom:8px;
+    transition:0.3s;
+}
+
+div[role="radiogroup"] > label:hover{
+    background: rgba(255,140,66,0.25);
+    transform:translateX(5px);
+}
+
+/* Selected menu */
+div[role="radiogroup"] label[data-selected="true"]{
+    background: rgba(255,140,66,0.35);
+}
+
+/* Sidebar text */
+[data-testid="stSidebar"] *{
+    color:white;
+}
+
+</style>
+""", unsafe_allow_html=True)
+
+st.markdown("""
+<style>
+
 /* ===================================================== */
 /* MAIN BACKGROUND */
 /* ===================================================== */
