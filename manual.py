@@ -566,7 +566,7 @@ elif page == "⚙️ How It Works":
     </div>
     """, unsafe_allow_html=True)
 
-     st.subheader("📌 Complete Workflow")
+    st.subheader("📌 Complete Workflow")
 
     st.title("⚙️ How The System Works")
 
