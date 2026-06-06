@@ -1477,235 +1477,234 @@ elif page == "👨‍💻 Developers":
     with Automatic Breaker Isolation and SMS Notification
     """)
     
-elif page == "🎮 Fire Commander":
+elif page == "🎮 Firefighter Mission":
+
+    st.title("🎮 Firefighter Mission")
+
+    game_html = """
+    <style>
+
+    .game-container{
+        width:800px;
+        height:500px;
+        background:#111;
+        border:3px solid #ff8c42;
+        position:relative;
+        margin:auto;
+        overflow:hidden;
+        border-radius:20px;
+    }
+
+    .player{
+        width:40px;
+        height:40px;
+        background:#4CAF50;
+        position:absolute;
+        left:50px;
+        top:50px;
+        border-radius:10px;
+        transition:0.05s;
+        z-index:10;
+    }
+
+    .fire{
+        width:60px;
+        height:60px;
+        background:red;
+        position:absolute;
+        left:650px;
+        top:120px;
+        border-radius:50%;
+        animation:pulse 1s infinite;
+    }
 
-    st.title("🔥 FIRE COMMANDER")
+    .breaker{
+        width:60px;
+        height:60px;
+        background:gold;
+        position:absolute;
+        left:150px;
+        top:380px;
+        border-radius:10px;
+    }
 
-    st.markdown("""
-    You are the Home Safety Officer.
+    .gsm{
+        width:60px;
+        height:60px;
+        background:deepskyblue;
+        position:absolute;
+        left:650px;
+        top:380px;
+        border-radius:10px;
+    }
 
-    Your mission is to protect the house,
-    prevent fire spread, and keep occupants safe.
+    @keyframes pulse{
 
-    Every decision affects the outcome.
-    """)
+        0%{
+            transform:scale(1);
+        }
 
-    # ==========================
-    # SESSION STATES
-    # ==========================
+        50%{
+            transform:scale(1.2);
+        }
 
-    if "level" not in st.session_state:
-        st.session_state.level = 1
-        st.session_state.fire = 10
-        st.session_state.safety = 100
-        st.session_state.damage = 0
+        100%{
+            transform:scale(1);
+        }
+    }
 
-    st.divider()
+    .mission{
+        color:white;
+        text-align:center;
+        margin-bottom:10px;
+        font-size:20px;
+    }
 
-    col1, col2, col3 = st.columns(3)
+    </style>
 
-    with col1:
-        st.metric("🔥 Fire Spread", f"{st.session_state.fire}%")
+    <div class="mission">
 
-    with col2:
-        st.metric("👨 Occupant Safety", f"{st.session_state.safety}%")
+    🔥 Objective:
+    Reach the Fire → Breaker → GSM Station
 
-    with col3:
-        st.metric("🏠 Property Damage", f"{st.session_state.damage}%")
+    <br><br>
 
-    st.divider()
+    Move using W A S D
 
-    # =====================================
-    # LEVEL 1
-    # =====================================
+    </div>
 
-    if st.session_state.level == 1:
+    <div class="game-container">
 
-        st.subheader("🏠 Kitchen Alert")
+        <div id="player" class="player"></div>
 
-        st.warning("""
-MQ2 = Moderate
+        <div id="fire" class="fire"></div>
 
-MQ7 = Low
+        <div id="breaker" class="breaker"></div>
 
-Temperature = 32°C
-""")
+        <div id="gsm" class="gsm"></div>
 
-        decision = st.radio(
-            "What will you do?",
-            [
-                "Trigger Evacuation",
-                "Ignore Alert",
-                "Monitor Situation"
-            ]
-        )
+    </div>
 
-        if st.button("Submit Level 1"):
+    <script>
 
-            if decision == "Monitor Situation":
+    let player =
+        document.getElementById("player");
 
-                st.success(
-                    "Correct! This resembles cooking smoke."
-                )
+    let x = 50;
+    let y = 50;
 
-                st.session_state.fire -= 5
+    let fireDone = false;
+    let breakerDone = false;
 
-            else:
+    document.addEventListener("keydown", function(e){
 
-                st.error(
-                    "Incorrect decision."
-                )
+        let step = 15;
 
-                st.session_state.damage += 10
+        if(e.key=="w" || e.key=="W"){
+            y -= step;
+        }
 
-            st.session_state.level = 2
-            st.rerun()
+        if(e.key=="s" || e.key=="S"){
+            y += step;
+        }
 
-    # =====================================
-    # LEVEL 2
-    # =====================================
+        if(e.key=="a" || e.key=="A"){
+            x -= step;
+        }
 
-    elif st.session_state.level == 2:
+        if(e.key=="d" || e.key=="D"){
+            x += step;
+        }
 
-        st.subheader("🟡 Potential Fire")
+        x=Math.max(0,Math.min(760,x));
+        y=Math.max(0,Math.min(460,y));
 
-        st.warning("""
-Methane Gas Detected
+        player.style.left=x+"px";
+        player.style.top=y+"px";
 
-MQ2 = High
+        checkMission();
 
-Temperature = 35°C
-""")
+    });
 
-        decision = st.radio(
-            "Choose Action",
-            [
-                "Open Windows",
-                "Ignore Warning",
-                "Turn On Appliances"
-            ]
-        )
+    function collision(a,b){
 
-        if st.button("Submit Level 2"):
+        let ar = a.getBoundingClientRect();
+        let br = b.getBoundingClientRect();
 
-            if decision == "Open Windows":
+        return !(
+            ar.top > br.bottom ||
+            ar.bottom < br.top ||
+            ar.left > br.right ||
+            ar.right < br.left
+        );
+    }
 
-                st.success(
-                    "Good response."
-                )
+    function checkMission(){
 
-                st.session_state.fire += 5
+        let fire =
+            document.getElementById("fire");
 
-            else:
+        let breaker =
+            document.getElementById("breaker");
 
-                st.error(
-                    "Dangerous choice."
-                )
+        let gsm =
+            document.getElementById("gsm");
 
-                st.session_state.fire += 25
-                st.session_state.damage += 20
+        if(
+            collision(player,fire)
+            &&
+            !fireDone
+        ){
 
-            st.session_state.level = 3
-            st.rerun()
+            fireDone = true;
 
-    # =====================================
-    # LEVEL 3
-    # =====================================
+            alert(
+            "🔥 FIRE DETECTED!\\nNow go trip the breaker."
+            );
 
-    elif st.session_state.level == 3:
+            fire.style.background="gray";
+        }
 
-        st.subheader("🔴 Fire Confirmed")
+        if(
+            collision(player,breaker)
+            &&
+            fireDone
+            &&
+            !breakerDone
+        ){
 
-        st.error("""
-MQ2 = Very High
+            breakerDone = true;
 
-MQ7 = Very High
+            alert(
+            "⚡ BREAKER ISOLATED!\\nNow verify GSM notification."
+            );
 
-Temperature = 90°C
-""")
+            breaker.style.background="green";
+        }
 
-        decision = st.radio(
-            "Emergency Action",
-            [
-                "Trip Breaker",
-                "Disable Alarm",
-                "Do Nothing"
-            ]
-        )
+        if(
+            collision(player,gsm)
+            &&
+            fireDone
+            &&
+            breakerDone
+        ){
 
-        if st.button("Submit Level 3"):
+            alert(
+            "🏆 MISSION COMPLETE!\\nSMS Sent Successfully."
+            );
 
-            if decision == "Trip Breaker":
+            location.reload();
+        }
+    }
 
-                st.success(
-                    "Excellent. Breaker isolated."
-                )
+    </script>
+    """
 
-                st.session_state.safety = 100
-
-            else:
-
-                st.error(
-                    "Fire spreads rapidly."
-                )
-
-                st.session_state.fire += 40
-                st.session_state.damage += 40
-                st.session_state.safety -= 40
-
-            st.session_state.level = 4
-            st.rerun()
-
-    # =====================================
-    # FINAL RESULT
-    # =====================================
-
-    elif st.session_state.level == 4:
-
-        st.balloons()
-
-        st.subheader("🏆 Mission Report")
-
-        st.metric(
-            "Final Fire Spread",
-            f"{st.session_state.fire}%"
-        )
-
-        st.metric(
-            "Property Damage",
-            f"{st.session_state.damage}%"
-        )
-
-        st.metric(
-            "Occupant Safety",
-            f"{st.session_state.safety}%"
-        )
-
-        if st.session_state.damage < 30:
-
-            st.success("""
-Grade: A+
-
-You successfully protected
-the smart home.
-""")
-
-        else:
-
-            st.error("""
-Grade: D
-
-The fire caused severe damage.
-""")
-
-        if st.button("🔄 Play Again"):
-
-            st.session_state.level = 1
-            st.session_state.fire = 10
-            st.session_state.safety = 100
-            st.session_state.damage = 0
-
-            st.rerun()
+    st.components.v1.html(
+        game_html,
+        height=650
+    )
 
 # FOOTER #
 st.markdown("""
@@ -1714,7 +1713,7 @@ st.markdown("""
 
 🔥 IoT-Based Fire Detection and Classification System
 with Automatic Breaker Isolation
-and SMS Notification
+and SMS Notification 🔥
 
 <br><br>
 
