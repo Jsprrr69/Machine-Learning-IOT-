@@ -528,7 +528,7 @@ st.markdown("""
 st.sidebar.markdown("""
 <div class="sidebar-title">
 
-🔥 FIREGUARD AI 🔥
+🔥 MAIN MENU 🔥
 
 </div>
 """, unsafe_allow_html=True)
@@ -1713,7 +1713,6 @@ st.markdown("""
 <div class='footer'>
 
 🔥 IoT-Based Fire Detection and Classification System
-
 with Automatic Breaker Isolation
 and SMS Notification
 
