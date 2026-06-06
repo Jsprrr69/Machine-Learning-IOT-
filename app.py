@@ -315,3 +315,36 @@ fig_corr.update_layout(
 
 st.plotly_chart(fig_corr, use_container_width=True)
 
+
+accuracy = accuracy_score(y, y_pred) * 100
+error = 100 - accuracy
+
+st.subheader("🎯 Model Accuracy (Circular View)")
+
+fig_acc = go.Figure()
+
+# Accuracy + Error as donut (circular bar style)
+fig_acc.add_trace(go.Pie(
+    values=[accuracy, error],
+    labels=["Accuracy", "Error"],
+    hole=0.75,   # 👈 makes it circular (donut style)
+    marker_colors=["red", "black"],
+    textinfo="label+percent",
+    rotation=90
+))
+
+# Center text (big accuracy value)
+fig_acc.update_layout(
+    annotations=[
+        dict(
+            text=f"{accuracy:.2f}%",
+            x=0.5,
+            y=0.5,
+            font_size=20,
+            showarrow=False
+        )
+    ],
+    showlegend=True
+)
+
+st.plotly_chart(fig_acc, use_container_width=True)
