@@ -1029,10 +1029,9 @@ elif page == "👨‍💻 Developers":
     """, unsafe_allow_html=True)
 
     with col3:
-
     st.image(
-        "assets/reyes.jfif",
-        use_container_width=True
+    "assets/reyes.jfif",
+    use_container_width=True
     )
 
     st.markdown("""
