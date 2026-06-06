@@ -1123,11 +1123,11 @@ elif page == "📱 SMS Alerts":
     """)
 
     st.warning("""
-WARNING
+WARNING ALERT!!!
 
-Potential Fire Detected
+The system has detected Potential Fire event
 
-Please inspect the area immediately.
+Please check immediately.
     """)
 
     st.markdown("""
@@ -1135,13 +1135,12 @@ Please inspect the area immediately.
     """)
 
     st.error("""
-EMERGENCY ALERT
+EMERGENCY ALERT!!!
 
-Fire Detected
+A fire incident has been detected!
 
-Breaker Isolation Activated
-
-Please evacuate immediately.
+Immediate response is needed.
+(Sample SMS Alert for Homeowners/Tenants)
     """)
 
     st.success("""
