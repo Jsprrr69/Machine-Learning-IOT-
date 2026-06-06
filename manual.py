@@ -718,7 +718,6 @@ Breaker Trip
 
 elif page == "📚 User Manual":
 
-    ```
     st.title("📚 User Manual")
 
 st.markdown("""
@@ -803,7 +802,7 @@ MQ135    ✓ Air Quality Sensor
 MCP9808  ✓ Temperature Sensor
 """)
 
-```
+
 st.success("""
 ```
 
@@ -899,7 +898,7 @@ System Response:
 ✓ User Inspection Recommended
 """)
 
-```
+
 with tab3:
 
     st.error("""
@@ -932,7 +931,7 @@ System Response:
 ✓ Breaker Isolation Activated
 """)
 
-```
+
 st.divider()
 
 st.markdown("""
