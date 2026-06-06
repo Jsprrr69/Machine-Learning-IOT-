@@ -551,7 +551,8 @@ page = st.sidebar.radio(
         "📱 SMS Alerts",
         "🎥 Demonstration",
         "❓ FAQ",
-        "👨‍💻 Developers"
+        "👨‍💻 Developers",
+        "🎮 Fire Commander"
     ]
 )
 
@@ -1478,7 +1479,236 @@ elif page == "👨‍💻 Developers":
 
     with Automatic Breaker Isolation and SMS Notification
     """)
+    
+elif page == "🎮 Fire Commander":
 
+    st.title("🔥 FIRE COMMANDER")
+
+    st.markdown("""
+    You are the Home Safety Officer.
+
+    Your mission is to protect the house,
+    prevent fire spread, and keep occupants safe.
+
+    Every decision affects the outcome.
+    """)
+
+    # ==========================
+    # SESSION STATES
+    # ==========================
+
+    if "level" not in st.session_state:
+        st.session_state.level = 1
+        st.session_state.fire = 10
+        st.session_state.safety = 100
+        st.session_state.damage = 0
+
+    st.divider()
+
+    col1, col2, col3 = st.columns(3)
+
+    with col1:
+        st.metric("🔥 Fire Spread", f"{st.session_state.fire}%")
+
+    with col2:
+        st.metric("👨 Occupant Safety", f"{st.session_state.safety}%")
+
+    with col3:
+        st.metric("🏠 Property Damage", f"{st.session_state.damage}%")
+
+    st.divider()
+
+    # =====================================
+    # LEVEL 1
+    # =====================================
+
+    if st.session_state.level == 1:
+
+        st.subheader("🏠 Kitchen Alert")
+
+        st.warning("""
+MQ2 = Moderate
+
+MQ7 = Low
+
+Temperature = 32°C
+""")
+
+        decision = st.radio(
+            "What will you do?",
+            [
+                "Trigger Evacuation",
+                "Ignore Alert",
+                "Monitor Situation"
+            ]
+        )
+
+        if st.button("Submit Level 1"):
+
+            if decision == "Monitor Situation":
+
+                st.success(
+                    "Correct! This resembles cooking smoke."
+                )
+
+                st.session_state.fire -= 5
+
+            else:
+
+                st.error(
+                    "Incorrect decision."
+                )
+
+                st.session_state.damage += 10
+
+            st.session_state.level = 2
+            st.rerun()
+
+    # =====================================
+    # LEVEL 2
+    # =====================================
+
+    elif st.session_state.level == 2:
+
+        st.subheader("🟡 Potential Fire")
+
+        st.warning("""
+Methane Gas Detected
+
+MQ2 = High
+
+Temperature = 35°C
+""")
+
+        decision = st.radio(
+            "Choose Action",
+            [
+                "Open Windows",
+                "Ignore Warning",
+                "Turn On Appliances"
+            ]
+        )
+
+        if st.button("Submit Level 2"):
+
+            if decision == "Open Windows":
+
+                st.success(
+                    "Good response."
+                )
+
+                st.session_state.fire += 5
+
+            else:
+
+                st.error(
+                    "Dangerous choice."
+                )
+
+                st.session_state.fire += 25
+                st.session_state.damage += 20
+
+            st.session_state.level = 3
+            st.rerun()
+
+    # =====================================
+    # LEVEL 3
+    # =====================================
+
+    elif st.session_state.level == 3:
+
+        st.subheader("🔴 Fire Confirmed")
+
+        st.error("""
+MQ2 = Very High
+
+MQ7 = Very High
+
+Temperature = 90°C
+""")
+
+        decision = st.radio(
+            "Emergency Action",
+            [
+                "Trip Breaker",
+                "Disable Alarm",
+                "Do Nothing"
+            ]
+        )
+
+        if st.button("Submit Level 3"):
+
+            if decision == "Trip Breaker":
+
+                st.success(
+                    "Excellent. Breaker isolated."
+                )
+
+                st.session_state.safety = 100
+
+            else:
+
+                st.error(
+                    "Fire spreads rapidly."
+                )
+
+                st.session_state.fire += 40
+                st.session_state.damage += 40
+                st.session_state.safety -= 40
+
+            st.session_state.level = 4
+            st.rerun()
+
+    # =====================================
+    # FINAL RESULT
+    # =====================================
+
+    elif st.session_state.level == 4:
+
+        st.balloons()
+
+        st.subheader("🏆 Mission Report")
+
+        st.metric(
+            "Final Fire Spread",
+            f"{st.session_state.fire}%"
+        )
+
+        st.metric(
+            "Property Damage",
+            f"{st.session_state.damage}%"
+        )
+
+        st.metric(
+            "Occupant Safety",
+            f"{st.session_state.safety}%"
+        )
+
+        if st.session_state.damage < 30:
+
+            st.success("""
+Grade: A+
+
+You successfully protected
+the smart home.
+""")
+
+        else:
+
+            st.error("""
+Grade: D
+
+The fire caused severe damage.
+""")
+
+        if st.button("🔄 Play Again"):
+
+            st.session_state.level = 1
+            st.session_state.fire = 10
+            st.session_state.safety = 100
+            st.session_state.damage = 0
+
+            st.rerun()
 
 # FOOTER #
 st.markdown("""
