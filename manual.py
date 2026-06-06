@@ -1073,19 +1073,37 @@ conditions using four environmental sensors.
 
     st.subheader("📈 Class Performance")
 
-    st.table({
-        "Class":[
-            "Non-Fire",
-            "Potential Fire",
-            "Fire"
-        ],
+    st.markdown("""
+<div class='glass'>
 
-        "Description":[
-            "Normal Conditions",
-            "Early Warning",
-            "Emergency"
-        ]
-    })
+<h3>📈 Class Performance</h3>
+
+<table style="width:100%; color:white;">
+
+<tr>
+<th>Class</th>
+<th>Description</th>
+</tr>
+
+<tr>
+<td>🟢 Non-Fire</td>
+<td>Normal Conditions</td>
+</tr>
+
+<tr>
+<td>🟡 Potential Fire</td>
+<td>Early Warning</td>
+</tr>
+
+<tr>
+<td>🔴 Fire</td>
+<td>Emergency</td>
+</tr>
+
+</table>
+
+</div>
+""", unsafe_allow_html=True)
 
     st.divider()
 
