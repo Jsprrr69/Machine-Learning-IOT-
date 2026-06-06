@@ -332,7 +332,7 @@ st.markdown("""
 # SIDEBAR MENU
 # ==========================================================
 
-st.sidebar.title("🔥 Navigation")
+st.sidebar.title("🔥 Menu Bar 🔥")
 
 page = st.sidebar.radio(
     "",
