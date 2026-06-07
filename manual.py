@@ -348,7 +348,7 @@ st.markdown(
 
 .footer {
     text-align:center;
-    padding:0px;
+    padding:40px;
     color:#999;
     margin-top:50px;
 }
@@ -1806,10 +1806,7 @@ with center:
         st.image(
             "assets/logo.png",
             width=300
-        )
-st.markdown(
-    """
-    
+        )    
 <div class='footer'>
 
 🔥 IoT-Based Fire Detection and Classification System
