@@ -431,32 +431,82 @@ st.markdown(
 }
 
 /* ===================================================== */
-/* SIDEBAR */
+/* PREMIUM SIDEBAR */
 /* ===================================================== */
 
-section[data-testid="stSidebar"] {
-    background-color: #111111;
+[data-testid="stSidebar"]{
+    background:
+    linear-gradient(
+        180deg,
+        #081018 0%,
+        #0f172a 50%,
+        #111827 100%
+    );
+
+    border-right:
+    1px solid rgba(
+        255,
+        140,
+        66,
+        0.15
+    );
 }
 
-section[data-testid="stSidebar"] * {
-    color: white;
-    animation:
-    sidebarGlow 5s ease infinite;
+/* Sidebar Content */
 
-        @keyframes sidebarGlow {
-    
-        0%{
-            filter:brightness(1);
-        }
-    
-        50%{
-            filter:brightness(1.15);
-        }
-    
-        100%{
-            filter:brightness(1);
-        }
-    }
+[data-testid="stSidebar"] > div:first-child{
+
+    padding-top:20px;
+}
+
+/* Logo Card */
+
+.sidebar-logo{
+
+    text-align:center;
+
+    background:
+    rgba(255,255,255,0.04);
+
+    border:
+    1px solid rgba(
+        255,
+        255,
+        255,
+        0.08
+    );
+
+    border-radius:20px;
+
+    padding:20px;
+
+    margin-bottom:25px;
+
+    box-shadow:
+    0 0 20px rgba(
+        255,
+        140,
+        66,
+        0.15
+    );
+}
+
+.sidebar-logo h1{
+
+    color:#ff8c42;
+
+    margin:0;
+
+    font-size:28px;
+}
+
+.sidebar-logo p{
+
+    color:#bdbdbd;
+
+    font-size:13px;
+
+    margin-top:5px;
 }
 
 /* ===================================================== */
