@@ -662,7 +662,7 @@ st.sidebar.markdown(
     """
 <div class="sidebar-logo">
 
-<h1>🔥 MAIN MENU 🔥</h1>
+<h1>🔥MAIN MENU🔥</h1>
 
 <p>
 IoT-Based Fire Detection
@@ -715,13 +715,24 @@ Group 5
 
 if page == "🏠 Home":
 
-    col1, col2, col3 = st.columns([3,1,3])
-
-    with col2:
-        st.image(
-            "assets/logo.png",
-            width=300
-        )
+    st.markdown(
+    """
+    <div style="text-align:center;">
+    """,
+        unsafe_allow_html=True
+    )
+    
+    st.image(
+        "assets/logo.png",
+        width=250
+    )
+    
+    st.markdown(
+        """
+    </div>
+    """,
+        unsafe_allow_html=True
+    )
     
     st.markdown(
         """
