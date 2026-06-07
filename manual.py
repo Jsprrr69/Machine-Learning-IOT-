@@ -681,6 +681,25 @@ Group 5
 if page == "🏠 Home":
 
     st.markdown(
+    """
+    <div style="display:flex; justify-content:center;">
+    """,
+    unsafe_allow_html=True
+)
+
+st.image(
+    "assets/logo.png",
+    width=300
+)
+
+st.markdown(
+    """
+    </div>
+    """,
+    unsafe_allow_html=True
+)
+
+    st.markdown(
         """
     <div class='hero'>
 
