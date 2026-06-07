@@ -687,12 +687,12 @@ if page == "🏠 Home":
     unsafe_allow_html=True
 )
 
-st.image(
+    st.image(
     "assets/logo.png",
     width=300
 )
 
-st.markdown(
+    st.markdown(
     """
     </div>
     """,
