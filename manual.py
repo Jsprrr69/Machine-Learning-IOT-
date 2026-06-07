@@ -1139,39 +1139,53 @@ Potential Fire, or Fire conditions.
     st.divider()
 
     st.markdown("""
-    ### 🚦 Step 4 — Classification Result
-    """)
+    <div class='glass fade-in'>
+
+    <h2 style='text-align:center; color:#ff8c42;'>
+
+    🚦 Step 4 — Classification Result
+
+    </h2>
+
+    <p style='text-align:center;'>
+
+    The system determines the
+    current condition based on
+    sensor readings.
+
+    </p>
+
+    </div>
+    """, unsafe_allow_html=True)
 
     col1, col2, col3 = st.columns(3)
 
     with col1:
-        st.success("""
-🟢 NON-FIRE
-
-Normal Conditions
-
-No Action Required
-""")
+        st.markdown("""
+        <div class='glass sensor-card'>
+        <h3>🟢 NON-FIRE</h3>
+        <p>Normal Conditions</p>
+        <p>No Action Required</p>
+        </div>
+        """, unsafe_allow_html=True)
 
     with col2:
-        st.warning("""
-🟡 POTENTIAL FIRE
-
-Warning Condition
-
-SMS Sent
-""")
+        st.markdown("""
+        <div class='glass sensor-card'>
+        <h3>🟡 POTENTIAL FIRE</h3>
+        <p>Warning Condition</p>
+        <p>SMS Sent</p>
+        </div>
+        """, unsafe_allow_html=True)
 
     with col3:
-        st.error("""
-🔴 FIRE
-
-Emergency Condition
-
-SMS Sent
-+
-Breaker Trip
-""")
+        st.markdown("""
+        <div class='glass sensor-card'>
+        <h3>🔴 FIRE</h3>
+        <p>Emergency Condition</p>
+        <p>SMS Sent + Breaker Trip</p>
+        </div>
+        """, unsafe_allow_html=True)
 
     st.divider()
 
