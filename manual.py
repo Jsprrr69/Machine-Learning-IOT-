@@ -98,6 +98,71 @@ st.markdown(
     margin-top:5px;
 }
 
+/* Menu Items */
+
+div[role="radiogroup"] > label{
+
+    background:
+    rgba(255,255,255,0.03);
+
+    border:
+    1px solid rgba(
+        255,
+        255,
+        255,
+        0.04
+    );
+
+    border-radius:15px;
+
+    padding:14px;
+
+    margin-bottom:10px;
+
+    transition:all .35s ease;
+
+    font-weight:500;
+}
+
+/* Hover */
+
+div[role="radiogroup"] > label:hover{
+
+    transform:translateX(8px);
+
+    border-color:#ff8c42;
+
+    box-shadow:
+    0 0 18px rgba(
+        255,
+        140,
+        66,
+        0.25
+    );
+
+    background:
+    rgba(255,140,66,0.08);
+}
+
+/* Selected */
+
+div[role="radiogroup"] label[data-selected="true"]{
+
+    background:
+    rgba(255,140,66,0.15);
+
+    border-left:
+    5px solid #ff8c42;
+
+    box-shadow:
+    0 0 25px rgba(
+        255,
+        140,
+        66,
+        0.35
+    );
+}
+
 </style>
 """,
     unsafe_allow_html=True,
