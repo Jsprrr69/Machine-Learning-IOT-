@@ -711,16 +711,12 @@ Group 5
 
 if page == "🏠 Home":
 
-    col1, col2, col3 = st.columns([3, 1, 3])
+    logo_left, logo_center, logo_right = st.columns([2,1,2])
 
-    with col2:
-        st.image("assets/logo.png", width=300)
-
-    st.markdown(
-        """
-    </div>
-    """,
-        unsafe_allow_html=True
+    with logo_center:
+        st.image(
+            "assets/logo.png",
+            use_container_width=True
     )
     
     st.markdown(
