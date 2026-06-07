@@ -1797,6 +1797,12 @@ elif page == "👨‍💻 Developers":
     """)
 
 # FOOTER #
+st.image(
+    "assets/loglog.png",
+    use_container_width=False,
+    width=600
+)
+
 st.markdown(
     """ 
 <div class='footer'>
@@ -1804,13 +1810,6 @@ st.markdown(
 🔥 IoT-Based Fire Detection and Classification System
 with Automatic Breaker Isolation
 and SMS Notification 🔥 
-</div>
-st.image(
-    "assets/loglog.png",
-    use_container_width=False,
-    width=600
-)
-</div>
 Bachelor of Science in Electrical Engineering
 
 </div>
