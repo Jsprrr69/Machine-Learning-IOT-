@@ -591,6 +591,25 @@ page = st.sidebar.radio(
     ],
 )
 
+st.sidebar.markdown("---")
+
+st.sidebar.markdown(
+"""
+<center>
+
+BS Electrical Engineering
+
+Group 5
+
+<br>
+
+FireGuard AI
+
+</center>
+""",
+unsafe_allow_html=True
+)
+
 # ==========================================================
 # HOME PAGE
 # ==========================================================
