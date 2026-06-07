@@ -558,24 +558,21 @@ st.markdown(
 # SIDEBAR MENU
 # ==========================================================
 
-st.sidebar.markdown(
-    """
-<div class="sidebar-title">
+st.sidebar.markdown("""
+<div class="sidebar-logo">
 
-🔥 MAIN MENU hatdog🔥
+<h1>🔥 FIREGUARD AI</h1>
+
+<p>
+IoT-Based Fire Detection
+and Classification System
+</p>
 
 </div>
-""",
-    unsafe_allow_html=True,
-)
+""", unsafe_allow_html=True)
 
-st.sidebar.markdown(
-    """
-<p style='text-align:center;color:#bbbbbb;'>
-Smart Fire Detection System
-</p>
-""",
-    unsafe_allow_html=True,
+st.sidebar.success(
+    "🟢 System Online"
 )
 
 page = st.sidebar.radio(
