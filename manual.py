@@ -1169,19 +1169,62 @@ elif page == "📚 User Manual":
 
     st.divider()
 
-    st.markdown("""
-    ### Step 3 — Verify Sensor Initialization
-    """)
+        st.markdown("""
+    <div class='glass fade-in'>
 
-    st.code("""
-MQ2      ✓ Smoke Sensor
-MQ7      ✓ Carbon Monoxide Sensor
-MQ135    ✓ Air Quality Sensor
-MCP9808  ✓ Temperature Sensor
-    """)
+    <h2 style='text-align:center; color:#ff8c42;'>
+    🔍 Step 3 — Verify Sensor Initialization
+    </h2>
 
-    st.success("""
-All sensors should initialize successfully before normal operation begins.
+    <p style='text-align:center;'>
+    Before using the system, ensure that all sensors
+    have initialized correctly and are communicating
+    with the ESP32.
+    </p>
+
+    </div>
+    """, unsafe_allow_html=True)
+
+    col1, col2 = st.columns(2)
+
+    with col1:
+        st.success("""
+🌫️ MQ2 Sensor
+
+✓ Smoke Detection Sensor
+
+Status: Initialized
+""")
+
+        st.success("""
+☠️ MQ7 Sensor
+
+✓ Carbon Monoxide Sensor
+
+Status: Initialized
+""")
+
+    with col2:
+        st.success("""
+🌬️ MQ135 Sensor
+
+✓ Air Quality Sensor
+
+Status: Initialized
+""")
+
+        st.success("""
+🌡️ MCP9808 Sensor
+
+✓ Temperature Sensor
+
+Status: Initialized
+""")
+
+    st.info("""
+The system should only proceed to normal operation
+once all four sensors have been successfully initialized
+and are providing valid readings.
 """)
 
     st.divider()
