@@ -1763,7 +1763,9 @@ elif page == "👨‍💻 Developers":
 
 # FOOTER #
 
-logo1, logo2, logo3, logo4 = st.columns(4)
+space1, logo1, logo2, logo3, logo4, space2 = st.columns(
+    [2, 1, 1, 1, 1, 2]
+)
 
 with logo1:
     st.image("assets/pup.png", width=100)
