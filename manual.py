@@ -1802,7 +1802,7 @@ elif page == "👨‍💻 Developers":
 
 # FOOTER #
 st.image(
-    "assets/log.png",
+    "assets/lugu.png",
     use_container_width=False,
     width=500
 )
