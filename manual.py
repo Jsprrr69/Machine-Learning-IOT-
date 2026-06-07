@@ -1778,35 +1778,26 @@ elif page == "👨‍💻 Developers":
     """)
 
 # FOOTER #
-logo_space1, logos, logo_space2 = st.columns([3, 2, 3])
+col1, col2, col3 = st.columns([2,3,2])
 
-with logos:
+with col2:
 
-    l1, l2, l3, l4 = st.columns([1,1,1,1])
+    a, b, c, d = st.columns(
+        [1,1,1,1],
+        gap="small"
+    )
 
-    with l1:
-        st.image(
-            "assets/pup.png",
-            width=120
-        )
+    with a:
+        st.image("assets/pup.png", width=130)
 
-    with l2:
-        st.image(
-            "assets/cea.png",
-            width=120
-        )
+    with b:
+        st.image("assets/cea.png", width=130)
 
-    with l3:
-        st.image(
-            "assets/eee.png",
-            width=120
-        )
+    with c:
+        st.image("assets/eee.png", width=130)
 
-    with l4:
-        st.image(
-            "assets/logo.png",
-            width=120
-        ) 
+    with d:
+        st.image("assets/logo.png", width=130)
 
 st.markdown(
     """ 
