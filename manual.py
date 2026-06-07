@@ -8,14 +8,15 @@ st.set_page_config(
     page_title="Fire Detection System Manual",
     page_icon="🔥",
     layout="wide",
-    initial_sidebar_state="expanded"
+    initial_sidebar_state="expanded",
 )
 
 # ==========================================================
 # CUSTOM CSS
 # ==========================================================
 
-st.markdown("""
+st.markdown(
+    """
 <style>
 
 /* Sidebar */
@@ -62,9 +63,12 @@ div[role="radiogroup"] label[data-selected="true"]{
 }
 
 </style>
-""", unsafe_allow_html=True)
+""",
+    unsafe_allow_html=True,
+)
 
-st.markdown("""
+st.markdown(
+    """
 <style>
 
 /* ===================================================== */
@@ -81,56 +85,7 @@ st.markdown("""
     color: white;
 }
 
-.stApp::before {
 
-    content: "";
-
-    position: fixed;
-
-    top: -50%;
-    left: -50%;
-
-    width: 200%;
-    height: 200%;
-
-    background:
-    radial-gradient(
-        circle at 20% 20%,
-        rgba(255,140,66,0.15),
-        transparent 30%
-    ),
-
-    radial-gradient(
-        circle at 80% 30%,
-        rgba(255,69,0,0.12),
-        transparent 35%
-    ),
-
-    radial-gradient(
-        circle at 50% 80%,
-        rgba(255,180,80,0.08),
-        transparent 40%
-    );
-
-    animation: fireGlow 15s ease-in-out infinite;
-
-    z-index: -2;
-}
-
-@keyframes fireGlow {
-
-    0%{
-        transform: rotate(0deg);
-    }
-
-    50%{
-        transform: rotate(180deg);
-    }
-
-    100%{
-        transform: rotate(360deg);
-    }
-}
 
 /* ===================================================== */
 /* EMBER ANIMATION */
@@ -147,50 +102,20 @@ st.markdown("""
 }
 
 .ember {
-
-    position:absolute;
-
-    width:8px;
-
-    height:8px;
-
-    background:#ff8c42;
-
-    border-radius:50%;
-
-    box-shadow:
-        0 0 10px #ff8c42,
-        0 0 20px #ff8c42,
-        0 0 30px #ff4500;
-
-    animation:
-        emberFloat linear infinite;
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    background: orange;
+    border-radius: 50%;
+    opacity: 0.7;
+    animation: floatUp 10s linear infinite;
 }
 
-@keyframes emberFloat {
-
-    from {
-
-        transform:
-        translateY(100vh)
-        translateX(0px);
-
-        opacity:0;
+@keyframes floatUp {
+    0% {
+        transform: translateY(100vh);
+        opacity: 0;
     }
-
-    20%{
-        opacity:1;
-    }
-
-    100%{
-
-        transform:
-        translateY(-150px)
-        translateX(120px);
-
-        opacity:0;
-    }
-}
 
     10% {
         opacity: 1;
@@ -297,30 +222,6 @@ st.markdown("""
 }
 
 .hero h1 {
-
-    animation:
-        flameText 2s ease-in-out infinite;
-
-    text-shadow:
-        0 0 10px #ff8c42,
-        0 0 20px #ff4500,
-        0 0 40px #ff8c42;
-}
-
-@keyframes flameText {
-
-    0%{
-        transform:translateY(0px);
-    }
-
-    50%{
-        transform:translateY(-3px);
-    }
-
-    100%{
-        transform:translateY(0px);
-    }
-}
     font-size: 3.5rem;
     color: #ff8c42;
 }
@@ -363,15 +264,7 @@ st.markdown("""
 }
 
 .glass:hover {
-
-    transform:
-        translateY(-10px)
-        scale(1.02);
-
-    box-shadow:
-        0 0 20px rgba(255,140,66,0.25),
-        0 0 40px rgba(255,69,0,0.15),
-        0 0 60px rgba(255,140,66,0.10);
+    transform: translateY(-5px);
 }
 
 /* ===================================================== */
@@ -447,24 +340,7 @@ section[data-testid="stSidebar"] {
 }
 
 section[data-testid="stSidebar"] * {
-    animation:
-    sidebarGlow 5s ease infinite;
     color: white;
-}
-
-@keyframes sidebarGlow {
-
-    0%{
-        filter:brightness(1);
-    }
-
-    50%{
-        filter:brightness(1.15);
-    }
-
-    100%{
-        filter:brightness(1);
-    }
 }
 
 /* ===================================================== */
@@ -485,59 +361,52 @@ section[data-testid="stSidebar"] * {
 }
 
 </style>
-""", unsafe_allow_html=True)
+""",
+    unsafe_allow_html=True,
+)
 
 # ==========================================================
 # EMBERS
 # ==========================================================
 
-st.markdown("""
+st.markdown(
+    """
 <div class="fire-bg">
-
-<div class="ember" style="left:5%;animation-duration:8s;"></div>
-<div class="ember" style="left:10%;animation-duration:12s;"></div>
-<div class="ember" style="left:15%;animation-duration:9s;"></div>
-<div class="ember" style="left:20%;animation-duration:11s;"></div>
-<div class="ember" style="left:25%;animation-duration:10s;"></div>
-
-<div class="ember" style="left:30%;animation-duration:13s;"></div>
-<div class="ember" style="left:35%;animation-duration:9s;"></div>
-<div class="ember" style="left:40%;animation-duration:12s;"></div>
-<div class="ember" style="left:45%;animation-duration:8s;"></div>
-
-<div class="ember" style="left:50%;animation-duration:14s;"></div>
-<div class="ember" style="left:55%;animation-duration:10s;"></div>
-<div class="ember" style="left:60%;animation-duration:11s;"></div>
-<div class="ember" style="left:65%;animation-duration:9s;"></div>
-
-<div class="ember" style="left:70%;animation-duration:13s;"></div>
-<div class="ember" style="left:75%;animation-duration:8s;"></div>
-<div class="ember" style="left:80%;animation-duration:12s;"></div>
-
-<div class="ember" style="left:85%;animation-duration:9s;"></div>
-<div class="ember" style="left:90%;animation-duration:11s;"></div>
-<div class="ember" style="left:95%;animation-duration:10s;"></div>
-
+    <div class="ember" style="left:10%;animation-delay:0s;"></div>
+    <div class="ember" style="left:20%;animation-delay:2s;"></div>
+    <div class="ember" style="left:35%;animation-delay:4s;"></div>
+    <div class="ember" style="left:50%;animation-delay:1s;"></div>
+    <div class="ember" style="left:65%;animation-delay:3s;"></div>
+    <div class="ember" style="left:80%;animation-delay:5s;"></div>
+    <div class="ember" style="left:90%;animation-delay:6s;"></div>
 </div>
-""", unsafe_allow_html=True)
+""",
+    unsafe_allow_html=True,
+)
 
 # ==========================================================
 # SIDEBAR MENU
 # ==========================================================
 
-st.sidebar.markdown("""
+st.sidebar.markdown(
+    """
 <div class="sidebar-title">
 
 🔥 MAIN MENU 🔥
 
 </div>
-""", unsafe_allow_html=True)
+""",
+    unsafe_allow_html=True,
+)
 
-st.sidebar.markdown("""
+st.sidebar.markdown(
+    """
 <p style='text-align:center;color:#bbbbbb;'>
 Smart Fire Detection System
 </p>
-""", unsafe_allow_html=True)
+""",
+    unsafe_allow_html=True,
+)
 
 page = st.sidebar.radio(
     "",
@@ -551,8 +420,8 @@ page = st.sidebar.radio(
         "📱 SMS Alerts",
         "🎥 Demonstration",
         "❓ FAQ",
-        "👨‍💻 Developers"
-    ]
+        "👨‍💻 Developers",
+    ],
 )
 
 # ==========================================================
@@ -561,7 +430,8 @@ page = st.sidebar.radio(
 
 if page == "🏠 Home":
 
-    st.markdown("""
+    st.markdown(
+        """
     <div class='hero'>
 
     <h1>
@@ -582,9 +452,12 @@ if page == "🏠 Home":
     </p>
 
     </div>
-    """, unsafe_allow_html=True)
+    """,
+        unsafe_allow_html=True,
+    )
 
-    st.markdown("""
+    st.markdown(
+        """
 <div class='glass fade-in'>
 
 <h2>🔥 Why This Project Matters</h2>
@@ -601,9 +474,12 @@ response.
 </p>
 
 </div>
-""", unsafe_allow_html=True)
+""",
+        unsafe_allow_html=True,
+    )
 
-    st.markdown("""
+    st.markdown(
+        """
     <div class='glass'>
 
     <h2>🔥 Project Overview</h2>
@@ -625,33 +501,44 @@ response.
     </p>
 
     </div>
-    """, unsafe_allow_html=True)
+    """,
+        unsafe_allow_html=True,
+    )
 
     col1, col2, col3 = st.columns(3)
 
     with col1:
-        st.markdown("""
+        st.markdown(
+            """
         <div class='metric-card'>
         <h1>98.80%</h1>
         <p>Model Accuracy</p>
         </div>
-        """, unsafe_allow_html=True)
+        """,
+            unsafe_allow_html=True,
+        )
 
     with col2:
-        st.markdown("""
+        st.markdown(
+            """
         <div class='metric-card'>
         <h1>100%</h1>
         <p>SMS Reliability</p>
         </div>
-        """, unsafe_allow_html=True)
+        """,
+            unsafe_allow_html=True,
+        )
 
     with col3:
-        st.markdown("""
+        st.markdown(
+            """
         <div class='metric-card'>
         <h1>100%</h1>
         <p>Breaker Reliability</p>
         </div>
-        """, unsafe_allow_html=True)
+        """,
+            unsafe_allow_html=True,
+        )
 
 # ==========================================================
 # PLACEHOLDERS
@@ -659,7 +546,8 @@ response.
 
 elif page == "📖 About Project":
 
-    st.markdown("""
+    st.markdown(
+        """
     <div class='glass'>
 
     <h1>📖 About the Project</h1>
@@ -700,9 +588,12 @@ elif page == "📖 About Project":
     </p>
 
     </div>
-    """, unsafe_allow_html=True)
+    """,
+        unsafe_allow_html=True,
+    )
 
-    st.markdown("""
+    st.markdown(
+        """
     <div class='glass'>
 
     <h2>🎯 Objectives</h2>
@@ -716,7 +607,9 @@ elif page == "📖 About Project":
     </ul>
 
     </div>
-    """, unsafe_allow_html=True)
+    """,
+        unsafe_allow_html=True,
+    )
 
 elif page == "⚙️ How It Works":
 
@@ -724,7 +617,8 @@ elif page == "⚙️ How It Works":
 
     st.subheader("📌 Complete Workflow")
 
-    st.markdown("""
+    st.markdown(
+        """
     <div class='timeline-card'>
     1️⃣ Sensors collect environmental data
     </div>
@@ -756,7 +650,9 @@ elif page == "⚙️ How It Works":
     <div class='timeline-card'>
     8️⃣ Breaker isolation activates during Fire
     </div>
-    """, unsafe_allow_html=True)
+    """,
+        unsafe_allow_html=True,
+    )
 
     st.title("⚙️ How The System Works")
 
@@ -791,118 +687,34 @@ elif page == "⚙️ How It Works":
     st.divider()
 
     st.markdown("""
-    <div class='glass fade-in'>
-    
-    <h2 style='text-align:center; color:#ff8c42;'>
-    
-    🧠 Step 3 — Machine Learning Classification
-    
-    </h2>
-    
-    <br>
-    
-    <div style="
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:30px;
-    flex-wrap:wrap;
-    text-align:center;
-    ">
-    
-    <div style="
-    background:rgba(255,255,255,0.05);
-    padding:20px;
-    border-radius:15px;
-    width:220px;
-    ">
-    
-    <h3>📡 Sensor Readings</h3>
-    
-    <p>
-    MQ2<br>
-    MQ7<br>
-    MQ135<br>
-    MCP9808
-    </p>
-    
-    </div>
-    
-    <div style="
-    font-size:40px;
-    color:#ff8c42;
-    ">
-    ➡️
-    </div>
-    
-    <div style="
-    background:rgba(255,140,66,0.08);
-    padding:20px;
-    border-radius:15px;
-    width:220px;
-    ">
-    
-    <h3>🌲 Random Forest</h3>
-    
-    <p>
-    Machine Learning Model
-    </p>
-    
-    </div>
-    
-    <div style="
-    font-size:40px;
-    color:#ff8c42;
-    ">
-    ➡️
-    </div>
-    
-    <div style="
-    background:rgba(255,255,255,0.05);
-    padding:20px;
-    border-radius:15px;
-    width:220px;
-    ">
-    
-    <h3>🚦 Classification</h3>
-    
-    <p>
-    
-    🟢 Non-Fire<br>
-    
-    🟡 Potential Fire<br>
-    
-    🔴 Fire
-    
-    </p>
-    
-    </div>
-    
-    </div>
-    
-    <br>
-    
-    <p style='text-align:center;'>
-    
-    The Random Forest model analyzes the
-    combined sensor readings and intelligently
-    classifies the detected condition into
-    Non-Fire, Potential Fire, or Fire.
-    
-    </p>
-    
-    </div>
-    """, unsafe_allow_html=True)
+    ### 🧠 Step 3 — Machine Learning Classification
+    """)
+
+    st.code(
+        """
+Sensor Readings
+       ↓
+Random Forest
+       ↓
+Classification
+    """,
+        language="text",
+    )
+
+    st.markdown("""
+    The Random Forest model analyzes the sensor
+    readings and determines the current condition.
+    """)
 
     st.divider()
 
-st.markdown("""
+    st.markdown("""
     ### 🚦 Step 4 — Classification Result
     """)
 
-col1, col2, col3 = st.columns(3)
+    col1, col2, col3 = st.columns(3)
 
-with col1:
+    with col1:
         st.success("""
 🟢 NON-FIRE
 
@@ -911,7 +723,7 @@ Normal Conditions
 No Action Required
 """)
 
-with col2:
+    with col2:
         st.warning("""
 🟡 POTENTIAL FIRE
 
@@ -920,7 +732,7 @@ Warning Condition
 SMS Sent
 """)
 
-with col3:
+    with col3:
         st.error("""
 🔴 FIRE
 
@@ -931,9 +743,9 @@ SMS Sent
 Breaker Trip
 """)
 
-st.divider()
+    st.divider()
 
-st.markdown("""
+    st.markdown("""
     ### 📱 Step 5 — Automated Response
 
     Depending on the classification,
@@ -947,13 +759,11 @@ st.markdown("""
 
     • Breaker Isolation
     """)
-
-
 elif page == "📚 User Manual":
 
-st.title("📚 User Manual")
+    st.title("📚 User Manual")
 
-st.markdown("""
+    st.markdown("""
     ## 📖 Introduction
 
     Welcome to the IoT-Based Fire Detection and Classification System
@@ -969,13 +779,13 @@ st.markdown("""
     Non-Fire, Potential Fire, or Fire.
     """)
 
-st.divider()
+    st.divider()
 
-st.markdown("""
+    st.markdown("""
     ## 🚀 Getting Started
     """)
 
-st.markdown("""
+    st.markdown("""
     ### Step 1 — Power On the System
 
     Supply power to the system and ensure that all components are
@@ -1000,9 +810,9 @@ st.markdown("""
     Allow the sensors a few moments to stabilize after startup.
     """)
 
-st.divider()
+    st.divider()
 
-st.markdown("""
+    st.markdown("""
     ### Step 2 — Verify WiFi Connectivity
 
     The ESP32 automatically connects to the configured WiFi network.
@@ -1018,26 +828,26 @@ st.markdown("""
     • Remote Notifications
     """)
 
-st.divider()
+    st.divider()
 
-st.markdown("""
+    st.markdown("""
     ### Step 3 — Verify Sensor Initialization
     """)
 
-st.code("""
+    st.code("""
 MQ2      ✓ Smoke Sensor
 MQ7      ✓ Carbon Monoxide Sensor
 MQ135    ✓ Air Quality Sensor
 MCP9808  ✓ Temperature Sensor
     """)
 
-st.success("""
+    st.success("""
 All sensors should initialize successfully before normal operation begins.
 """)
 
-st.divider()
+    st.divider()
 
-st.markdown("""
+    st.markdown("""
     ### Step 4 — Open the Monitoring Dashboard
 
     Access the monitoring dashboard to observe the system status,
@@ -1047,24 +857,18 @@ st.markdown("""
     is received.
     """)
 
-st.divider()
+    st.divider()
 
-st.markdown("""
+    st.markdown("""
     ### Step 5 — Machine Learning Classification
 
     The Random Forest model continuously analyzes sensor readings
     and determines the current environmental condition.
     """)
 
-tab1, tab2, tab3 = st.tabs(
-        [
-            "🟢 Non-Fire",
-            "🟡 Potential Fire",
-            "🔴 Fire"
-        ]
-    )
+    tab1, tab2, tab3 = st.tabs(["🟢 Non-Fire", "🟡 Potential Fire", "🔴 Fire"])
 
-with tab1:
+    with tab1:
 
         st.success("""
 🟢 NON-FIRE
@@ -1092,7 +896,7 @@ System Response:
 ✓ No Emergency Action
 """)
 
-with tab2:
+    with tab2:
 
         st.warning("""
 🟡 POTENTIAL FIRE
@@ -1118,7 +922,7 @@ System Response:
 ✓ User Inspection Recommended
 """)
 
-with tab3:
+    with tab3:
 
         st.error("""
 🔴 FIRE
@@ -1150,7 +954,7 @@ System Response:
 
     st.divider()
 
-st.markdown("""
+    st.markdown("""
     ## 📱 SMS Notification System
 
     The SIM900A GSM Module automatically sends SMS alerts whenever
@@ -1162,9 +966,9 @@ st.markdown("""
     detected and immediate action may be necessary.
     """)
 
-st.divider()
+    st.divider()
 
-st.markdown("""
+    st.markdown("""
     ## ⚡ Automatic Breaker Isolation
 
     During a Fire classification, the relay module activates the
@@ -1176,9 +980,9 @@ st.markdown("""
     Breaker isolation is only activated during confirmed Fire conditions.
     """)
 
-st.divider()
+    st.divider()
 
-st.markdown("""
+    st.markdown("""
     ## 🖥️ Dashboard Monitoring
 
     The dashboard provides real-time monitoring of:
@@ -1197,9 +1001,9 @@ st.markdown("""
     through the dashboard interface.
     """)
 
-st.divider()
+    st.divider()
 
-st.markdown("""
+    st.markdown("""
     ## ⚠️ Important Reminders
 
     • Do not cover or obstruct the sensors.
@@ -1217,9 +1021,9 @@ st.markdown("""
     • Perform preventive maintenance when necessary.
     """)
 
-st.divider()
+    st.divider()
 
-st.success("""
+    st.success("""
 ✅ Normal Operation Summary
 
 1. Sensors collect environmental data.
@@ -1239,18 +1043,15 @@ st.success("""
 
 elif page == "🏗️ Architecture":
 
-st.title("🏗️ System Architecture")
+    st.title("🏗️ System Architecture")
 
-st.markdown("""
+    st.markdown("""
     ## Overall Workflow
     """)
 
-st.image(
-        "assets/arki2.jfif",
-        use_container_width=True
-)
+    st.image("assets/arki2.jfif", use_container_width=True)
 
-st.info("""
+    st.info("""
 The ESP32 collects sensor readings and sends them
 to the cloud database.
 
@@ -1262,43 +1063,55 @@ The system then performs automated responses.
 
 elif page == "📊 Performance":
 
-    st.markdown("""
+    st.markdown(
+        """
     <div class='glass'>
     <h1>📊 System Performance</h1>
     <p>
     Performance evaluation of the IoT-Based Fire Detection and Classification System.
     </p>
     </div>
-    """, unsafe_allow_html=True)
+    """,
+        unsafe_allow_html=True,
+    )
 
     c1, c2, c3 = st.columns(3)
 
     with c1:
-        st.markdown("""
+        st.markdown(
+            """
         <div class='glass'>
         <h1 style='color:#ff8c42;'>98.80%</h1>
         <h3>🧠 Model Accuracy</h3>
         <p>Random Forest Classification Performance</p>
         </div>
-        """, unsafe_allow_html=True)
+        """,
+            unsafe_allow_html=True,
+        )
 
     with c2:
-        st.markdown("""
+        st.markdown(
+            """
         <div class='glass'>
         <h1 style='color:#ff8c42;'>100%</h1>
         <h3>📱 SMS Reliability</h3>
         <p>Notification Delivery Success Rate</p>
         </div>
-        """, unsafe_allow_html=True)
+        """,
+            unsafe_allow_html=True,
+        )
 
     with c3:
-        st.markdown("""
+        st.markdown(
+            """
         <div class='glass'>
         <h1 style='color:#ff8c42;'>100%</h1>
         <h3>⚡ Breaker Reliability</h3>
         <p>Automatic Isolation Success Rate</p>
         </div>
-        """, unsafe_allow_html=True)
+        """,
+            unsafe_allow_html=True,
+        )
 
     st.divider()
 
@@ -1400,45 +1213,37 @@ The GSM module automatically sends SMS
 notifications whenever the system detects
 Potential Fire or Fire conditions.
 """)
-    
+
 elif page == "🎥 Demonstration":
 
     st.title("🎥 System Demonstration")
 
     st.video("assets/demo.mp4")
-    
+
 elif page == "❓ FAQ":
 
     st.title("❓ Frequently Asked Questions")
 
-    with st.expander(
-        "How does the system detect fire?"
-    ):
+    with st.expander("How does the system detect fire?"):
         st.write("""
 The system analyzes smoke,
 temperature, carbon monoxide,
 and air quality data.
         """)
 
-    with st.expander(
-        "What is Potential Fire?"
-    ):
+    with st.expander("What is Potential Fire?"):
         st.write("""
 Potential Fire is an early warning
 condition before an actual fire occurs.
         """)
 
-    with st.expander(
-        "Why use Machine Learning?"
-    ):
+    with st.expander("Why use Machine Learning?"):
         st.write("""
 Machine Learning reduces false alarms
 and improves classification accuracy.
         """)
 
-    with st.expander(
-        "What happens during Fire?"
-    ):
+    with st.expander("What happens during Fire?"):
         st.write("""
 The system sends SMS alerts,
 activates alarms,
@@ -1463,12 +1268,10 @@ elif page == "👨‍💻 Developers":
 
     with col1:
 
-        st.image(
-            "assets/latuga.jfif",
-            use_container_width=True
-        )
+        st.image("assets/latuga.jfif", use_container_width=True)
 
-        st.markdown("""
+        st.markdown(
+            """
         <div class='researcher-name'>
         Jan Rhemle Latuga
         </div>
@@ -1482,16 +1285,16 @@ elif page == "👨‍💻 Developers":
         target='_blank'>
         🔗 Visit Facebook Profile
         </a>
-        """, unsafe_allow_html=True)
+        """,
+            unsafe_allow_html=True,
+        )
 
     with col2:
 
-        st.image(
-            "assets/padilla.jfif",
-            use_container_width=True
-        )
+        st.image("assets/padilla.jfif", use_container_width=True)
 
-        st.markdown("""
+        st.markdown(
+            """
         <div class='researcher-name'>
         Mikaela Padilla
         </div>
@@ -1505,7 +1308,9 @@ elif page == "👨‍💻 Developers":
         target='_blank'>
         🔗 Visit Facebook Profile
         </a>
-        """, unsafe_allow_html=True)
+        """,
+            unsafe_allow_html=True,
+        )
 
     st.divider()
 
@@ -1513,12 +1318,10 @@ elif page == "👨‍💻 Developers":
 
     with col3:
 
-        st.image(
-            "assets/reyes.jfif",
-            use_container_width=True
-        )
+        st.image("assets/reyes.jfif", use_container_width=True)
 
-        st.markdown("""
+        st.markdown(
+            """
         <div class='researcher-name'>
         Amiell Reyes
         </div>
@@ -1532,16 +1335,16 @@ elif page == "👨‍💻 Developers":
         target='_blank'>
         🔗 Visit Facebook Profile
         </a>
-        """, unsafe_allow_html=True)
+        """,
+            unsafe_allow_html=True,
+        )
 
     with col4:
 
-        st.image(
-            "assets/wenceslao.jfif",
-            use_container_width=True
-        )
+        st.image("assets/wenceslao.jfif", use_container_width=True)
 
-        st.markdown("""
+        st.markdown(
+            """
         <div class='researcher-name'>
         Allen Jasper Wenceslao
         </div>
@@ -1555,7 +1358,9 @@ elif page == "👨‍💻 Developers":
         target='_blank'>
         🔗 Visit Facebook Profile
         </a>
-        """, unsafe_allow_html=True)
+        """,
+            unsafe_allow_html=True,
+        )
 
     st.divider()
 
@@ -1564,20 +1369,22 @@ elif page == "👨‍💻 Developers":
 
     with Automatic Breaker Isolation and SMS Notification
     """)
-    
 
 # FOOTER #
-st.markdown("""
+st.markdown(
+    """
     
 <div class='footer'>
 
 🔥 IoT-Based Fire Detection and Classification System
 with Automatic Breaker Isolation
-and SMS Notification 🔥
+and SMS Notification 🔥 
 
 <br><br>
 
 Bachelor of Science in Electrical Engineering
 
 </div>
-""", unsafe_allow_html=True)
+""",
+    unsafe_allow_html=True,
+)
