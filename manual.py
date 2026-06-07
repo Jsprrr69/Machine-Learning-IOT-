@@ -523,7 +523,7 @@ st.sidebar.markdown(
     """
 <div class="sidebar-title">
 
-🔥 MAIN MENU 🔥
+🔥 MAIN MENU hatdog🔥
 
 </div>
 """,
