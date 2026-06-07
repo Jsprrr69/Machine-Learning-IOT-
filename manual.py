@@ -623,7 +623,8 @@ st.markdown(
 # SIDEBAR MENU
 # ==========================================================
 
-st.sidebar.markdown("""
+st.sidebar.markdown(
+    """
 <div class="sidebar-logo">
 
 <h1>🔥 MAIN MENU 🔥</h1>
@@ -634,11 +635,11 @@ and Classification System
 </p>
 
 </div>
-""", unsafe_allow_html=True)
-
-st.sidebar.success(
-    "🟢 System Online"
+""",
+    unsafe_allow_html=True,
 )
+
+st.sidebar.success("🟢 System Online")
 
 page = st.sidebar.radio(
     "",
@@ -659,7 +660,7 @@ page = st.sidebar.radio(
 st.sidebar.markdown("---")
 
 st.sidebar.markdown(
-"""
+    """
 <center>
 
 BS Electrical Engineering
@@ -670,7 +671,7 @@ Group 5
 
 </center>
 """,
-unsafe_allow_html=True
+    unsafe_allow_html=True,
 )
 
 # ==========================================================
@@ -935,7 +936,8 @@ elif page == "⚙️ How It Works":
 
     st.divider()
 
-    st.markdown("""
+    st.markdown(
+        """
 <div class='glass fade-in'>
 
 <h2 style='text-align:center; color:#ff8c42;'>
@@ -1039,7 +1041,9 @@ Potential Fire, or Fire conditions.
 </p>
 
 </div>
-""", unsafe_allow_html=True)
+""",
+        unsafe_allow_html=True,
+    )
 
     st.divider()
 
@@ -1166,64 +1170,21 @@ elif page == "📚 User Manual":
     st.divider()
 
     st.markdown("""
-<div class='glass fade-in'>
+    ### Step 3 — Verify Sensor Initialization
+    """)
 
-<h2 style='text-align:center; color:#ff8c42;'>
-🔍 Step 3 — Verify Sensor Initialization
-</h2>
-
-<p style='text-align:center;'>
-Before using the system, ensure that all sensors
-have initialized correctly and are communicating
-with the ESP32.
-</p>
-
-</div>
-""", unsafe_allow_html=True)
-
-col1, col2 = st.columns(2)
-
-with col1:
-    st.success("""
-🌫️ MQ2 Sensor
-
-✓ Smoke Detection Sensor
-
-Status: Initialized
-""")
+    st.code("""
+MQ2      ✓ Smoke Sensor
+MQ7      ✓ Carbon Monoxide Sensor
+MQ135    ✓ Air Quality Sensor
+MCP9808  ✓ Temperature Sensor
+    """)
 
     st.success("""
-☠️ MQ7 Sensor
-
-✓ Carbon Monoxide Sensor
-
-Status: Initialized
+All sensors should initialize successfully before normal operation begins.
 """)
 
-with col2:
-    st.success("""
-🌬️ MQ135 Sensor
-
-✓ Air Quality Sensor
-
-Status: Initialized
-""")
-
-    st.success("""
-🌡️ MCP9808 Sensor
-
-✓ Temperature Sensor
-
-Status: Initialized
-""")
-
-st.info("""
-The system should only proceed to normal operation
-once all four sensors have been successfully initialized
-and are providing valid readings.
-""")
-
-st.divider()
+    st.divider()
 
     st.markdown("""
     ### Step 4 — Open the Monitoring Dashboard
