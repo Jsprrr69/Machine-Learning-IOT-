@@ -19,83 +19,47 @@ st.markdown(
     """
 <style>
 
-/* ===================================================== */
-/* PREMIUM SIDEBAR */
-/* ===================================================== */
-
+/* Sidebar */
 [data-testid="stSidebar"]{
-    background:
-    linear-gradient(
+    background: linear-gradient(
         180deg,
-        #081018 0%,
-        #0f172a 50%,
+        #0f172a 0%,
+        #1e293b 50%,
         #111827 100%
     );
-
-    border-right:
-    1px solid rgba(
-        255,
-        140,
-        66,
-        0.15
-    );
 }
 
-/* Sidebar Content */
-
-[data-testid="stSidebar"] > div:first-child{
-
-    padding-top:20px;
-}
-
-/* Logo Card */
-
-.sidebar-logo{
-
+/* Sidebar title */
+.sidebar-title{
     text-align:center;
-
-    background:
-    rgba(255,255,255,0.04);
-
-    border:
-    1px solid rgba(
-        255,
-        255,
-        255,
-        0.08
-    );
-
-    border-radius:20px;
-
-    padding:20px;
-
-    margin-bottom:25px;
-
-    box-shadow:
-    0 0 20px rgba(
-        255,
-        140,
-        66,
-        0.15
-    );
+    color:white;
+    font-size:24px;
+    font-weight:bold;
+    margin-bottom:20px;
 }
 
-.sidebar-logo h1{
-
-    color:#ff8c42;
-
-    margin:0;
-
-    font-size:28px;
+/* Radio buttons */
+div[role="radiogroup"] > label{
+    background: rgba(255,255,255,0.05);
+    border-radius:12px;
+    padding:10px;
+    margin-bottom:8px;
+    transition:0.3s;
 }
 
-.sidebar-logo p{
+div[role="radiogroup"] > label:hover{
+    background: rgba(255,140,66,0.25);
+    transform:translateX(5px);
+}
 
-    color:#bdbdbd;
+/* Selected menu */
+div[role="radiogroup"] label[data-selected="true"]{
+    background: rgba(255,140,66,0.35);
+}
 
-    font-size:13px;
-
-    margin-top:5px;
+/* Sidebar text */
+[data-testid="stSidebar"] *{
+    color:white;
 }
 
 </style>
@@ -561,7 +525,7 @@ st.markdown(
 st.sidebar.markdown("""
 <div class="sidebar-logo">
 
-<h1>🔥 FIREGUARD AI</h1>
+<h1>🔥 MAIN MENU 🔥</h1>
 
 <p>
 IoT-Based Fire Detection
@@ -598,12 +562,9 @@ st.sidebar.markdown(
 <center>
 
 BS Electrical Engineering
-
+4-1
 Group 5
 
-<br>
-
-FireGuard AI
 
 </center>
 """,
