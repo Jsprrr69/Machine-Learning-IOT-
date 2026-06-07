@@ -353,6 +353,22 @@ st.markdown(
     margin-top:50px;
 }
 
+.footer-logo{
+    transition:0.3s;
+}
+
+.footer-logo:hover{
+    transform:scale(1.1);
+    filter:drop-shadow(
+        0 0 15px rgba(
+            255,
+            140,
+            66,
+            0.6
+        )
+    );
+}
+
 /* ========================================= */
 /* TEAM CARD */
 /* ========================================= */
@@ -1762,6 +1778,35 @@ elif page == "👨‍💻 Developers":
     """)
 
 # FOOTER #
+left, center, right = st.columns([2,4,2])
+
+with center:
+
+    c1,c2,c3,c4 = st.columns(4)
+
+    with c1:
+        st.image(
+            "assets/university_logo.png",
+            width=85
+        )
+
+    with c2:
+        st.image(
+            "assets/engineering_logo.png",
+            width=85
+        )
+
+    with c3:
+        st.image(
+            "assets/eee_logo.png",
+            width=85
+        )
+
+    with c4:
+        st.image(
+            "assets/logo.png",
+            width=85
+        )
 st.markdown(
     """
     
