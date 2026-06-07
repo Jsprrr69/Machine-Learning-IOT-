@@ -682,23 +682,14 @@ if page == "🏠 Home":
 
     st.markdown(
     """
-    <div style="display:flex; justify-content:center;">
-    """,
-    unsafe_allow_html=True
-)
-
-    st.image(
-    "assets/logo.png",
-    width=300
-)
-
-    st.markdown(
-    """
+    <div style="text-align:center;">
+        <img src="https://raw.githubusercontent.com/USERNAME/REPOSITORY/main/assets/logo.png"
+             width="300">
     </div>
     """,
     unsafe_allow_html=True
 )
-
+    
     st.markdown(
         """
     <div class='hero'>
