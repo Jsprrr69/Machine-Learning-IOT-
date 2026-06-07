@@ -946,29 +946,28 @@ elif page == "⚙️ How It Works":
 
     st.title("⚙️ How The System Works")
 
-   st.markdown("""
-   
+         st.markdown("""
     <div class='glass fade-in'>
-    
+
     <h2 style='text-align:center; color:#ff8c42;'>
-    
+
     🔥 Step 1 — Data Collection
-    
+
     </h2>
-    
+
     <p style='text-align:center;'>
-    
+
     The system continuously gathers
     environmental information using
     four sensors.
-    
+
     </p>
-    
+
     </div>
     """, unsafe_allow_html=True)
-    
+
     c1, c2, c3, c4 = st.columns(4)
-    
+
     with c1:
         st.markdown("""
         <div class='glass sensor-card'>
@@ -976,7 +975,7 @@ elif page == "⚙️ How It Works":
         <p>Smoke Sensor</p>
         </div>
         """, unsafe_allow_html=True)
-    
+
     with c2:
         st.markdown("""
         <div class='glass sensor-card'>
@@ -984,7 +983,7 @@ elif page == "⚙️ How It Works":
         <p>Carbon Monoxide</p>
         </div>
         """, unsafe_allow_html=True)
-    
+
     with c3:
         st.markdown("""
         <div class='glass sensor-card'>
@@ -992,7 +991,7 @@ elif page == "⚙️ How It Works":
         <p>Air Quality</p>
         </div>
         """, unsafe_allow_html=True)
-    
+
     with c4:
         st.markdown("""
         <div class='glass sensor-card'>
@@ -1000,7 +999,7 @@ elif page == "⚙️ How It Works":
         <p>Temperature</p>
         </div>
         """, unsafe_allow_html=True)
-
+    
     st.divider()
 
     st.markdown("""
