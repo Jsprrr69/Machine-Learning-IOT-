@@ -936,7 +936,14 @@ elif page == "⚙️ How It Works":
     st.divider()
 
     st.markdown("""
-    ### ⚡ Step 2 — ESP32 Processing
+
+<div class='glass fade-in'>
+
+<h2 style='text-align:center; color:#ff8c42;'>
+
+     ⚡ Step 2 — ESP32 Processing
+
+</h2>
 
     The ESP32 continuously gathers data from all
     sensors and transmits the information to
