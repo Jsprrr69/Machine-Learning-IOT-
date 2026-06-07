@@ -680,12 +680,12 @@ Group 5
 
 if page == "🏠 Home":
 
-    col1, col2, col3 = st.columns([1, 2, 1])
+    col1, col2, col3 = st.columns([1, 1, 1])
 
     with col2:
         st.image(
             "assets/logo.png",
-            width=250
+            width=300
         )
 
     st.markdown(
