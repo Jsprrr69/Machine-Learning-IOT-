@@ -19,6 +19,15 @@ st.markdown(
     """
 <style>
 
+[data-testid="stImage"]{
+    text-align:center;
+}
+
+[data-testid="stImage"] img{
+    margin:auto;
+    display:block;
+}
+
 /* ===================================================== */
 /* PREMIUM SIDEBAR */
 /* ===================================================== */
@@ -682,14 +691,12 @@ if page == "🏠 Home":
 
     st.image(
     "assets/logo.png",
-    width=220
+    width=300
 )
     
     st.markdown(
         """
 
-    st.markdown("<br>", unsafe_allow_html=True)
-    
     <div class='hero'>
 
     <h1>
