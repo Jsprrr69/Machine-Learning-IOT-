@@ -1806,9 +1806,12 @@ with center:
         st.image(
             "assets/logo.png",
             width=300
-        )    
-<div class='footer'>
+        )  
 
+st.markdown(
+    """ 
+<div class='footer'>
+  
 🔥 IoT-Based Fire Detection and Classification System
 with Automatic Breaker Isolation
 and SMS Notification 🔥 
