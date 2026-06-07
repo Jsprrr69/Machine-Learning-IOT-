@@ -681,16 +681,13 @@ Group 5
 if page == "🏠 Home":
 
     st.markdown(
-        """
-        <div style="text-align:center;">
-        """,
-        unsafe_allow_html=True
-    )
-
-    st.image(
-        "assets/logo.png",
-        width=300
-    )
+    """
+    <div style="text-align:center;">
+    <img src="app/static/assets/logo.png" width="250">
+    </div>
+    """,
+    unsafe_allow_html=True,
+)
     
     st.markdown(
         """
