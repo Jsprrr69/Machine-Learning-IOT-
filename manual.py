@@ -680,7 +680,7 @@ Group 5
 
 if page == "🏠 Home":
 
-    col1, col2, col3 = st.columns([1, 1, 1])
+    col1, col2, col3 = st.columns([1, 3, 1])
 
     with col2:
         st.image(
