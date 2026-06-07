@@ -85,6 +85,56 @@ st.markdown(
     color: white;
 }
 
+.stApp::before {
+
+    content: "";
+
+    position: fixed;
+
+    top: -50%;
+    left: -50%;
+
+    width: 200%;
+    height: 200%;
+
+    background:
+    radial-gradient(
+        circle at 20% 20%,
+        rgba(255,140,66,0.15),
+        transparent 30%
+    ),
+
+    radial-gradient(
+        circle at 80% 30%,
+        rgba(255,69,0,0.12),
+        transparent 35%
+    ),
+
+    radial-gradient(
+        circle at 50% 80%,
+        rgba(255,180,80,0.08),
+        transparent 40%
+    );
+
+    animation: fireGlow 15s ease-in-out infinite;
+
+    z-index: -2;
+}
+
+@keyframes fireGlow {
+
+    0%{
+        transform: rotate(0deg);
+    }
+
+    50%{
+        transform: rotate(180deg);
+    }
+
+    100%{
+        transform: rotate(360deg);
+    }
+}
 
 
 /* ===================================================== */
