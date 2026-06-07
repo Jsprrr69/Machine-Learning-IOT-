@@ -388,7 +388,7 @@ st.markdown(
 
 .hero {
     text-align: center;
-    padding-top: 80px;
+    padding-top: 20px;
     padding-bottom: 80px;
 }
 
@@ -687,14 +687,6 @@ if page == "🏠 Home":
             "assets/logo.png",
             width=300
         )
-        
-    st.markdown("""
-    <style>
-    .logo-container{
-        margin-bottom:0px;
-    }
-    </style>
-    """, unsafe_allow_html=True)
     
     st.markdown(
         """
