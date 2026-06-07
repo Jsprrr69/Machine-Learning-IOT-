@@ -680,15 +680,13 @@ Group 5
 
 if page == "🏠 Home":
 
-    st.markdown(
-    """
-    <div style="text-align:center;">
-        <img src="https://raw.githubusercontent.com/USERNAME/REPOSITORY/main/assets/logo.png"
-             width="300">
-    </div>
-    """,
-    unsafe_allow_html=True
-)
+    col1, col2, col3 = st.columns([1,1,1])
+
+    with col2:
+        st.image(
+            "assets/logo.png",
+            width=300
+        )
     
     st.markdown(
         """
