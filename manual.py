@@ -388,7 +388,7 @@ st.markdown(
 
 .hero {
     text-align: center;
-    padding-top: 20px;
+    padding-top: 0px;
     padding-bottom: 80px;
 }
 
