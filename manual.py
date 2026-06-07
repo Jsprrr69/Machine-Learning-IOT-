@@ -948,58 +948,58 @@ elif page == "⚙️ How It Works":
 
    st.markdown("""
    
-<div class='glass fade-in'>
-
-<h2 style='text-align:center; color:#ff8c42;'>
-
-🔥 Step 1 — Data Collection
-
-</h2>
-
-<p style='text-align:center;'>
-
-The system continuously gathers
-environmental information using
-four sensors.
-
-</p>
-
-</div>
-""", unsafe_allow_html=True)
-
-c1, c2, c3, c4 = st.columns(4)
-
-with c1:
-    st.markdown("""
-    <div class='glass sensor-card'>
-    <h3>🌫️ MQ2</h3>
-    <p>Smoke Sensor</p>
+    <div class='glass fade-in'>
+    
+    <h2 style='text-align:center; color:#ff8c42;'>
+    
+    🔥 Step 1 — Data Collection
+    
+    </h2>
+    
+    <p style='text-align:center;'>
+    
+    The system continuously gathers
+    environmental information using
+    four sensors.
+    
+    </p>
+    
     </div>
     """, unsafe_allow_html=True)
-
-with c2:
-    st.markdown("""
-    <div class='glass sensor-card'>
-    <h3>☠️ MQ7</h3>
-    <p>Carbon Monoxide</p>
-    </div>
-    """, unsafe_allow_html=True)
-
-with c3:
-    st.markdown("""
-    <div class='glass sensor-card'>
-    <h3>🌬️ MQ135</h3>
-    <p>Air Quality</p>
-    </div>
-    """, unsafe_allow_html=True)
-
-with c4:
-    st.markdown("""
-    <div class='glass sensor-card'>
-    <h3>🌡️ MCP9808</h3>
-    <p>Temperature</p>
-    </div>
-    """, unsafe_allow_html=True)
+    
+    c1, c2, c3, c4 = st.columns(4)
+    
+    with c1:
+        st.markdown("""
+        <div class='glass sensor-card'>
+        <h3>🌫️ MQ2</h3>
+        <p>Smoke Sensor</p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with c2:
+        st.markdown("""
+        <div class='glass sensor-card'>
+        <h3>☠️ MQ7</h3>
+        <p>Carbon Monoxide</p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with c3:
+        st.markdown("""
+        <div class='glass sensor-card'>
+        <h3>🌬️ MQ135</h3>
+        <p>Air Quality</p>
+        </div>
+        """, unsafe_allow_html=True)
+    
+    with c4:
+        st.markdown("""
+        <div class='glass sensor-card'>
+        <h3>🌡️ MCP9808</h3>
+        <p>Temperature</p>
+        </div>
+        """, unsafe_allow_html=True)
 
     st.divider()
 
