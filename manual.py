@@ -1190,19 +1190,43 @@ Potential Fire, or Fire conditions.
     st.divider()
 
     st.markdown("""
-    ### 📱 Step 5 — Automated Response
+    <div class='glass fade-in'>
 
-    Depending on the classification,
-    the system automatically performs:
+    <h2 style='text-align:center; color:#ff8c42;'>
 
-    • Dashboard Update
+    📱 Step 5 — Automated Response
 
-    • SMS Notification
+    </h2>
 
-    • Alarm Activation
+    <div style="
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-top:20px;
+    ">
 
-    • Breaker Isolation
-    """)
+    <div class='sensor-card glass'>
+    📊 Dashboard Update
+    </div>
+
+    <div class='sensor-card glass'>
+    📱 SMS Notification
+    </div>
+
+    <div class='sensor-card glass'>
+    🚨 Alarm Activation
+    </div>
+
+    <div class='sensor-card glass'>
+    ⚡ Breaker Isolation
+    </div>
+
+    </div>
+
+    </div>
+    """, unsafe_allow_html=True)
+
 elif page == "📚 User Manual":
 
     st.title("📚 User Manual")
