@@ -1694,7 +1694,7 @@ elif page == "👨‍💻 Developers":
 
     with col1:
 
-        st.image("assets/latuga.jfif", use_container_width=True)
+        st.image("assets/rhem.png", use_container_width=True)
 
         st.markdown(
             """
@@ -1717,7 +1717,7 @@ elif page == "👨‍💻 Developers":
 
     with col2:
 
-        st.image("assets/padilla.jfif", use_container_width=True)
+        st.image("assets/mika.png", use_container_width=True)
 
         st.markdown(
             """
