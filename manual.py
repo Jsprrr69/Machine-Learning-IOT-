@@ -357,6 +357,25 @@ st.markdown(
     transition:0.3s;
 }
 
+.footer-logos{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-bottom:15px;
+}
+
+.footer-logos img{
+    width:80px;
+    height:auto;
+    transition:0.3s;
+}
+
+.footer-logos img:hover{
+    transform:scale(1.1);
+}
+
 .footer-logo:hover{
     transform:scale(1.1);
     filter:drop-shadow(
@@ -1778,26 +1797,11 @@ elif page == "👨‍💻 Developers":
     """)
 
 # FOOTER #
-col1, col2, col3 = st.columns([2,3,2])
-
-with col2:
-
-    a, b, c, d = st.columns(
-        [1,1,1,1],
-        gap="small"
-    )
-
-    with a:
-        st.image("assets/pup.png", width=130)
-
-    with b:
-        st.image("assets/cea.png", width=130)
-
-    with c:
-        st.image("assets/eee.png", width=130)
-
-    with d:
-        st.image("assets/logo.png", width=130)
+st.image(
+    "assets/lugu.png",
+    use_container_width=False,
+    width=500
+)
 
 st.markdown(
     """ 
