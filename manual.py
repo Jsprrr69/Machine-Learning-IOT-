@@ -680,14 +680,18 @@ Group 5
 
 if page == "🏠 Home":
 
-    col1, col2, col3 = st.columns([1, 1, 1])
+    st.markdown(
+        """
+        <div style="text-align:center;">
+        """,
+        unsafe_allow_html=True
+    )
 
-    with col2:
-        st.image(
-            "assets/logo.png",
-            width=300
-        )
-
+    st.image(
+        "assets/logo.png",
+        width=300
+    )
+    
     st.markdown(
         """
     <div class='hero'>
