@@ -348,9 +348,9 @@ st.markdown(
 
 .footer {
     text-align:center;
-    padding:10px;
+    padding:5px;
     color:#999;
-    margin-top:5px;
+    margin-top:0px;
 }
 
 .footer-logo{
