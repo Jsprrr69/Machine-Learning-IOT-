@@ -348,7 +348,7 @@ st.markdown(
 
 .footer {
     text-align:center;
-    padding:40px;
+    padding:0px;
     color:#999;
     margin-top:50px;
 }
@@ -1787,25 +1787,25 @@ with center:
     with c1:
         st.image(
             "assets/pup.png",
-            width=85
+            width=300
         )
 
     with c2:
         st.image(
             "assets/cea.png",
-            width=85
+            width=300
         )
 
     with c3:
         st.image(
             "assets/eee.png",
-            width=85
+            width=300
         )
 
     with c4:
         st.image(
             "assets/logo.png",
-            width=85
+            width=300
         )
 st.markdown(
     """
