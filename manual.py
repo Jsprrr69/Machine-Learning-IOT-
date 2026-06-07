@@ -1169,7 +1169,7 @@ elif page == "📚 User Manual":
 
     st.divider()
 
-        st.markdown("""
+    st.markdown("""
     <div class='glass fade-in'>
 
     <h2 style='text-align:center; color:#ff8c42;'>
