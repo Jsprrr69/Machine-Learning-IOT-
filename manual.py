@@ -691,7 +691,7 @@ if page == "🏠 Home":
 
     col1, col2, col3 = st.columns([3,1,3])
 
-    with col2:
+with col2:
     st.image(
         "assets/logo.png",
         width=300
