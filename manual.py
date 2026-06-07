@@ -1763,21 +1763,23 @@ elif page == "👨‍💻 Developers":
 
 # FOOTER #
 
-space1, logo1, logo2, logo3, logo4, space2 = st.columns(
-    [2, 1, 1, 1, 1, 2]
-)
+left, center, right = st.columns([2, 4, 2])
 
-with logo1:
-    st.image("assets/pup.png", width=100)
+with center:
 
-with logo2:
-    st.image("assets/cea.png", width=100)
+    c1, c2, c3, c4 = st.columns(4)
 
-with logo3:
-    st.image("assets/eee.png", width=100)
+    with c1:
+        st.image("assets/university_logo.png", width=250)
 
-with logo4:
-    st.image("assets/logo.png", width=100)
+    with c2:
+        st.image("assets/engineering_logo.png", width=250)
+
+    with c3:
+        st.image("assets/eee_logo.png", width=250)
+
+    with c4:
+        st.image("assets/logo.png", width=250)
 
 st.markdown(
     """
