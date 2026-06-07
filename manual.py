@@ -372,10 +372,6 @@ st.markdown(
     transition:0.3s;
 }
 
-.footer-logos img:hover{
-    transform:scale(1.1);
-}
-
 .footer-logo:hover{
     transform:scale(1.1);
     filter:drop-shadow(
@@ -1802,9 +1798,9 @@ elif page == "👨‍💻 Developers":
 
 # FOOTER #
 st.image(
-    "assets/lugu.png",
+    "assets/log.png",
     use_container_width=False,
-    width=500
+    width=600
 )
 
 st.markdown(
