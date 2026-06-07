@@ -1004,12 +1004,26 @@ elif page == "⚙️ How It Works":
     st.divider()
 
     st.markdown("""
-    ### ⚡ Step 2 — ESP32 Processing
+    <div class='glass fade-in'>
 
-    The ESP32 continuously gathers data from all
-    sensors and transmits the information to
-    the cloud database.
-    """)
+    <h2 style='text-align:center; color:#ff8c42;'>
+
+    ⚡ Step 2 — ESP32 Processing
+
+    </h2>
+
+    <p style='text-align:center;'>
+
+    The ESP32 serves as the brain of the
+    hardware system. It collects sensor
+    readings, processes the data, and
+    transmits information to the cloud
+    database in real time.
+
+    </p>
+
+    </div>
+    """, unsafe_allow_html=True)
 
     st.divider()
 
