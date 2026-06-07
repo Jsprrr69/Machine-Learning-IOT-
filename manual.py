@@ -946,7 +946,8 @@ elif page == "⚙️ How It Works":
 
     st.title("⚙️ How The System Works")
 
-         st.markdown("""
+    st.markdown("""
+    
     <div class='glass fade-in'>
 
     <h2 style='text-align:center; color:#ff8c42;'>
