@@ -1786,8 +1786,6 @@ st.markdown(
 with Automatic Breaker Isolation
 and SMS Notification 🔥 
 
-<br><br>
-
 Bachelor of Science in Electrical Engineering
 
 </div>
