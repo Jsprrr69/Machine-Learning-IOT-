@@ -19,47 +19,83 @@ st.markdown(
     """
 <style>
 
-/* Sidebar */
+/* ===================================================== */
+/* PREMIUM SIDEBAR */
+/* ===================================================== */
+
 [data-testid="stSidebar"]{
-    background: linear-gradient(
+    background:
+    linear-gradient(
         180deg,
-        #0f172a 0%,
-        #1e293b 50%,
+        #081018 0%,
+        #0f172a 50%,
         #111827 100%
+    );
+
+    border-right:
+    1px solid rgba(
+        255,
+        140,
+        66,
+        0.15
     );
 }
 
-/* Sidebar title */
-.sidebar-title{
+/* Sidebar Content */
+
+[data-testid="stSidebar"] > div:first-child{
+
+    padding-top:20px;
+}
+
+/* Logo Card */
+
+.sidebar-logo{
+
     text-align:center;
-    color:white;
-    font-size:24px;
-    font-weight:bold;
-    margin-bottom:20px;
+
+    background:
+    rgba(255,255,255,0.04);
+
+    border:
+    1px solid rgba(
+        255,
+        255,
+        255,
+        0.08
+    );
+
+    border-radius:20px;
+
+    padding:20px;
+
+    margin-bottom:25px;
+
+    box-shadow:
+    0 0 20px rgba(
+        255,
+        140,
+        66,
+        0.15
+    );
 }
 
-/* Radio buttons */
-div[role="radiogroup"] > label{
-    background: rgba(255,255,255,0.05);
-    border-radius:12px;
-    padding:10px;
-    margin-bottom:8px;
-    transition:0.3s;
+.sidebar-logo h1{
+
+    color:#ff8c42;
+
+    margin:0;
+
+    font-size:28px;
 }
 
-div[role="radiogroup"] > label:hover{
-    background: rgba(255,140,66,0.25);
-    transform:translateX(5px);
-}
+.sidebar-logo p{
 
-/* Selected menu */
-div[role="radiogroup"] label[data-selected="true"]{
-    background: rgba(255,140,66,0.35);
-}
+    color:#bdbdbd;
 
-/* Sidebar text */
-[data-testid="stSidebar"] *{
-    color:white;
+    font-size:13px;
+
+    margin-top:5px;
 }
 
 </style>
