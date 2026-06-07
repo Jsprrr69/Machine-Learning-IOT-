@@ -680,17 +680,16 @@ Group 5
 
 if page == "🏠 Home":
 
-    st.markdown("""
-<div style="text-align:center; margin-top:20px;">
-
-<img src="https://raw.githubusercontent.com/your-repo/assets/logo.png"
-width="220">
-
-</div>
-""", unsafe_allow_html=True)
+    st.image(
+    "assets/logo.png",
+    width=220
+)
     
     st.markdown(
         """
+
+    st.markdown("<br>", unsafe_allow_html=True)
+    
     <div class='hero'>
 
     <h1>
