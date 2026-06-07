@@ -691,7 +691,7 @@ if page == "🏠 Home":
     st.markdown("""
     <style>
     .logo-container{
-        margin-bottom:-50px;
+        margin-bottom:0px;
     }
     </style>
     """, unsafe_allow_html=True)
