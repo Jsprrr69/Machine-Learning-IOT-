@@ -292,8 +292,29 @@ st.markdown(
 }
 
 .hero h1 {
-    font-size: 3.5rem;
-    color: #ff8c42;
+
+    animation:
+        flameText 2s ease-in-out infinite;
+
+    text-shadow:
+        0 0 10px #ff8c42,
+        0 0 20px #ff4500,
+        0 0 40px #ff8c42;
+}
+
+@keyframes flameText {
+
+    0%{
+        transform:translateY(0px);
+    }
+
+    50%{
+        transform:translateY(-3px);
+    }
+
+    100%{
+        transform:translateY(0px);
+    }
 }
 
 .hero h3 {
