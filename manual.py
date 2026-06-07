@@ -669,6 +669,14 @@ BS Electrical Engineering
 
 Group 5
 
+col1, col2, col3 = st.columns([3,1,3])
+
+    with col2:
+        st.image(
+            "assets/logo.png",
+            width=300
+        )
+
 </center>
 """,
     unsafe_allow_html=True,
@@ -1773,6 +1781,13 @@ and SMS Notification 🔥
 
 <br><br>
 
+col1, col2, col3 = st.columns([3,1,3])
+
+    with col2:
+        st.image(
+            "assets/logo.png",
+            width=300
+        )
 Bachelor of Science in Electrical Engineering
 
 </div>
