@@ -19,15 +19,6 @@ st.markdown(
     """
 <style>
 
-[data-testid="stImage"]{
-    text-align:center;
-}
-
-[data-testid="stImage"] img{
-    margin:auto;
-    display:block;
-}
-
 /* ===================================================== */
 /* PREMIUM SIDEBAR */
 /* ===================================================== */
@@ -696,6 +687,14 @@ if page == "🏠 Home":
             "assets/logo.png",
             width=300
         )
+        
+    st.markdown("""
+    <style>
+    .logo-container{
+        margin-bottom:-50px;
+    }
+    </style>
+    """, unsafe_allow_html=True)
     
     st.markdown(
         """
