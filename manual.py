@@ -1762,6 +1762,21 @@ elif page == "👨‍💻 Developers":
     """)
 
 # FOOTER #
+
+logo1, logo2, logo3, logo4 = st.columns(4)
+
+with logo1:
+    st.image("assets/pup.png", width=100)
+
+with logo2:
+    st.image("assets/cea.png", width=100)
+
+with logo3:
+    st.image("assets/eee.png", width=100)
+
+with logo4:
+    st.image("assets/logo.png", width=100)
+
 st.markdown(
     """
     
