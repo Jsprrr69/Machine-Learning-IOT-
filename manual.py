@@ -1786,19 +1786,19 @@ with logos:
 
     with l1:
         st.image(
-            "assets/university_logo.png",
+            "assets/pup.png",
             width=120
         )
 
     with l2:
         st.image(
-            "assets/engineering_logo.png",
+            "assets/cea.png",
             width=120
         )
 
     with l3:
         st.image(
-            "assets/eee_logo.png",
+            "assets/eee.png",
             width=120
         )
 
