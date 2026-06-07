@@ -1223,7 +1223,7 @@ once all four sensors have been successfully initialized
 and are providing valid readings.
 """)
 
-    st.divider()
+st.divider()
 
     st.markdown("""
     ### Step 4 — Open the Monitoring Dashboard
