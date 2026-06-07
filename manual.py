@@ -562,9 +562,10 @@ st.sidebar.markdown(
 <center>
 
 BS Electrical Engineering
-4-1
-Group 5
 
+4-1
+
+Group 5
 
 </center>
 """,
