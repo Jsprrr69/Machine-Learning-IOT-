@@ -1874,7 +1874,7 @@ elif page == "👨‍💻 Developers":
 
     with col4:
 
-        st.image("assets/wenceslao.jfif", use_container_width=True)
+        st.image("assets/aj.png", use_container_width=True)
 
         st.markdown(
             """
