@@ -1003,9 +1003,7 @@ elif page == "⚙️ How It Works":
     <div class='glass fade-in'>
 
     <h2 style='text-align:center; color:#ff8c42;'>
-
     ⚡ Step 2 — ESP32 Processing
-
     </h2>
 
     <p style='text-align:center;'>
@@ -1026,12 +1024,8 @@ elif page == "⚙️ How It Works":
 <div class='glass fade-in'>
 
 <h2 style='text-align:center; color:#ff8c42;'>
-
 🧠 Step 3 — Machine Learning Classification
-
 </h2>
-
-<br>
 
 <div style="
 display:flex;
@@ -1134,9 +1128,7 @@ Potential Fire, or Fire conditions.
     <div class='glass fade-in'>
 
     <h2 style='text-align:center; color:#ff8c42;'>
-
     🚦 Step 4 — Classification Result
-
     </h2>
 
     <p style='text-align:center;'>
@@ -1183,9 +1175,7 @@ Potential Fire, or Fire conditions.
     <div class='glass fade-in'>
 
     <h2 style='text-align:center; color:#ff8c42;'>
-
     📱 Step 5 — Automated Response
-
     </h2>
 
     <div style="
