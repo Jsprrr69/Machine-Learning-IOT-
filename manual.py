@@ -1480,10 +1480,8 @@ System Response:
     The SIM900A GSM Module automatically
     sends SMS alerts whenever the system
     detects Potential Fire or Fire conditions.
-    
     Potential Fire alerts notify users
     to inspect the area.
-    
     Fire alerts notify users that
     immediate action may be necessary.
     </p>
@@ -1504,7 +1502,6 @@ System Response:
     During a Fire classification,
     the relay module activates
     the breaker isolation mechanism.
-    
     This disconnects electrical power
     and helps reduce fire risks.
     </p>
