@@ -728,7 +728,7 @@ if page == "🏠 Home":
     IoT-Based Fire Detection
     and Classification System
     with Automatic Breaker Isolation
-    and SMS Notification
+    and SMS Notification and Jzenarah Kalibu
     </h1>
 
     <br>
