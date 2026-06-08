@@ -1013,13 +1013,11 @@ elif page == "⚙️ How It Works":
     </h2>
 
     <p style='text-align:center;'>
-
     The ESP32 serves as the brain of the
     hardware system. It collects sensor
     readings, processes the data, and
     transmits information to the cloud
     database in real time.
-
     </p>
 
     </div>
@@ -1123,12 +1121,10 @@ text-align:center;
 <br>
 
 <p style='text-align:center; font-size:16px;'>
-
 The Random Forest algorithm receives the combined
 sensor readings, analyzes detected patterns, and
 classifies the environment into Non-Fire,
 Potential Fire, or Fire conditions.
-
 </p>
 
 </div>
@@ -1148,11 +1144,9 @@ Potential Fire, or Fire conditions.
     </h2>
 
     <p style='text-align:center;'>
-
     The system determines the
     current condition based on
     sensor readings.
-
     </p>
 
     </div>
