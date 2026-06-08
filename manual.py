@@ -951,9 +951,7 @@ elif page == "⚙️ How It Works":
     <div class='glass fade-in'>
 
     <h2 style='text-align:center; color:#ff8c42;'>
-
     🔥 Step 1 — Data Collection
-
     </h2>
 
     <p style='text-align:center;'>
@@ -1249,9 +1247,7 @@ elif page == "📚 User Manual":
     <div class='glass fade-in'>
 
     <h2 style='text-align:center; color:#ff8c42;'>
-
     🔌 Step 1 — Power On the System
-
     </h2>
 
     <p style='text-align:center;'>
@@ -1272,9 +1268,7 @@ elif page == "📚 User Manual":
     <div class='glass fade-in'>
 
     <h2 style='text-align:center; color:#ff8c42;'>
-
     🌐 Step 2 — Verify WiFi Connectivity
-
     </h2>
 
     <p style='text-align:center;'>
@@ -1354,9 +1348,7 @@ and are providing valid readings.
     <div class='glass fade-in'>
 
     <h2 style='text-align:center; color:#ff8c42;'>
-
     🖥️ Step 4 — Open the Monitoring Dashboard
-
     </h2>
 
     <p style='text-align:center;'>
@@ -1364,7 +1356,6 @@ and are providing valid readings.
     to observe system status,
     sensor activity, and classification
     results in real time.
-    <br>
     The dashboard automatically updates
     whenever new sensor data is received.
     </p>
@@ -1378,17 +1369,13 @@ and are providing valid readings.
     <div class='glass fade-in'>
 
     <h2 style='text-align:center; color:#ff8c42;'>
-
     🧠 Step 5 — Machine Learning Classification
-
     </h2>
 
     <p style='text-align:center;'>
-
     The Random Forest model continuously
     analyzes sensor readings and determines
     the current environmental condition.
-
     </p>
 
     </div>
@@ -1486,9 +1473,7 @@ System Response:
     <div class='glass fade-in'>
 
     <h2 style='text-align:center; color:#ff8c42;'>
-
     📱 SMS Notification System
-
     </h2>
 
     <p style='text-align:center;'>
@@ -1496,12 +1481,8 @@ System Response:
     sends SMS alerts whenever the system
     detects Potential Fire or Fire conditions.
     
-    <br>
-    
     Potential Fire alerts notify users
     to inspect the area.
-    
-    <br>
     
     Fire alerts notify users that
     immediate action may be necessary.
@@ -1516,17 +1497,13 @@ System Response:
     <div class='glass fade-in'>
 
     <h2 style='text-align:center; color:#ff8c42;'>
-
     ⚡ Automatic Breaker Isolation
-
     </h2>
 
     <p style='text-align:center;'>
     During a Fire classification,
     the relay module activates
     the breaker isolation mechanism.
-    
-    <br>
     
     This disconnects electrical power
     and helps reduce fire risks.
@@ -1541,9 +1518,7 @@ System Response:
     <div class='glass fade-in'>
 
     <h2 style='text-align:center; color:#ff8c42;'>
-
     🖥️ Dashboard Monitoring
-
     </h2>
 
     <p style='text-align:center;'>
@@ -1564,9 +1539,7 @@ System Response:
     <div class='glass fade-in'>
 
     <h2 style='text-align:center; color:#ff8c42;'>
-
     ⚠️ Important Reminders
-
     </h2>
 
     <p style='text-align:center;'>
@@ -1588,13 +1561,10 @@ System Response:
     <div class='glass fade-in'>
 
     <h2 style='text-align:center; color:#00ff88;'>
-
     ✅ Normal Operation Summary
-
     </h2>
 
     <p style='text-align:center;'>
-
     1. Sensors collect environmental data.<br>
     2. ESP32 transmits data to the cloud.<br>
     3. Random Forest analyzes readings.<br>
@@ -1602,7 +1572,6 @@ System Response:
     5. Dashboard updates automatically.<br>
     6. SMS notifications are sent when needed.<br>
     7. Breaker isolation activates during Fire.
-
     </p>
 
     </div>
