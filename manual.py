@@ -1255,14 +1255,12 @@ elif page == "📚 User Manual":
     </h2>
 
     <p style='text-align:center;'>
-
     Supply power to the system and ensure that all components
     are properly energized.
 
     ESP32 • MQ2 • MQ7 • MQ135 • MCP9808 • SIM900A • Relay
 
     Allow the sensors a few moments to stabilize after startup.
-
     </p>
 
     </div>
@@ -1271,20 +1269,25 @@ elif page == "📚 User Manual":
     st.divider()
 
     st.markdown("""
-    ### Step 2 — Verify WiFi Connectivity
+    <div class='glass fade-in'>
 
-    The ESP32 automatically connects to the configured WiFi network.
+    <h2 style='text-align:center; color:#ff8c42;'>
 
-    A stable internet connection is required for:
+    🌐 Step 2 — Verify WiFi Connectivity
 
-    • Cloud Database Communication
+    </h2>
 
-    • Dashboard Monitoring
+    <p style='text-align:center;'>
+    The ESP32 automatically connects
+    to the configured WiFi network.
 
-    • Real-Time Data Updates
+    A stable internet connection is required
+    for cloud communication, dashboard monitoring,
+    real-time updates, and remote notifications.
+    </p>
 
-    • Remote Notifications
-    """)
+    </div>
+    """, unsafe_allow_html=True)
 
     st.divider()
 
