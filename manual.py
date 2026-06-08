@@ -1495,10 +1495,14 @@ System Response:
     The SIM900A GSM Module automatically
     sends SMS alerts whenever the system
     detects Potential Fire or Fire conditions.
+    
     <br>
+    
     Potential Fire alerts notify users
     to inspect the area.
+    
     <br>
+    
     Fire alerts notify users that
     immediate action may be necessary.
     </p>
@@ -1509,77 +1513,100 @@ System Response:
     st.divider()
 
     st.markdown("""
-    ## ⚡ Automatic Breaker Isolation
+    <div class='glass fade-in'>
 
-    During a Fire classification, the relay module activates the
-    breaker isolation mechanism.
+    <h2 style='text-align:center; color:#ff8c42;'>
 
-    This disconnects electrical power from the protected circuit,
-    helping reduce the risk of electrical faults and fire propagation.
+    ⚡ Automatic Breaker Isolation
 
-    Breaker isolation is only activated during confirmed Fire conditions.
-    """)
+    </h2>
 
-    st.divider()
+    <p style='text-align:center;'>
+    During a Fire classification,
+    the relay module activates
+    the breaker isolation mechanism.
+    
+    <br>
+    
+    This disconnects electrical power
+    and helps reduce fire risks.
+    </p>
 
-    st.markdown("""
-    ## 🖥️ Dashboard Monitoring
-
-    The dashboard provides real-time monitoring of:
-
-    • Sensor Activity
-
-    • System Status
-
-    • Classification Results
-
-    • Alert Conditions
-
-    • Historical Monitoring Data
-
-    Users can continuously monitor the condition of the protected area
-    through the dashboard interface.
-    """)
+    </div>
+    """, unsafe_allow_html=True)
 
     st.divider()
 
     st.markdown("""
-    ## ⚠️ Important Reminders
+    <div class='glass fade-in'>
 
-    • Do not cover or obstruct the sensors.
+    <h2 style='text-align:center; color:#ff8c42;'>
 
-    • Keep sensors clean and free from dust.
+    🖥️ Dashboard Monitoring
 
-    • Ensure stable internet connectivity.
+    </h2>
 
-    • Verify GSM signal strength.
+    <p style='text-align:center;'>
+    Monitor sensor activity,
+    system status,
+    classification results,
+    alert conditions,
+    and historical data
+    through the dashboard.
+    </p>
 
-    • Regularly inspect wiring connections.
-
-    • Test the system periodically.
-
-    • Perform preventive maintenance when necessary.
-    """)
+    </div>
+    """, unsafe_allow_html=True)
 
     st.divider()
 
-    st.success("""
-✅ Normal Operation Summary
+    st.markdown("""
+    <div class='glass fade-in'>
 
-1. Sensors collect environmental data.
+    <h2 style='text-align:center; color:#ff8c42;'>
 
-2. ESP32 transmits data to the cloud.
+    ⚠️ Important Reminders
 
-3. Random Forest analyzes sensor readings.
+    </h2>
 
-4. The system classifies the condition.
+    <p style='text-align:center;'>
+    • Do not cover or obstruct sensors.<br>
+    • Keep sensors clean.<br>
+    • Ensure stable internet connectivity.<br>
+    • Verify GSM signal strength.<br>
+    • Inspect wiring regularly.<br>
+    • Test the system periodically.<br>
+    • Perform preventive maintenance.
+    </p>
 
-5. Dashboard updates automatically.
+    </div>
+    """, unsafe_allow_html=True)
 
-6. SMS notifications are sent when necessary.
+    st.divider()
 
-7. Breaker isolation activates during confirmed Fire conditions.
-""")
+    st.markdown("""
+    <div class='glass fade-in'>
+
+    <h2 style='text-align:center; color:#00ff88;'>
+
+    ✅ Normal Operation Summary
+
+    </h2>
+
+    <p style='text-align:center;'>
+
+    1. Sensors collect environmental data.<br>
+    2. ESP32 transmits data to the cloud.<br>
+    3. Random Forest analyzes readings.<br>
+    4. The system classifies the condition.<br>
+    5. Dashboard updates automatically.<br>
+    6. SMS notifications are sent when needed.<br>
+    7. Breaker isolation activates during Fire.
+
+    </p>
+
+    </div>
+    """, unsafe_allow_html=True)
 
 elif page == "🏗️ Architecture":
 
