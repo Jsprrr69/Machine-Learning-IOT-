@@ -1483,16 +1483,28 @@ System Response:
     st.divider()
 
     st.markdown("""
-    ## 📱 SMS Notification System
+    <div class='glass fade-in'>
 
-    The SIM900A GSM Module automatically sends SMS alerts whenever
-    the system detects Potential Fire or Fire conditions.
+    <h2 style='text-align:center; color:#ff8c42;'>
 
-    Potential Fire alerts notify users to inspect the area.
+    📱 SMS Notification System
 
-    Fire alerts notify users that a dangerous condition has been
-    detected and immediate action may be necessary.
-    """)
+    </h2>
+
+    <p style='text-align:center;'>
+    The SIM900A GSM Module automatically
+    sends SMS alerts whenever the system
+    detects Potential Fire or Fire conditions.
+    <br>
+    Potential Fire alerts notify users
+    to inspect the area.
+    <br>
+    Fire alerts notify users that
+    immediate action may be necessary.
+    </p>
+
+    </div>
+    """, unsafe_allow_html=True)
 
     st.divider()
 
