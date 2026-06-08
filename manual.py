@@ -1257,7 +1257,9 @@ elif page == "📚 User Manual":
     <p style='text-align:center;'>
     Supply power to the system and ensure that all components
     are properly energized.
+    <br>
     ESP32 • MQ2 • MQ7 • MQ135 • MCP9808 • SIM900A • Relay
+    <br>
     Allow the sensors a few moments to stabilize after startup.
     </p>
 
