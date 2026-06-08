@@ -1895,6 +1895,7 @@ st.markdown(
 🔥 IoT-Based Fire Detection and Classification System
 with Automatic Breaker Isolation
 and SMS Notification 🔥 
+<br>
 Bachelor of Science in Electrical Engineering
 
 </div>
