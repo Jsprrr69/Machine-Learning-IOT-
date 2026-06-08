@@ -957,11 +957,9 @@ elif page == "⚙️ How It Works":
     </h2>
 
     <p style='text-align:center;'>
-
     The system continuously gathers
     environmental information using
     four sensors.
-
     </p>
 
     </div>
