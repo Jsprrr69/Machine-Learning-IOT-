@@ -1257,9 +1257,7 @@ elif page == "📚 User Manual":
     <p style='text-align:center;'>
     Supply power to the system and ensure that all components
     are properly energized.
-
     ESP32 • MQ2 • MQ7 • MQ135 • MCP9808 • SIM900A • Relay
-
     Allow the sensors a few moments to stabilize after startup.
     </p>
 
@@ -1280,7 +1278,6 @@ elif page == "📚 User Manual":
     <p style='text-align:center;'>
     The ESP32 automatically connects
     to the configured WiFi network.
-
     A stable internet connection is required
     for cloud communication, dashboard monitoring,
     real-time updates, and remote notifications.
@@ -1352,14 +1349,26 @@ and are providing valid readings.
     st.divider()
 
     st.markdown("""
-    ### Step 4 — Open the Monitoring Dashboard
+    <div class='glass fade-in'>
 
-    Access the monitoring dashboard to observe the system status,
-    sensor activity, and classification results in real time.
+    <h2 style='text-align:center; color:#ff8c42;'>
 
-    The dashboard updates automatically whenever new sensor data
-    is received.
-    """)
+    🖥️ Step 4 — Open the Monitoring Dashboard
+
+    </h2>
+
+    <p style='text-align:center;'>
+    Access the monitoring dashboard
+    to observe system status,
+    sensor activity, and classification
+    results in real time.
+    <br>
+    The dashboard automatically updates
+    whenever new sensor data is received.
+    </p>
+
+    </div>
+    """, unsafe_allow_html=True)
 
     st.divider()
 
