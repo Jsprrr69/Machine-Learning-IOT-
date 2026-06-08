@@ -1375,11 +1375,24 @@ and are providing valid readings.
     st.divider()
 
     st.markdown("""
-    ### Step 5 — Machine Learning Classification
+    <div class='glass fade-in'>
 
-    The Random Forest model continuously analyzes sensor readings
-    and determines the current environmental condition.
-    """)
+    <h2 style='text-align:center; color:#ff8c42;'>
+
+    🧠 Step 5 — Machine Learning Classification
+
+    </h2>
+
+    <p style='text-align:center;'>
+
+    The Random Forest model continuously
+    analyzes sensor readings and determines
+    the current environmental condition.
+
+    </p>
+
+    </div>
+    """, unsafe_allow_html=True)
 
     tab1, tab2, tab3 = st.tabs(["🟢 Non-Fire", "🟡 Potential Fire", "🔴 Fire"])
 
