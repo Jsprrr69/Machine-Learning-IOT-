@@ -750,7 +750,7 @@ if page == "🏠 Home":
         """
 <div class='glass fade-in'>
 
-<h2>🔥 Why This Project Matters</h2>
+<h2>🔥 Why This Project Matters Jzenarah</h2>
 
 <p>
 Traditional smoke alarms may generate false
