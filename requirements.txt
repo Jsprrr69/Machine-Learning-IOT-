@@ -5,3 +5,8 @@ Pillow
 joblib
 plotly
 scikit-learn
+streamlit
+supabase
+pandas
+plotly
+python-dotenv
